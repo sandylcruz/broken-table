@@ -19,6 +19,23 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/env", "@babel/react"],
+            },
+          },
+          {
+            loader: "react-svg-loader",
+            options: {
+              jsx: true,
+            },
+          },
+        ],
+      },
     ],
   },
   devtool: "source-map",
