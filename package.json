@@ -2,13 +2,14 @@
   "name": "broken-table-frontend",
   "version": "1.0.0",
   "description": "This is the frontend for broken-table",
-  "main": "src/index.js",
+  "main": "./frontend/src/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production --config ./frontend/webpack.config.js",
     "eslint": "eslint .",
+    "heroku-postinstall": "yarn build",
     "postinstall": "yarn build",
-    "start": "webpack --watch --mode=development"
+    "start": "webpack --watch --mode=development ./frontend/webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
