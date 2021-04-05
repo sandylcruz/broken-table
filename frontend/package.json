@@ -5,8 +5,10 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --watch --mode=development",
-    "eslint": "eslint ."
+    "build": "webpack --mode=production",
+    "eslint": "eslint .",
+    "postinstall": "yarn build",
+    "start": "webpack --watch --mode=development"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -39,5 +41,9 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "styled-components": "^5.2.3"
+  },
+  "engines": {
+    "node": "14.15.5",
+    "yarn": "1.22.10"
   }
 }
