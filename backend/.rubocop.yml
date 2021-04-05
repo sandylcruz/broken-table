@@ -1,0 +1,8 @@
+AllCops:
+  Exclude:
+    - "bin/bundle"
+    - "Guardfile"
+    - "config/environments/development.rb"
+    - "node_modules/node-sass/src/libsass/contrib/libsass.spec"
+    - "node_modules/node-sass/src/libsass/extconf.rb"
+    - "config/application.rb"

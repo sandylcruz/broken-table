@@ -16,3 +16,17 @@ jobs:
         working-directory: ./frontend
       - name: ESLint
         run: ./scripts/ci/eslint.sh
+  rubocop:
+    name: rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.7"
+      - name: Install rubocop
+        run: gem install rubocop
+      - name: Rubocop
+        run: ./scripts/ci/rubocop.sh
