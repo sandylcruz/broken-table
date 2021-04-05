@@ -5,7 +5,9 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --watch --mode=development"
+    "build": "webpack --mode=production",
+    "start": "webpack --watch --mode=development",
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
@@ -24,5 +26,9 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.3"
+  },
+  "engines": {
+    "node": "14.15.5",
+    "yarn": "1.22.10"
   }
 }
