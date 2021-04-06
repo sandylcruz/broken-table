@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Create user model
 class User < ApplicationRecord
   attr_reader :password
 
@@ -9,6 +10,14 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
 
   after_initialize :ensure_session_token
+
+  has_many :favorites,
+           primary_key: :id,
+           foreign_key: :user_id
+
+  has_many :reservations,
+           primary_key: :id,
+           foreign_key: :user_id
 
   has_many :favorites,
            primary_key: :id,
