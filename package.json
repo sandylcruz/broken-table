@@ -8,8 +8,8 @@
     "build": "webpack --mode=production --config ./frontend/webpack.config.js",
     "eslint": "eslint .",
     "heroku-postinstall": "yarn build",
-    "postinstall": "yarn build",
-    "start": "webpack --watch --mode=development ./frontend/webpack.config.js"
+    "start": "echo 'starting...'",
+    "start:dev": "webpack --watch --mode=development ./frontend/webpack.config.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
