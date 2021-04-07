@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+.nav-bar > svg {
+  padding: 10px;
+}

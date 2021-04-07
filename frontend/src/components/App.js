@@ -1,9 +1,17 @@
 import React from "react";
 
-const App = () => {
+import GlobalStyle from "../GlobalStyle";
+import NavBar from "../NavBar/index";
+
+const App = React.memo(() => (
   <div>
-    <h1>BrokenTable kjhlkjhljk</h1>
-  </div>;
-};
+    <header>
+      <NavBar />
+    </header>
+    <GlobalStyle />
+
+    <h1>BrokenTable</h1>
+  </div>
+));
 
 export default App;
