@@ -1,4 +1,4 @@
-const signup = (user) =>
+export const signup = (user) =>
   new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
@@ -13,4 +13,31 @@ const signup = (user) =>
     });
   });
 
-export default signup;
+export const login = (user) =>
+  new Promise((resolve, reject) => {
+    $.ajax({
+      type: "POST",
+      url: "api/sessions/",
+      data: { user },
+      success: (userInfo) => {
+        resolve(userInfo);
+      },
+      error: () => {
+        reject();
+      },
+    });
+  });
+
+export const logout = () =>
+  new Promise((resolve, reject) => {
+    $.ajax({
+      type: "DELETE",
+      url: "api/sessions/:id",
+      success: () => {
+        resolve();
+      },
+      error: () => {
+        reject();
+      },
+    });
+  });
