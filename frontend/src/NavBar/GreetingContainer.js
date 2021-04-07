@@ -1,9 +1,23 @@
-import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 
-// import { logout as logoutAction } from "../actions/session_actions.js";
 import Greeting from "./Greeting";
+import { logout as logoutAction } from "../actions/sessionActions";
 
-const GreetingContainer = React.memo((props) => <Greeting {...props} />);
+// const GreetingContainer = React.memo((props) => {
+//   const currentUser = useSelector(selectCurrentUser);
+//   const dispatch = useDispatch();
+
+//   return <Greeting {...props} />;
+// }
+
+const GreetingContainer = (props) => {
+  const currentUser = "user";
+  const dispatch = useDispatch();
+
+  const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
+
+  return <Greeting {...props} currentUser={currentUser} logout={logout} />;
+};
 
 export default GreetingContainer;

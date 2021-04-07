@@ -29,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
     font-weight: bold;
     margin: 10px;
   }
+
+  body {
+    font-family: raleway;
+  }
 `;
 
 export default GlobalStyle;

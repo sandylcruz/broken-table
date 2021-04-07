@@ -9,6 +9,7 @@ const NavBarContainer = styled.div`
   height: 75px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const StyledLogo = styled(Logo)`
@@ -17,10 +18,16 @@ const StyledLogo = styled(Logo)`
   width: 150px;
 `;
 
+const StyledGreetingContainer = styled(GreetingContainer)`
+  display: flex;
+
+  align-items: right;
+`;
+
 const NavBar = React.memo(() => (
   <NavBarContainer>
     <StyledLogo />
-    <GreetingContainer />
+    <StyledGreetingContainer />
   </NavBarContainer>
 ));
 

@@ -5,10 +5,11 @@ import NavBar from "../NavBar/index";
 
 const App = React.memo(() => (
   <div>
+    <GlobalStyle />
+
     <header>
       <NavBar />
     </header>
-    <GlobalStyle />
   </div>
 ));
 

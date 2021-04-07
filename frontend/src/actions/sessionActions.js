@@ -23,8 +23,8 @@ export const login = (user) => (dispatch) =>
     dispatch(receiveCurrentUser(currentUser))
   );
 
-export const signup = (user) => (dispatch) =>
-  SessionAPIUtil.signup(user).then((currentUser) =>
+export const signUp = (user) => (dispatch) =>
+  SessionAPIUtil.signUp(user).then((currentUser) =>
     dispatch(receiveCurrentUser(currentUser))
   );
 
