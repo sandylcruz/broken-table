@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import GreetingContainer from "./GreetingContainer";
@@ -25,10 +26,12 @@ const StyledGreetingContainer = styled(GreetingContainer)`
 `;
 
 const NavBar = React.memo(() => (
-  <NavBarContainer>
-    <StyledLogo />
-    <StyledGreetingContainer />
-  </NavBarContainer>
+  <Link to="/">
+    <NavBarContainer>
+      <StyledLogo />
+      <StyledGreetingContainer />
+    </NavBarContainer>
+  </Link>
 ));
 
 export default NavBar;
