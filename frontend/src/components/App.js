@@ -9,8 +9,6 @@ const App = React.memo(() => (
       <NavBar />
     </header>
     <GlobalStyle />
-
-    <h1>BrokenTable</h1>
   </div>
 ));
 
