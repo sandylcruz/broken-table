@@ -21,7 +21,7 @@ module Api
     end
 
     def show
-      @user = User.find_by(params[:id])
+      @user = User.find_by_id(params[:id])
 
       if @user
         render :show
@@ -29,25 +29,6 @@ module Api
         render json @user.errors.full_messages, status: 404
       end
     end
-
-    # def update
-    #   if @user&.update_attributes(user_params)
-    #     render :show
-    #   elsif !@user
-    #     render json: ['Could not locate user'], status: 400
-    #   else
-    #     render json: @user.errors.full_messages, status: 401
-    #   end
-    # end
-
-    # def destroy
-    #   if @user
-    #     @user.destroy
-    #     render :show
-    #   else
-    #     render json: @user.errors.full_messages
-    #   end
-    # end
 
     private
 
