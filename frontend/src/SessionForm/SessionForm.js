@@ -2,9 +2,18 @@ import React, { useState, useCallback } from "react";
 
 import styled from "styled-components";
 
-const styledForm = styled.form`
+const Form = styled.form`
   font-family: helvetica;
-  color: purple;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  width: 300px;
+`;
+
+const Button = styled.button`
+  border-radius: 10%;
+  border: 1px solid blue;
 `;
 
 const SessionForm = ({ processForm }) => {
@@ -40,7 +49,7 @@ const SessionForm = ({ processForm }) => {
 
   return (
     <div>
-      <styledForm onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <p>
           Create a free account to book and manage your culinary experiences.
         </p>
@@ -61,9 +70,9 @@ const SessionForm = ({ processForm }) => {
             <input onChange={updatePassword} type="password" value={password} />
           </label>
 
-          <button type="submit">Submit</button>
+          <Button type="submit">Submit</Button>
         </div>
-      </styledForm>
+      </Form>
     </div>
   );
 };
