@@ -6,3 +6,7 @@ AllCops:
     - "config/environments/development.rb"
     - "node_modules/**/*"
     - "config/application.rb"
+    - "db/schema.rb"
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/**/*"
