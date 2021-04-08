@@ -2,18 +2,49 @@ import React, { useState, useCallback } from "react";
 
 import styled from "styled-components";
 
+const Button = styled.button`
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  width: 70%;
+  margin: 10px;
+  padding: 10px;
+  height: 30px;
+  font-weight: bold;
+  background-color: #2a2ae9;
+  color: white;
+`;
+
 const Form = styled.form`
   font-family: helvetica;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-  width: 300px;
+  margin: 10px;
+  box-sizing: border-box;
 `;
 
-const Button = styled.button`
-  border-radius: 10%;
-  border: 1px solid blue;
+const Input = styled.input`
+  padding: 10px;
+  margin: 10px;
+  border-radius: 3px;
+  border: 1px solid #d3d3d3;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  width: 70%;
+`;
+
+const P = styled.p`
+  padding: 10px;
+  margin: 10px;
+`;
+
+const Span = styled.span`
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const SessionForm = ({ processForm }) => {
@@ -50,28 +81,35 @@ const SessionForm = ({ processForm }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <p>
+        <h2>Sign up to continue</h2>
+        <P>
           Create a free account to book and manage your culinary experiences.
-        </p>
+        </P>
 
-        <div>
-          <label htmlFor="username">
-            Username:
-            <input onChange={updateUsername} type="text" value={username} />
-          </label>
+        <Span>
+          <Input
+            onChange={updateUsername}
+            type="text"
+            value={username}
+            placeholder="Username"
+          />
 
-          <label htmlFor="email">
-            Email:
-            <input onChange={updateEmail} type="text" value={email} />
-          </label>
+          <Input
+            onChange={updateEmail}
+            type="text"
+            value={email}
+            placeholder="Email"
+          />
 
-          <label htmlFor="password">
-            Password:
-            <input onChange={updatePassword} type="password" value={password} />
-          </label>
+          <Input
+            onChange={updatePassword}
+            type="password"
+            value={password}
+            placeholder="Password"
+          />
 
           <Button type="submit">Submit</Button>
-        </div>
+        </Span>
       </Form>
     </div>
   );

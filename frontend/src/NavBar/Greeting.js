@@ -17,7 +17,7 @@ const StyledLoginButton = styled.button`
   margin-right: 10px;
 `;
 
-const StyledSignUpButton = styled.button`
+const StyledLogoutButton = styled.button`
   background-color: red;
   text-decoration: none;
   border: 1px solid red;
@@ -29,7 +29,7 @@ const StyledSignUpButton = styled.button`
   margin-right: 10px;
 `;
 
-const StyledLogoutButton = styled.button`
+const StyledSignUpButton = styled.button`
   background-color: red;
   text-decoration: none;
   border: 1px solid red;
@@ -54,7 +54,7 @@ const Greeting = React.memo(({ currentUser }) => (
       </StyledNavButtons>
     ) : (
       <div>
-        Hi, {currentUser}!
+        Hi, {currentUser.username}!
         <StyledLogoutButton type="submit">Log Out</StyledLogoutButton>
       </div>
     )}

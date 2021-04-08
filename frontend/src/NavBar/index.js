@@ -6,23 +6,23 @@ import GreetingContainer from "./GreetingContainer";
 import Logo from "./Logo.svg";
 
 const NavBarContainer = styled.div`
-  border: 1px dotted black;
+  border: 1px solid #d3d3d3;
   height: 75px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const StyledLogo = styled(Logo)`
-  padding: 10px;
-  margin-top: -20px;
-  width: 150px;
-`;
-
 const StyledGreetingContainer = styled(GreetingContainer)`
   display: flex;
 
   align-items: right;
+`;
+
+const StyledLogo = styled(Logo)`
+  padding: 10px;
+  margin-top: -20px;
+  width: 150px;
 `;
 
 const NavBar = React.memo(() => (
