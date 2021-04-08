@@ -26,12 +26,12 @@ const StyledGreetingContainer = styled(GreetingContainer)`
 `;
 
 const NavBar = React.memo(() => (
-  <Link to="/">
-    <NavBarContainer>
+  <NavBarContainer>
+    <Link to="/">
       <StyledLogo />
-      <StyledGreetingContainer />
-    </NavBarContainer>
-  </Link>
+    </Link>
+    <StyledGreetingContainer />
+  </NavBarContainer>
 ));
 
 export default NavBar;

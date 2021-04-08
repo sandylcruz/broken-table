@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import SessionForm from "./SessionForm";
 import { signUp } from "../actions/sessionActions";
 
-const SignupForm = (props) => {
+const SignupFormContainer = (props) => {
   const dispatch = useDispatch();
   const errors = useSelector((state) => state.errors);
 
@@ -27,4 +27,4 @@ const SignupForm = (props) => {
   );
 };
 
-export default SignupForm;
+export default SignupFormContainer;

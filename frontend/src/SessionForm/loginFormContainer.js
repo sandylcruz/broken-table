@@ -4,13 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/sessionActions";
 import SessionForm from "./SessionForm";
 
-const LoginForm = (props) => {
+const LoginFormContainer = (props) => {
   const dispatch = useDispatch();
   const errors = useSelector((state) => state.errors);
 
-  const processForm = useCallback((user) => {
-    dispatch(login(user));
-  });
+  const processForm = useCallback((user) => dispatch(login(user)), [dispatch]);
 
   return (
     <div>
@@ -24,4 +22,4 @@ const LoginForm = (props) => {
   );
 };
 
-export default LoginForm;
+export default LoginFormContainer;
