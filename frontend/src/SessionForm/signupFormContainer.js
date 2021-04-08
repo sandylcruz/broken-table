@@ -5,8 +5,8 @@ import SessionForm from "./SessionForm";
 import { signUp } from "../actions/sessionActions";
 
 const SignupForm = (props) => {
-  const errors = useSelector((state) => state.errors);
   const dispatch = useDispatch();
+  const errors = useSelector((state) => state.errors);
 
   const processForm = useCallback(
     (user) => {
