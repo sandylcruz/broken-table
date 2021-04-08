@@ -41,6 +41,12 @@ const StyledSignUpButton = styled.button`
   margin-right: 10px;
 `;
 
+const P = styled.p`
+  font-size: 15px;
+  font-family: helvetica;
+  color: purple;
+`;
+
 const Greeting = React.memo(({ currentUser }) => (
   <nav>
     {!currentUser ? (
@@ -54,8 +60,10 @@ const Greeting = React.memo(({ currentUser }) => (
       </StyledNavButtons>
     ) : (
       <div>
-        Hi, {currentUser.username}!
-        <StyledLogoutButton type="submit">Log Out</StyledLogoutButton>
+        <P>
+          Hi, {currentUser.username}!
+          <StyledLogoutButton type="submit">Log Out</StyledLogoutButton>
+        </P>
       </div>
     )}
   </nav>

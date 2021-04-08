@@ -17,7 +17,7 @@ export const login = (user) =>
   new Promise((resolve, reject) => {
     $.ajax({
       type: "POST",
-      url: "api/sessions/",
+      url: "api/session/",
       data: { user },
       success: (userInfo) => {
         resolve(userInfo);
@@ -32,7 +32,7 @@ export const logout = () =>
   new Promise((resolve, reject) => {
     $.ajax({
       type: "DELETE",
-      url: "api/sessions/:id",
+      url: "api/session/",
       success: () => {
         resolve();
       },

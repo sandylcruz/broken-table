@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import SessionForm from "./SessionForm";
+import SignupForm from "./SessionForm";
 import { signUp } from "../actions/sessionActions";
 
 const SignupFormContainer = (props) => {
@@ -17,7 +17,7 @@ const SignupFormContainer = (props) => {
 
   return (
     <div>
-      <SessionForm
+      <SignupForm
         {...props}
         errors={errors}
         formType={signUp}

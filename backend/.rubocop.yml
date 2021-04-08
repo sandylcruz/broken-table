@@ -10,3 +10,5 @@ AllCops:
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/**/*"
+Naming/PredicateName:
+  Enabled: false
