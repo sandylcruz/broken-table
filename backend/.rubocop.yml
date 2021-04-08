@@ -1,7 +1,12 @@
 AllCops:
+  TargetRubyVersion: 2.7
   Exclude:
     - "bin/bundle"
     - "Guardfile"
     - "config/environments/development.rb"
     - "node_modules/**/*"
     - "config/application.rb"
+    - "db/schema.rb"
+Metrics/MethodLength:
+  Exclude:
+    - "db/migrate/**/*"
