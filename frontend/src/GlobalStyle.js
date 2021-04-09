@@ -30,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 10px;
   }
 
-    h2 {
+  h2 {
     font-family: raleway;
     font-size: 25px;
     font-weight: bold;

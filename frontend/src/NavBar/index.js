@@ -15,7 +15,6 @@ const NavBarContainer = styled.div`
 
 const StyledGreetingContainer = styled(GreetingContainer)`
   display: flex;
-
   align-items: right;
 `;
 

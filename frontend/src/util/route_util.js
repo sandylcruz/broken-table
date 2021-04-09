@@ -5,7 +5,7 @@ import { Redirect, Route } from "react-router-dom";
 
 import { selectCurrentUser } from "../reducers/selectors";
 
-const Auth = ({ component: Component, path, exact }) => {
+const Auth = React.memo(({ component: Component, path, exact }) => {
   const currentUser = useSelector(selectCurrentUser);
 
   return (
@@ -17,7 +17,7 @@ const Auth = ({ component: Component, path, exact }) => {
       }
     />
   );
-};
+});
 
 const AuthRoute = withRouter(Auth);
 

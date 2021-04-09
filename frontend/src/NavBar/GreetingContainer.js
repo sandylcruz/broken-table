@@ -6,7 +6,7 @@ import { logout as logoutAction } from "../actions/sessionActions";
 import { selectCurrentUser } from "../reducers/selectors";
 
 const GreetingContainer = (props) => {
-  const currentUser = useSelector((state) => selectCurrentUser(state));
+  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);

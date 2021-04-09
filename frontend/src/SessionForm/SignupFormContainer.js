@@ -1,12 +1,13 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import SignupForm from "./SessionForm";
+import { selectErrors } from "../reducers/selectors";
+import SignupForm from "./SignupForm";
 import { signUp } from "../actions/sessionActions";
 
-const SignupFormContainer = (props) => {
+const SignupFormContainer = React.memo((props) => {
   const dispatch = useDispatch();
-  const errors = useSelector((state) => state.errors);
+  const errors = useSelector(selectErrors);
 
   const processForm = useCallback(
     (user) => {
@@ -16,15 +17,13 @@ const SignupFormContainer = (props) => {
   );
 
   return (
-    <div>
-      <SignupForm
-        {...props}
-        errors={errors}
-        formType={signUp}
-        processForm={processForm}
-      />
-    </div>
+    <SignupForm
+      {...props}
+      errors={errors}
+      formType={signUp}
+      processForm={processForm}
+    />
   );
-};
+});
 
 export default SignupFormContainer;

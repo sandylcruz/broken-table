@@ -1,11 +1,9 @@
 import { createSelector } from "reselect";
 
-// const mySelector = createSelector(
-//   (state) => 1,
-//   (state) => 2,
-//   (state) => 3,
-//   (one, two, three) => one + two + three
-// );
+export const selectErrors = createSelector(
+  (state) => state.errors,
+  (errors) => errors
+);
 
 export const selectCurrentUser = createSelector(
   (state) => {
@@ -19,5 +17,3 @@ export const selectCurrentUser = createSelector(
   },
   (currentUser) => currentUser
 );
-
-export const selectUsers = () => {};

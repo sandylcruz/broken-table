@@ -3,7 +3,7 @@ import React from "react";
 import AuthRoute from "../util/route_util";
 import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
-import NavBar from "../NavBar/index";
+import NavBar from "../NavBar";
 import SignupFormContainer from "../SessionForm/SignupFormContainer";
 
 const App = React.memo(() => (

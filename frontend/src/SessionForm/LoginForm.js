@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
-
 import styled from "styled-components";
+
 import SubmitButton from "../components/SubmitButton";
 
 const Form = styled.form`
@@ -31,7 +31,7 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const LoginForm = ({ processForm }) => {
+const LoginForm = React.memo(({ processForm }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -59,8 +59,7 @@ const LoginForm = ({ processForm }) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <h2>Login to continue</h2>
-
+        <h2>Log in to continue</h2>
         <Span>
           <Input
             onChange={updateUsername}
@@ -68,19 +67,17 @@ const LoginForm = ({ processForm }) => {
             value={username}
             placeholder="Username"
           />
-
           <Input
             onChange={updatePassword}
             type="password"
             value={password}
             placeholder="Password"
           />
-
           <SubmitButton type="submit">Log in</SubmitButton>
         </Span>
       </Form>
     </div>
   );
-};
+});
 
 export default LoginForm;

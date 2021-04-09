@@ -5,9 +5,7 @@ import styled from "styled-components";
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 
-const StyledNavButtons = styled.div``;
-
-const P = styled.p`
+const GreetingText = styled.p`
   font-size: 15px;
   font-family: helvetica;
   margin: 10px;
@@ -27,13 +25,13 @@ const Greeting = React.memo(({ currentUser, logout }) => {
   return (
     <nav>
       {!currentUser ? (
-        <StyledNavButtons>
+        <div>
           <PrimaryButton onClick={handleSignupClick}>Sign up</PrimaryButton>
           <SecondaryButton onClick={handleLoginClick}>Log In</SecondaryButton>
-        </StyledNavButtons>
+        </div>
       ) : (
         <div>
-          <P>Hi, {currentUser.username}!</P>
+          <GreetingText>Hi, {currentUser.username}!</GreetingText>
           <PrimaryButton type="submit" onClick={logout}>
             Log Out
           </PrimaryButton>

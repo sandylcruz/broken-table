@@ -33,7 +33,7 @@ const Input = styled.input`
   width: 70%;
 `;
 
-const P = styled.p`
+const GreetingMessage = styled.p`
   padding: 10px;
   margin: 10px;
 `;
@@ -47,7 +47,7 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const SignupForm = ({ processForm }) => {
+const SignupForm = React.memo(({ processForm }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -82,9 +82,9 @@ const SignupForm = ({ processForm }) => {
     <div>
       <Form onSubmit={handleSubmit}>
         <h2>Sign up to continue</h2>
-        <P>
+        <GreetingMessage>
           Create a free account to book and manage your culinary experiences.
-        </P>
+        </GreetingMessage>
 
         <Span>
           <Input
@@ -113,6 +113,6 @@ const SignupForm = ({ processForm }) => {
       </Form>
     </div>
   );
-};
+});
 
 export default SignupForm;

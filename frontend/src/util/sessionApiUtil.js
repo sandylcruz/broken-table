@@ -1,6 +1,8 @@
+import { ajax } from "jquery";
+
 export const signUp = (user) =>
   new Promise((resolve, reject) => {
-    $.ajax({
+    ajax({
       type: "POST",
       url: "/api/users",
       data: { user },
@@ -15,7 +17,7 @@ export const signUp = (user) =>
 
 export const login = (user) =>
   new Promise((resolve, reject) => {
-    $.ajax({
+    ajax({
       type: "POST",
       url: "api/session/",
       data: { user },
@@ -30,7 +32,7 @@ export const login = (user) =>
 
 export const logout = () =>
   new Promise((resolve, reject) => {
-    $.ajax({
+    ajax({
       type: "DELETE",
       url: "api/session/",
       success: () => {

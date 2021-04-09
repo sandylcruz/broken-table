@@ -11,14 +11,12 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  globals: {
-    $: "readonly",
-  },
+  globals: {},
   plugins: ["react", "prettier"],
   rules: {
     "react/jsx-filename-extension": "off",
-    "prettier/prettier": "error",
     "react/prop-types": "off",
+    "prettier/prettier": "error",
     "react/jsx-props-no-spreading": "off",
   },
 };
