@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SubmitButton = styled.button`
-  border-radius: 5px;
+  border-radius: 25px;
   border: 1px solid #d3d3d3;
   width: 70%;
   margin: 10px;
