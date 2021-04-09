@@ -8,6 +8,11 @@ AllCops:
     - "config/application.rb"
     - "db/schema.rb"
     - "app/spec"
+
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - "spec/**/*"
+
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/**/*"
