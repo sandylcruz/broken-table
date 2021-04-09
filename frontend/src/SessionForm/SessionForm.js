@@ -1,18 +1,7 @@
 import React, { useState, useCallback } from "react";
 
 import styled from "styled-components";
-
-const Button = styled.button`
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-  width: 70%;
-  margin: 10px;
-  padding: 10px;
-  height: 30px;
-  font-weight: bold;
-  background-color: #2a2ae9;
-  color: white;
-`;
+import SubmitButton from "../components/SubmitButton";
 
 const Form = styled.form`
   font-family: helvetica;
@@ -108,7 +97,7 @@ const SessionForm = ({ processForm }) => {
             placeholder="Password"
           />
 
-          <Button type="submit">Submit</Button>
+          <SubmitButton type="submit">Submit</SubmitButton>
         </Span>
       </Form>
     </div>
