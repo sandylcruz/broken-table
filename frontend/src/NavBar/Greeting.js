@@ -1,72 +1,46 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import PrimaryButton from "../components/PrimaryButton";
+import SecondaryButton from "../components/SecondaryButton";
+
 const StyledNavButtons = styled.div``;
-
-const StyledLoginButton = styled.button`
-  background-color: white;
-  text-decoration: none;
-  border: 1px solid red;
-  height: 60%;
-  border-radius: 10%;
-  font-weight: bold;
-  color: red;
-  margin-top: 20px;
-  margin-right: 10px;
-`;
-
-const StyledLogoutButton = styled.button`
-  background-color: red;
-  text-decoration: none;
-  border: 1px solid red;
-  height: 60%;
-  border-radius: 10%;
-  font-weight: bold;
-  color: white;
-  margin-top: 20px;
-  margin-right: 10px;
-`;
-
-const StyledSignUpButton = styled.button`
-  background-color: red;
-  text-decoration: none;
-  border: 1px solid red;
-  height: 60%;
-  border-radius: 10%;
-  font-weight: bold;
-  color: white;
-  margin-top: 20px;
-  margin-right: 10px;
-`;
 
 const P = styled.p`
   font-size: 15px;
   font-family: helvetica;
-  color: purple;
+  margin: 10px;
 `;
 
-const Greeting = React.memo(({ currentUser }) => (
-  <nav>
-    {!currentUser ? (
-      <StyledNavButtons>
-        <Link to="/signup">
-          <StyledSignUpButton>Sign up</StyledSignUpButton>
-        </Link>
-        <Link to="/login">
-          <StyledLoginButton>Log In</StyledLoginButton>
-        </Link>
-      </StyledNavButtons>
-    ) : (
-      <div>
-        <P>
-          Hi, {currentUser.username}!
-          <StyledLogoutButton type="submit">Log Out</StyledLogoutButton>
-        </P>
-      </div>
-    )}
-  </nav>
-));
+const Greeting = React.memo(({ currentUser, logout }) => {
+  const history = useHistory();
+
+  const handleSignupClick = useCallback(() => {
+    history.push("/signup");
+  }, [history]);
+
+  const handleLoginClick = useCallback(() => {
+    history.push("/login");
+  }, [history]);
+
+  return (
+    <nav>
+      {!currentUser ? (
+        <StyledNavButtons>
+          <PrimaryButton onClick={handleSignupClick}>Sign up</PrimaryButton>
+          <SecondaryButton onClick={handleLoginClick}>Log In</SecondaryButton>
+        </StyledNavButtons>
+      ) : (
+        <div>
+          <P>Hi, {currentUser.username}!</P>
+          <PrimaryButton type="submit" onClick={logout}>
+            Log Out
+          </PrimaryButton>
+        </div>
+      )}
+    </nav>
+  );
+});
 
 export default Greeting;

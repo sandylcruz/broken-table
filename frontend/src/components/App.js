@@ -1,6 +1,6 @@
 import React from "react";
-import { Route } from "react-router-dom";
 
+import AuthRoute from "../util/route_util";
 import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
 import NavBar from "../NavBar/index";
@@ -12,8 +12,8 @@ const App = React.memo(() => (
     <header>
       <NavBar />
     </header>
-    <Route path="/login" component={LoginFormContainer} />
-    <Route path="/signup" component={SignupFormContainer} />
+    <AuthRoute path="/login" component={LoginFormContainer} />
+    <AuthRoute path="/signup" component={SignupFormContainer} />
   </div>
 ));
 
