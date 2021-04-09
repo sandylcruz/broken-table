@@ -18,6 +18,15 @@ module BrokenTableServer
     app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
     app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }
     }
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => false,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => false
+end
 
     # Configuration for the application, engines, and railties goes here.
     #
