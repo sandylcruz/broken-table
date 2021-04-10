@@ -21,7 +21,7 @@ module Api
       if @user
         render :show
       else
-        render json @user.errors.full_messages, status: 404
+        render json: ['No user found'], status: 404
       end
     end
 
