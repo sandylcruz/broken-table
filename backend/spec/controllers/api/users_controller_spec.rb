@@ -17,14 +17,4 @@ RSpec.describe Api::UsersController, type: :controller do
       post :create, params: { user: { username: 'calliecat', password: 'a', email: 'cat@gmail.com' } }
     end
   end
-
-  describe 'GET #show' do
-    it 'should return a user if given valid user id' do
-      post :show, params: { user: { id: 1 } }
-      it 'shoulld render'
-    end
-
-    it 'should not return a 404 if given invalid user id' do
-    end
-  end
 end
