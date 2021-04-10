@@ -7,8 +7,17 @@ AllCops:
     - "node_modules/**/*"
     - "config/application.rb"
     - "db/schema.rb"
+    - "app/spec"
+
+Lint/ShadowingOuterLocalVariable:
+  Exclude:
+    - "spec/**/*"
+
 Metrics/MethodLength:
   Exclude:
     - "db/migrate/**/*"
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
 Naming/PredicateName:
   Enabled: false
