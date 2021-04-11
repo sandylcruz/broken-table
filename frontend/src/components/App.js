@@ -1,6 +1,6 @@
 import React from "react";
 
-import AuthRoute from "../util/route_util";
+import AuthRoute from "../util/routeUtil";
 import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
 import NavBar from "../NavBar";
