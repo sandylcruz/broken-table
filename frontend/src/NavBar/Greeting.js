@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
+import LogoutButton from "../components/LogoutButton";
 
 const GreetingText = styled.p`
   font-size: 15px;
@@ -32,9 +33,9 @@ const Greeting = React.memo(({ currentUser, logout }) => {
       ) : (
         <div>
           <GreetingText>Hi, {currentUser.username}!</GreetingText>
-          <PrimaryButton type="submit" onClick={logout}>
+          <LogoutButton type="submit" onClick={logout}>
             Log Out
-          </PrimaryButton>
+          </LogoutButton>
         </div>
       )}
     </nav>

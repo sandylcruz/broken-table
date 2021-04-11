@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: %i[create show destroy]
     resource :session, only: %i[create destroy]
+    resource :restaurants, only: %i[create show index]
   end
   root 'static_pages#root'
 end
