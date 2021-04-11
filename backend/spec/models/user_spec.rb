@@ -6,8 +6,6 @@ RSpec.describe User, type: :model do
   let(:valid_user) { User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password') }
 
   describe 'Validations' do
-    it { should validate_presence_of(:password_digest) }
-
     it 'validates presence of username' do
       user = valid_user
       expect(user).to be_valid
@@ -75,7 +73,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe '.find_by_credentials' do
+  describe '::find_by_credentials' do
     it 'returns user given good credentials' do
       user = valid_user
       user.save!

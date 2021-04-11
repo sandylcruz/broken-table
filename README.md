@@ -29,3 +29,5 @@ Users would be able to search restaurants by food type.
 Users can earn points by booing reservations. Points earned on reservations are accumulated and can be redeemed for rewards.
 
 ## Development
+
+If you want to run Guard Livereload, go to the backend folder. In terminal, run "guard"

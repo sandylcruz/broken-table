@@ -1,4 +1,2 @@
 // ...
-//= require rails-ujs
-//= require turbolinks
-//= require_tree .
+//= require ./bundle.js

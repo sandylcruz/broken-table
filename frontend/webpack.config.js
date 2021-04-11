@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   context: __dirname,
-  entry: "./src/index.js",
+  entry: path.resolve(__dirname, "./src/index.js"),
   output: {
     path: path.resolve(__dirname),
     filename: "../backend/app/assets/javascripts/bundle.js",
@@ -40,6 +40,6 @@ module.exports = {
   },
   devtool: "source-map",
   resolve: {
-    extensions: [".js", "*"],
+    extensions: [".js", "*", ".", "node_modules"],
   },
 };
