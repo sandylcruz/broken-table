@@ -1,3 +1,7 @@
 # frozen_string_literal: true
 
-json.partial! 'api/restaurants', restaurants: @restaurants
+@restaurants.each do |restaurant|
+  json.set! restaurant.id do
+    json.partial! 'restaurant', restaurant: restaurant
+  end
+end

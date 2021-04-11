@@ -1,35 +1,37 @@
 # frozen_string_literal: true
 
-# Restaurants Controller
-class RestaurantsController < ApplicationController
-  def create
-    @restaurant = Restaurant.create!(restaurant_params)
+module Api
+  # Restaurants Controller
+  class RestaurantsController < ApplicationController
+    def create
+      @restaurant = Restaurant.new(restaurant_params)
 
-    if @restaurant.save
-      render :show
-    else
-      render json: ['Restaurant not created']
+      if @restaurant.save
+        render 'api/restaurants/'
+      else
+        render json: ['Restaurant not created']
+      end
     end
-  end
 
-  def show
-    @restaurant = Restaurant.find_by_id(params[:id])
+    def show
+      @restaurant = Restaurant.find_by(id: params[:id])
 
-    if @restaurant
-      render :show
-    else
-      render json: ['Restaurant not found']
+      if @restaurant
+        render :show
+      else
+        render json: ['Restaurant not found']
+      end
     end
-  end
 
-  def index
-    @restaurants = Restaurant.all
-    render :index
-  end
+    def index
+      @restaurants = Restaurant.all
+      render :index
+    end
 
-  private
+    private
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :location)
+    def restaurant_params
+      params.require(:restaurant).permit(:name, :description, :location)
+    end
   end
 end
