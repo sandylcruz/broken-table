@@ -47,7 +47,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install library for postgres
         run: sudo apt-get install libpq-dev
-
       - name: Install ruby
         uses: actions/setup-ruby@v1
         with:
