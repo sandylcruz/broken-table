@@ -18,7 +18,7 @@ const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
   return (
     <div>
       {restaurants.map((restaurant) => (
-        <StyledDiv>
+        <StyledDiv key={restaurant.id}>
           <h3>{restaurant.name}</h3>
           <span>{restaurant.location}</span>
           <span>Rating: 0 stars</span>
