@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  color: purple;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
 `;
 
 const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
@@ -15,18 +19,9 @@ const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
     <div>
       {restaurants.map((restaurant) => (
         <StyledDiv>
-          <h1>Restaurants:</h1>
-          <span>Name:</span>
-          <span>{restaurant.name}</span>
-
-          <span>Location:</span>
+          <h3>{restaurant.name}</h3>
           <span>{restaurant.location}</span>
-
-          <span>Rating:</span>
-          <span>0</span>
-
-          <span>Description:</span>
-          <span>{restaurant.description}</span>
+          <span>Rating: 0 stars</span>
         </StyledDiv>
       ))}
     </div>
