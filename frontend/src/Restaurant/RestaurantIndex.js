@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
 
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  color: purple;
+`;
+
 const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
   useEffect(() => {
     fetchRestaurants();
@@ -8,7 +14,7 @@ const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
   return (
     <div>
       {restaurants.map((restaurant) => (
-        <div>
+        <StyledDiv>
           <h1>Restaurants:</h1>
           <span>Name:</span>
           <span>{restaurant.name}</span>
@@ -21,7 +27,7 @@ const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
 
           <span>Description:</span>
           <span>{restaurant.description}</span>
-        </div>
+        </StyledDiv>
       ))}
     </div>
   );
