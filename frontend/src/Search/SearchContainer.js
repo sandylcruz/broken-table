@@ -22,12 +22,12 @@ const SearchContainer = (props) => {
 
   return (
     <StyledDiv>
-      <RestaurantMap />
       <RestaurantIndex
         {...props}
         fetchRestaurants={fetchRestaurants}
         restaurants={restaurants}
       />
+      <RestaurantMap />
     </StyledDiv>
   );
 };
