@@ -1,4 +1,4 @@
-import { RECEIVE_RESTAURANTS } from "../actions/restaurantAction";
+import { RECEIVE_RESTAURANTS } from "../actions/restaurantActions";
 
 const restaurantsReducer = (state = {}, action) => {
   Object.freeze(state);
