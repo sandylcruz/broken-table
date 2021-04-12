@@ -13,8 +13,8 @@ const StyledDiv = styled.div`
 `;
 
 const SearchContainer = (props) => {
-  const restaurants = useSelector(restaurantsSelector);
   const dispatch = useDispatch();
+  const restaurants = useSelector(restaurantsSelector);
 
   const fetchRestaurants = useCallback(() => {
     dispatch(fetchRestaurantsAction());

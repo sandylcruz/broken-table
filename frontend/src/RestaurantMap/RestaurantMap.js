@@ -1,13 +1,14 @@
 import React, { useEffect, useRef } from "react";
-
 import styled from "styled-components";
+import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
   width: 500px;
   height: 500px;
 `;
 
-const RestaurantMap = () => {
+const RestaurantMap = React.memo(() => {
+  const MarkerManagerRef = useRef();
   const mapNodeRef = useRef();
   const mapRef = useRef();
 
@@ -20,8 +21,9 @@ const RestaurantMap = () => {
     // eslint-disable-next-line no-undef
     const map = new google.maps.Map(mapNodeRef.current, mapOptions);
     mapRef.current = map;
-  });
+    MarkerManagerRef.current = new MarkerManager(map);
+  }, []);
 
   return <StyledMapDiv ref={mapNodeRef} />;
-};
+});
 export default RestaurantMap;
