@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import configureStore from "./store/store";
-// import { fetchRestaurants } from "./util/restaurantApiUtil";
 import { fetchRestaurants } from "./actions/restaurantActions";
 import Root from "./components/Root";
 
