@@ -15,6 +15,11 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :submitted_restaurants,
+           class_name: 'Restaurant',
+           foreign_key: :submitter_id,
+           primary_key: :id
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user

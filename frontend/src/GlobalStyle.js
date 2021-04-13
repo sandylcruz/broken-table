@@ -21,24 +21,22 @@ const GlobalStyle = createGlobalStyle`
     text-align: inherit;
     color: inherit;
     background: transparent;
+    font-family: helvetica;
   }
 
   h1 {
-    font-family: raleway;
     font-size: 40px;
     font-weight: bold;
     margin: 10px;
   }
 
   h2 {
-    font-family: raleway;
     font-size: 25px;
     font-weight: bold;
     margin: 10px;
   }
 
   body {
-    font-family: raleway;
   }
 `;
 

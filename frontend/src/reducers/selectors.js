@@ -17,3 +17,8 @@ export const selectCurrentUser = createSelector(
   },
   (currentUser) => currentUser
 );
+
+export const restaurantsSelector = createSelector(
+  (state) => state.entities.restaurants,
+  (restaurants) => Object.keys(restaurants).map((key) => restaurants[key])
+);
