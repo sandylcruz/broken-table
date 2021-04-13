@@ -7,8 +7,8 @@ class AddRestaurantsTable < ActiveRecord::Migration[6.1]
       t.string :name, null: false
       t.string :location, null: false
       t.integer :submitter_id, null: false
-      t.integer :latitude, null: false
-      t.integer :longitude, null: false
+      t.float :latitude, null: false
+      t.float :longitude, null: false
       t.text :description, null: false
     end
 
