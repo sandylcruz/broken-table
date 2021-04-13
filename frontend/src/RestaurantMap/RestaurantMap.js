@@ -7,7 +7,7 @@ const StyledMapDiv = styled.div`
   height: 500px;
 `;
 
-const RestaurantMap = React.memo(() => {
+const RestaurantMap = React.memo(({ restaurants }) => {
   const MarkerManagerRef = useRef();
   const mapNodeRef = useRef();
   const mapRef = useRef();
@@ -23,6 +23,10 @@ const RestaurantMap = React.memo(() => {
     mapRef.current = map;
     MarkerManagerRef.current = new MarkerManager(map);
   }, []);
+
+  useEffect(() => {
+    MarkerManagerRef.current.updateMarkers(restaurants);
+  }, [restaurants]);
 
   return <StyledMapDiv ref={mapNodeRef} />;
 });

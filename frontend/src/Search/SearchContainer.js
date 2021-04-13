@@ -27,7 +27,7 @@ const SearchContainer = (props) => {
         fetchRestaurants={fetchRestaurants}
         restaurants={restaurants}
       />
-      <RestaurantMap />
+      <RestaurantMap restaurants={restaurants} />
     </StyledDiv>
   );
 };

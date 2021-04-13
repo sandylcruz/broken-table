@@ -4,8 +4,18 @@ class MarkerManager {
     this.markers = {};
   }
 
-  // updateMarkers() {
-  //   console.log("time to update");
+  // updateMarkers(restaurants) {
+  //   restaurants.forEach((restaurant) => {
+  //     console.log(restaurant);
+  //   });
+
+  //   if (!this.markers.id) {
+  //     console.log(newMarker);
+  //   }
+  // }
+
+  // createMarkerFromRestaurant() {
+  //   console.log("hi");
   // }
 }
 
