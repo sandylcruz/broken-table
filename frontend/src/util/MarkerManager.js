@@ -2,21 +2,16 @@ class MarkerManager {
   constructor(map) {
     this.map = map;
     this.markers = {};
+
+    this.updateMarkers = this.updateMarkers.bind(this);
+    this.createMarkerFromRestaurant = this.createMarkerFromRestaurant.bind(
+      this
+    );
   }
 
-  // updateMarkers(restaurants) {
-  //   restaurants.forEach((restaurant) => {
-  //     console.log(restaurant);
-  //   });
+  // updateMarkers() {}
 
-  //   if (!this.markers.id) {
-  //     console.log(newMarker);
-  //   }
-  // }
-
-  // createMarkerFromRestaurant() {
-  //   console.log("hi");
-  // }
+  // createMarkerFromRestaurant() {}
 }
 
 export default MarkerManager;
