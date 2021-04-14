@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import styled from "styled-components";
 
@@ -11,22 +11,16 @@ const StyledDiv = styled.div`
   width: 400px;
 `;
 
-const RestaurantIndex = React.memo(({ fetchRestaurants, restaurants }) => {
-  useEffect(() => {
-    fetchRestaurants();
-  }, [fetchRestaurants]);
-
-  return (
-    <div>
-      {restaurants.map((restaurant) => (
-        <StyledDiv key={restaurant.id}>
-          <h3>{restaurant.name}</h3>
-          <span>{restaurant.location}</span>
-          <span>Rating: 0 stars</span>
-        </StyledDiv>
-      ))}
-    </div>
-  );
-});
+const RestaurantIndex = React.memo(({ restaurants }) => (
+  <div>
+    {restaurants.map((restaurant) => (
+      <StyledDiv key={restaurant.id}>
+        <h3>{restaurant.name}</h3>
+        <span>{restaurant.location}</span>
+        <span>Rating: 0 stars</span>
+      </StyledDiv>
+    ))}
+  </div>
+));
 
 export default RestaurantIndex;

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -6,7 +6,6 @@ import { fetchRestaurants as fetchRestaurantsAction } from "../actions/restauran
 import RestaurantIndex from "../Restaurant/RestaurantIndex";
 import RestaurantMap from "../RestaurantMap/RestaurantMap";
 import { restaurantsSelector } from "../reducers/selectors";
-import { updateBounds as updateBoundsAction } from "../actions/filterActions";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -17,20 +16,22 @@ const StyledDiv = styled.div`
 const Search = (props) => {
   const dispatch = useDispatch();
   const restaurants = useSelector(restaurantsSelector);
-  const updateBounds = updateBoundsAction();
 
   const fetchRestaurants = useCallback(() => {
     dispatch(fetchRestaurantsAction());
   }, [dispatch]);
 
+  useEffect(() => {
+    fetchRestaurants();
+  }, [fetchRestaurants]);
+
   return (
     <StyledDiv>
-      <RestaurantIndex
-        {...props}
-        fetchRestaurants={fetchRestaurants}
+      <RestaurantIndex {...props} restaurants={restaurants} />
+      <RestaurantMap
         restaurants={restaurants}
+        fetchRestaurants={fetchRestaurants}
       />
-      <RestaurantMap restaurants={restaurants} updateBounds={updateBounds} />
     </StyledDiv>
   );
 };

@@ -32,7 +32,7 @@ const RestaurantMap = React.memo(({ restaurants }) => {
   useEffect(() => {
     const map = mapRef.current;
 
-    map.addListener("center_changed", () => {
+    map.addListener("idle", () => {
       const LatLngBounds = map.getBounds;
       const northEast = LatLngBounds.getNorthEast;
       const southWest = LatLngBounds.getSouthWest;
@@ -55,4 +55,5 @@ const RestaurantMap = React.memo(({ restaurants }) => {
 
   return <StyledMapDiv ref={mapNodeRef} />;
 });
+
 export default RestaurantMap;
