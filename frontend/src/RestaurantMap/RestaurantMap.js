@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
+
 import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
+import updateBounds from "../actions/filterActions";
 
 const StyledMapDiv = styled.div`
   width: 50%;
@@ -26,6 +28,30 @@ const RestaurantMap = React.memo(({ restaurants }) => {
   useEffect(() => {
     markerManagerRef.current.updateMarkers(restaurants);
   }, [restaurants]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+
+    map.addListener("center_changed", () => {
+      const LatLngBounds = map.getBounds;
+      const northEast = LatLngBounds.getNorthEast;
+      const southWest = LatLngBounds.getSouthWest;
+
+      const boundsObject = {
+        northEast: {
+          latitude: northEast.latitude,
+          longitude: northEast.longitude,
+        },
+
+        southWest: {
+          latitude: southWest.latitude,
+          longitude: southWest.longitude,
+        },
+      };
+
+      updateBounds(boundsObject);
+    });
+  });
 
   return <StyledMapDiv ref={mapNodeRef} />;
 });
