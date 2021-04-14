@@ -11,6 +11,9 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: "module",
   },
+  globals: {
+    google: "readonly",
+  },
   plugins: ["react", "prettier"],
   rules: {
     "react/jsx-filename-extension": "off",

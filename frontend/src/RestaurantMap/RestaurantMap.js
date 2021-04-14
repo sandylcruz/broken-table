@@ -18,7 +18,6 @@ const RestaurantMap = React.memo(({ restaurants }) => {
       zoom: 13,
     };
 
-    // eslint-disable-next-line no-undef
     const map = new google.maps.Map(mapNodeRef.current, mapOptions);
     mapRef.current = map;
     MarkerManagerRef.current = new MarkerManager(map);

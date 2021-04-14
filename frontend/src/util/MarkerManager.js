@@ -4,14 +4,23 @@ class MarkerManager {
     this.markers = {};
 
     this.updateMarkers = this.updateMarkers.bind(this);
-    this.createMarkerFromRestaurant = this.createMarkerFromRestaurant.bind(
-      this
-    );
   }
 
-  // updateMarkers() {}
+  updateMarkers(restaurants) {
+    restaurants.forEach((restaurant) => {
+      const myLatLng = { lat: restaurant.latitude, lng: restaurant.longitude };
+      const currentMarker = this.markers[restaurant.id];
 
-  // createMarkerFromRestaurant() {}
+      if (!currentMarker) {
+        const newMarker = new google.maps.Marker({
+          position: myLatLng,
+          map: this.map,
+          title: restaurant.name,
+        });
+        this.markers[restaurant.id] = newMarker;
+      }
+    });
+  }
 }
 
 export default MarkerManager;
