@@ -1,3 +1,3 @@
 # frozen_string_literal: true
 
-json.extract! restaurant, :name, :location, :description, :id
+json.extract! restaurant, :name, :location, :description, :id, :latitude, :longitude
