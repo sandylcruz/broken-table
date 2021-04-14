@@ -8,7 +8,7 @@ const StyledMapDiv = styled.div`
 `;
 
 const RestaurantMap = React.memo(({ restaurants }) => {
-  const MarkerManagerRef = useRef();
+  const markerManagerRef = useRef();
   const mapNodeRef = useRef();
   const mapRef = useRef();
 
@@ -20,11 +20,11 @@ const RestaurantMap = React.memo(({ restaurants }) => {
 
     const map = new google.maps.Map(mapNodeRef.current, mapOptions);
     mapRef.current = map;
-    MarkerManagerRef.current = new MarkerManager(map);
+    markerManagerRef.current = new MarkerManager(map);
   }, []);
 
   useEffect(() => {
-    MarkerManagerRef.current.updateMarkers(restaurants);
+    markerManagerRef.current.updateMarkers(restaurants);
   }, [restaurants]);
 
   return <StyledMapDiv ref={mapNodeRef} />;
