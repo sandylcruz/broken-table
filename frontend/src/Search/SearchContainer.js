@@ -6,6 +6,7 @@ import { fetchRestaurants as fetchRestaurantsAction } from "../actions/restauran
 import RestaurantIndex from "../Restaurant/RestaurantIndex";
 import RestaurantMap from "../RestaurantMap/RestaurantMap";
 import { restaurantsSelector } from "../reducers/selectors";
+import { updateBounds as updateBoundsAction } from "../actions/filterActions";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const StyledDiv = styled.div`
 const SearchContainer = (props) => {
   const dispatch = useDispatch();
   const restaurants = useSelector(restaurantsSelector);
+  const updateBounds = updateBoundsAction();
 
   const fetchRestaurants = useCallback(() => {
     dispatch(fetchRestaurantsAction());
@@ -28,7 +30,7 @@ const SearchContainer = (props) => {
         fetchRestaurants={fetchRestaurants}
         restaurants={restaurants}
       />
-      <RestaurantMap restaurants={restaurants} />
+      <RestaurantMap restaurants={restaurants} updateBounds={updateBounds} />
     </StyledDiv>
   );
 };

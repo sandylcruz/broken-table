@@ -34,5 +34,9 @@ module Api
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude)
     end
+
+    def bounds
+      params[:bounds]
+    end
   end
 end
