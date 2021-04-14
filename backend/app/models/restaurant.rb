@@ -14,9 +14,11 @@ class Restaurant < ApplicationRecord
              primary_key: :id
 
   def self.in_bounds(bounds)
-    where('latitude < ?', bounds[northEast][:latitude])
-      .where('latitude > ?', bounds[sourthWest][:latitude])
-      .where('longitude < ?', bounds[northEast][:longitude])
-      .where('longitude > ?', bounds[southWest][:longitude])
+    puts '*************'
+    puts bounds
+    where('latitude < ?', bounds[:northEast][:latitude])
+      .where('latitude > ?', bounds[:sourthWest][:latitude])
+      .where('longitude < ?', bounds[:northEast][:longitude])
+      .where('longitude > ?', bounds[:southWest][:longitude])
   end
 end
