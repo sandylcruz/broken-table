@@ -10,6 +10,7 @@ import { restaurantsSelector } from "../reducers/selectors";
 const StyledDiv = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
 `;
 
 const SearchContainer = (props) => {

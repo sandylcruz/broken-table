@@ -3,7 +3,7 @@ import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
-  width: 500px;
+  width: 50%;
   height: 500px;
 `;
 
