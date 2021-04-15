@@ -6,16 +6,27 @@ class MarkerManager {
     this.updateMarkers = this.updateMarkers.bind(this);
   }
 
-  // updateMarkers(restaurants) {
-  //   const restaurantsObject = {};
+  updateMarkers(restaurants) {
+    const restaurantsObject = {};
 
-  //   restaurants.forEach((restaurant) => {
-  //     restaurantsObject[restaurant.id] = restaurant;
-  //   });
+    restaurants.forEach((restaurant) => {
+      restaurantsObject[restaurant.id] = restaurant;
+    });
 
-  //   this.markers;
-  //   // restaurantsObject.keys((restaurant) => {});
-  // }
+    Object.keys(this.markers).forEach((key) => {
+      const marker = this.markers[key];
+      if (!restaurantsObject[marker.id]) {
+        delete this.markers[marker.id];
+      }
+    });
+
+    restaurants.forEach((restaurant) => {
+      if (!this.markers[restaurant.id]) {
+        const newMarker = this.createMarkerFromRestaurant(restaurant);
+        this.markers[restaurant.id] = newMarker;
+      }
+    });
+  }
 
   createMarkerFromRestaurant(restaurant) {
     const myLatLng = { lat: restaurant.latitude, lng: restaurant.longitude };
@@ -25,10 +36,9 @@ class MarkerManager {
       map: this.map,
       title: restaurant.name,
     });
-    this.markers[restaurant.id] = newMarker;
-  }
 
-  // removeMarkers(marker) {}
+    return newMarker;
+  }
 }
 
 export default MarkerManager;
