@@ -7,6 +7,12 @@ class MarkerManager {
   }
 
   updateMarkers(restaurants) {
+    const restaurantsObject = {};
+
+    restaurants.forEach((restaurant) => {
+      restaurantsObject[restaurant.id] = restaurant;
+    });
+
     restaurants.forEach((restaurant) => {
       const myLatLng = { lat: restaurant.latitude, lng: restaurant.longitude };
       const currentMarker = this.markers[restaurant.id];

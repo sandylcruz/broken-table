@@ -48,8 +48,6 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
         },
       };
 
-      console.log(boundsObject);
-
       updateBounds(boundsObject);
     });
 
