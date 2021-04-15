@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
+const RestaurantItem = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -10,17 +10,20 @@ const StyledDiv = styled.div`
   padding: 10px;
   width: 400px;
 `;
+const RestaurantContainer = styled.div`
+  width: 400px;
+`;
 
 const RestaurantIndex = React.memo(({ restaurants }) => (
-  <div>
+  <RestaurantContainer>
     {restaurants.map((restaurant) => (
-      <StyledDiv key={restaurant.id}>
+      <RestaurantItem key={restaurant.id}>
         <h3>{restaurant.name}</h3>
         <span>{restaurant.location}</span>
         <span>Rating: 0 stars</span>
-      </StyledDiv>
+      </RestaurantItem>
     ))}
-  </div>
+  </RestaurantContainer>
 ));
 
 export default RestaurantIndex;
