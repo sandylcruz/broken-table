@@ -2,14 +2,13 @@ import React, { useEffect, useRef } from "react";
 
 import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
-import updateBounds from "../actions/filterActions";
 
 const StyledMapDiv = styled.div`
   width: 50%;
   height: 500px;
 `;
 
-const RestaurantMap = React.memo(({ restaurants }) => {
+const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   const markerManagerRef = useRef();
   const mapNodeRef = useRef();
   const mapRef = useRef();
@@ -32,26 +31,32 @@ const RestaurantMap = React.memo(({ restaurants }) => {
   useEffect(() => {
     const map = mapRef.current;
 
-    map.addListener("idle", () => {
-      const LatLngBounds = map.getBounds;
-      const northEast = LatLngBounds.getNorthEast;
-      const southWest = LatLngBounds.getSouthWest;
+    const idleListener = map.addListener("idle", () => {
+      const LatLngBounds = map.getBounds();
+      const northEast = LatLngBounds.getNorthEast();
+      const southWest = LatLngBounds.getSouthWest();
 
       const boundsObject = {
         northEast: {
-          latitude: northEast.latitude,
-          longitude: northEast.longitude,
+          latitude: northEast.lat(),
+          longitude: northEast.lng(),
         },
 
         southWest: {
-          latitude: southWest.latitude,
-          longitude: southWest.longitude,
+          latitude: southWest.lat(),
+          longitude: southWest.lng(),
         },
       };
 
+      console.log(boundsObject);
+
       updateBounds(boundsObject);
     });
-  });
+
+    return () => {
+      map.removeListener(idleListener);
+    };
+  }, [updateBounds]);
 
   return <StyledMapDiv ref={mapNodeRef} />;
 });

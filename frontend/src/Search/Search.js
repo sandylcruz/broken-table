@@ -13,7 +13,7 @@ const StyledDiv = styled.div`
   width: 100%;
 `;
 
-const Search = (props) => {
+const Search = React.memo(({ updateBounds }) => {
   const dispatch = useDispatch();
   const restaurants = useSelector(restaurantsSelector);
 
@@ -27,13 +27,14 @@ const Search = (props) => {
 
   return (
     <StyledDiv>
-      <RestaurantIndex {...props} restaurants={restaurants} />
+      <RestaurantIndex restaurants={restaurants} />
       <RestaurantMap
         restaurants={restaurants}
         fetchRestaurants={fetchRestaurants}
+        updateBounds={updateBounds}
       />
     </StyledDiv>
   );
-};
+});
 
 export default Search;
