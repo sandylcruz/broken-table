@@ -1,18 +1,20 @@
-import { useDispatch } from "react";
-
-// const myFunction = () => {}
+// const myFunction = (a) => {a}
 
 // const myDebounceFunction = debounce(myFunction, 500)
-// myDebounceFunction() <- is a function
+// myDebounceFunction(a) <- is a function
 
 const debounce = (func, timeout) => {
-  const timer = setTimeout(() => {}, timeout);
+  let timer; // id for scheduled timeout
 
-  if (!timer) {
-    useDispatch(func);
-    clearTimeout(timer);
-  }
-  return () => {};
+  return (...args) => {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func(...args);
+      timer = undefined;
+    }, timeout);
+  };
 };
 
 export default debounce;
