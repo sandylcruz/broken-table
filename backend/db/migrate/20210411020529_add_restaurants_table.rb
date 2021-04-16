@@ -10,6 +10,7 @@ class AddRestaurantsTable < ActiveRecord::Migration[6.1]
       t.float :latitude, null: false
       t.float :longitude, null: false
       t.text :description, null: false
+      t.integer :seating, null: false
     end
 
     add_index :restaurants, :name
