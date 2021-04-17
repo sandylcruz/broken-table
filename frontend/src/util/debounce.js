@@ -4,7 +4,7 @@
 // myDebounceFunction(a) <- is a function
 
 const debounce = (func, timeout) => {
-  let timer; // id for scheduled timeout
+  let timer;
 
   return (...args) => {
     if (timer) {

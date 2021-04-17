@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -14,11 +14,15 @@ const StyledDiv = styled.div`
 
 const Search = React.memo(({ updateBounds }) => {
   const restaurants = useSelector(restaurantsSelector);
+  // will need to fix in the future for resizing window
+  const shouldRenderMap = useMemo(() => window.innerWidth > 900, []);
 
   return (
     <StyledDiv>
       <RestaurantIndex restaurants={restaurants} />
-      <RestaurantMap restaurants={restaurants} updateBounds={updateBounds} />
+      {shouldRenderMap && (
+        <RestaurantMap restaurants={restaurants} updateBounds={updateBounds} />
+      )}
     </StyledDiv>
   );
 });
