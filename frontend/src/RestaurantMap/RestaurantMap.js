@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { withRouter } from "react-router-dom";
 
 import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
@@ -61,4 +62,4 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   return <StyledMapDiv ref={mapNodeRef} />;
 });
 
-export default RestaurantMap;
+export default withRouter(RestaurantMap);
