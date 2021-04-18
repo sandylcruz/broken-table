@@ -1,6 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useDispatch, useState } from "react";
 
 import styled from "styled-components";
+import { createRestaurant } from "../util/restaurantApiUtil";
 import SubmitButton from "../components/SubmitButton";
 
 const Form = styled.form`
@@ -47,6 +48,7 @@ const Span = styled.span`
 // };
 
 const RestaurantForm = React.memo(() => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
@@ -54,7 +56,26 @@ const RestaurantForm = React.memo(() => {
   // const [longitude, setLongitude] = useState("");
   // const [submitter, setSubmitter] = useState("");
 
-  const handleSubmit = () => {};
+  const processForm = useCallback(
+    (restaurant) => {
+      dispatch(createRestaurant(restaurant));
+    },
+    [dispatch]
+  );
+
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      const restaurant = {
+        name,
+        description,
+        address,
+      };
+
+      processForm(restaurant);
+    },
+    [name, description, address, processForm]
+  );
 
   const updateName = useCallback((event) => {
     setName(event.currentTarget.value);
@@ -67,8 +88,6 @@ const RestaurantForm = React.memo(() => {
   const updateAddress = useCallback((event) => {
     setAddress(event.currentTarget.value);
   });
-
-  // const convertAddressToCoordinates = () => {};
 
   return (
     <Form onSubmit={handleSubmit}>

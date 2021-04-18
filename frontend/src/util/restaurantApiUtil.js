@@ -11,4 +11,4 @@ export const fetchRestaurants = (filters) =>
     });
   });
 
-export const fetchRestaurant = () => {};
+export const createRestaurant = () => {};
