@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 
 import MarkerManager from "../util/MarkerManager";
@@ -11,6 +10,7 @@ const StyledMapDiv = styled.div`
   padding: 10px;
 `;
 
+// import history
 const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   const markerManagerRef = useRef();
   const mapNodeRef = useRef();
@@ -34,6 +34,21 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   useEffect(() => {
     markerManagerRef.current.updateMarkers(restaurants);
   }, [restaurants]);
+
+  // useEffect(() => {
+  //   const map = mapRef.current;
+
+  //   const clickListener = google.maps.event.addListener(
+  //     map,
+  //     "click",
+  //     (event) => {
+  //       const newLatitude = event.latLng.lat();
+  //       const newLongitude = event.latLng.lng();
+
+  //       console.log(event.latLng.lat(), event.latLng.lng());
+  //     }
+  //   );
+  // });
 
   useEffect(() => {
     const map = mapRef.current;
@@ -63,7 +78,16 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
     };
   }, [updateBounds]);
 
-  return <StyledMapDiv ref={mapNodeRef} onClick={() => {}} />;
+  // const getCoordsFromClick = (event) => {
+  //   console.log(event.latLng);
+  //   // return coords;
+  // };
+
+  const handleClick = (coords) => {
+    console.log(coords);
+  };
+
+  return <StyledMapDiv ref={mapNodeRef} onClick={handleClick} />;
 });
 
-export default withRouter(RestaurantMap);
+export default RestaurantMap;
