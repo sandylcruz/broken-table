@@ -1,4 +1,5 @@
-import React, { useCallback, useDispatch, useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
 import { createRestaurant } from "../util/restaurantApiUtil";
@@ -56,6 +57,8 @@ const RestaurantForm = React.memo(() => {
   // const [longitude, setLongitude] = useState("");
   // const [submitter, setSubmitter] = useState("");
 
+  // const convertAddressToCoordinates = (address) => {};
+
   const processForm = useCallback(
     (restaurant) => {
       dispatch(createRestaurant(restaurant));
@@ -87,7 +90,7 @@ const RestaurantForm = React.memo(() => {
 
   const updateAddress = useCallback((event) => {
     setAddress(event.currentTarget.value);
-  });
+  }, []);
 
   return (
     <Form onSubmit={handleSubmit}>
