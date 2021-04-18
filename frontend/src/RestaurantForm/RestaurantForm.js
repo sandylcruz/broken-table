@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import styled from "styled-components";
+// import { convertAddressToCoordinates } from "../util/convertAddressToCoordinates";
 import { createRestaurant } from "../util/restaurantApiUtil";
 import SubmitButton from "../components/SubmitButton";
 
@@ -56,8 +57,6 @@ const RestaurantForm = React.memo(() => {
   // const [latitude, setLatitude] = useState("");
   // const [longitude, setLongitude] = useState("");
   // const [submitter, setSubmitter] = useState("");
-
-  // const convertAddressToCoordinates = (address) => {};
 
   const processForm = useCallback(
     (restaurant) => {

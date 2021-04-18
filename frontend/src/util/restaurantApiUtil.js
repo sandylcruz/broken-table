@@ -11,11 +11,12 @@ export const fetchRestaurants = (filters) =>
     });
   });
 
-export const createRestaurant = () =>
+export const createRestaurant = (restaurant) =>
   new Promise((resolve, reject) => {
     ajax({
-      method: "GET",
+      method: "POST",
       url: "api/restaurants/new",
+      data: { restaurant },
       success: resolve,
       error: reject,
     });
