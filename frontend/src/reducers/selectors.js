@@ -1,10 +1,5 @@
 import { createSelector } from "reselect";
 
-export const selectErrors = createSelector(
-  (state) => state.errors,
-  (errors) => errors
-);
-
 export const selectCurrentUser = createSelector(
   (state) => {
     const currentUserId = state.session.id;
@@ -18,7 +13,12 @@ export const selectCurrentUser = createSelector(
   (currentUser) => currentUser
 );
 
-export const restaurantsSelector = createSelector(
+export const selectErrors = createSelector(
+  (state) => state.errors,
+  (errors) => errors
+);
+
+export const selectRestaurants = createSelector(
   (state) => state.entities.restaurants,
   (restaurants) => Object.keys(restaurants).map((key) => restaurants[key])
 );

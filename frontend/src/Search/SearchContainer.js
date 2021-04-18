@@ -5,13 +5,13 @@ import { useHistory } from "react-router-dom";
 import debounce from "../util/debounce";
 import { fetchRestaurants as fetchRestaurantsAction } from "../actions/restaurantActions";
 import Search from "./Search";
-import { restaurantsSelector, selectFilters } from "../reducers/selectors";
+import { selectRestaurants, selectFilters } from "../reducers/selectors";
 import { updateBounds as updateBoundsAction } from "../actions/filterActions";
 
 const SearchContainer = React.memo((props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const restaurants = useSelector(restaurantsSelector);
+  const restaurants = useSelector(selectRestaurants);
 
   const updateBounds = useMemo(
     () =>
