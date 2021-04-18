@@ -18,12 +18,12 @@ export const selectErrors = createSelector(
   (errors) => errors
 );
 
-export const selectRestaurants = createSelector(
-  (state) => state.entities.restaurants,
-  (restaurants) => Object.keys(restaurants).map((key) => restaurants[key])
-);
-
 export const selectFilters = createSelector(
   (state) => state.ui.filters,
   (filters) => filters
+);
+
+export const selectRestaurants = createSelector(
+  (state) => state.entities.restaurants,
+  (restaurants) => Object.keys(restaurants).map((key) => restaurants[key])
 );
