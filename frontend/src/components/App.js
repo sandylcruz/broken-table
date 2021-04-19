@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import AuthRoute from "../util/routeUtil";
+import { AuthRoute, ProtectedRoute } from "../util/routeUtil";
 import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
 import NavBar from "../NavBar";
@@ -19,7 +19,11 @@ const App = React.memo(() => (
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
     <Route exact path="/" component={SearchContainer} />
-    <Route path="/restaurants/new" component={RestaurantFormContainer} />
+    <ProtectedRoute
+      exact
+      path="/restaurants/new"
+      component={RestaurantFormContainer}
+    />
   </div>
 ));
 
