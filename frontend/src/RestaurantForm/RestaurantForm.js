@@ -1,9 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { useDispatch } from "react-redux";
-
 import styled from "styled-components";
-// import { convertAddressToCoordinates } from "../util/convertAddressToCoordinates";
-import { createRestaurant } from "../util/restaurantApiUtil";
+
 import SubmitButton from "../components/SubmitButton";
 
 const Form = styled.form`
@@ -32,51 +29,24 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-// import Geocode from "react-geocode";
-
-// user inputs address
-// map is generated which generates lat/lng
-// save lat/lng into state
-// const getCoordsFromAddress = (address) => {
-// Geocode.fromAddress(address).then(
-//   (response) => {
-//     const { latitude, longitude } = response.results[0].geometry.location;
-//     console.log(latitude, longitude);
-//   },
-//   (error) => {
-//     console.errors(error);
-//   }
-// );
-// };
-
-const RestaurantForm = React.memo(() => {
-  const dispatch = useDispatch();
+const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  // const [latitude, setLatitude] = useState("");
-  // const [longitude, setLongitude] = useState("");
+  const [location, setLocation] = useState("");
   // const [submitter, setSubmitter] = useState("");
-
-  const processForm = useCallback(
-    (restaurant) => {
-      dispatch(createRestaurant(restaurant));
-    },
-    [dispatch]
-  );
 
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      const restaurant = {
+      const partialRestaurant = {
         name,
         description,
-        address,
+        location,
       };
 
-      processForm(restaurant);
+      createRestaurant(partialRestaurant);
     },
-    [name, description, address, processForm]
+    [name, description, location, createRestaurant]
   );
 
   const updateName = useCallback((event) => {
@@ -87,8 +57,8 @@ const RestaurantForm = React.memo(() => {
     setDescription(event.currentTarget.value);
   }, []);
 
-  const updateAddress = useCallback((event) => {
-    setAddress(event.currentTarget.value);
+  const updateLocation = useCallback((event) => {
+    setLocation(event.currentTarget.value);
   }, []);
 
   return (
@@ -106,8 +76,8 @@ const RestaurantForm = React.memo(() => {
       <Span>
         <Input
           type="test"
-          value={address}
-          onChange={updateAddress}
+          value={location}
+          onChange={updateLocation}
           placeholder="Address"
         />
       </Span>

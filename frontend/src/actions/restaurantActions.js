@@ -9,7 +9,7 @@ const receiveRestaurants = (restaurants) => ({
 });
 
 const receiveRestaurant = (restaurant) => ({
-  type: RECEIVE_RESTAURANTS,
+  type: RECEIVE_RESTAURANT,
   restaurant,
 });
 
@@ -18,8 +18,11 @@ export const fetchRestaurants = (filters) => (dispatch) =>
     dispatch(receiveRestaurants(restaurants))
   );
 
-export const createRestaurant = (restaurant) => (dispatch) =>
-  // eslint-disable-next-line no-shadow
-  RestaurantAPIUtil.createRestaurant(restaurant).then((restaurant) =>
-    dispatch(receiveRestaurant(restaurant))
-  );
+export const createRestaurant = (partialRestaurant) => (dispatch) =>
+  RestaurantAPIUtil.getCoordinatesFromAddress(partialRestaurant.location)
+    .then(({ latitude, longitude }) => {
+      const restaurant = { ...partialRestaurant, latitude, longitude };
+      return restaurant;
+    })
+    .then((restaurant) => RestaurantAPIUtil.createRestaurant(restaurant))
+    .then((restaurant) => dispatch(receiveRestaurant(restaurant)));

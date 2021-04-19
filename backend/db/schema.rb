@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2021_04_11_020529) do
     t.float "latitude", null: false
     t.float "longitude", null: false
     t.text "description", null: false
-    t.integer "seating", null: false
     t.index ["latitude", "longitude"], name: "index_restaurants_on_latitude_and_longitude", unique: true
     t.index ["name"], name: "index_restaurants_on_name"
     t.index ["submitter_id"], name: "index_restaurants_on_submitter_id"
