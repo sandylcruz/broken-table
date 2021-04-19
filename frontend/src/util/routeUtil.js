@@ -20,4 +20,14 @@ const Auth = React.memo(({ component: Component, path, exact }) => {
 
 export const AuthRoute = Auth;
 
-export const ProtectedRoute = Auth;
+const Protected = ({ component: Component, path, loggedIn, exact }) => (
+  <Route
+    path={path}
+    exact={exact}
+    render={(props) =>
+      loggedIn ? <Component {...props} /> : <Redirect to="/login" />
+    }
+  />
+);
+
+export const ProtectedRoute = Protected;
