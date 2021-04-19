@@ -10,7 +10,6 @@ const StyledMapDiv = styled.div`
   padding: 10px;
 `;
 
-// import history
 const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   const markerManagerRef = useRef();
   const mapNodeRef = useRef();

@@ -48,8 +48,3 @@ export const selectRestaurantsInBounds = createSelector(
       return accumulator;
     }, [])
 );
-
-// filter, map, reduce, selectors, dynamic key addition to objects, how to iterate over objects (Object.keys)
-// Array.prototype.myFilter = function() {}
-// Array.prototype.myMap = function() {}
-// Array.prototype.myReduce = function () { }

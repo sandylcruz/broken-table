@@ -33,7 +33,6 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
-  // const [submitter, setSubmitter] = useState("");
 
   const handleSubmit = useCallback(
     (event) => {

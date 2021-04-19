@@ -1,5 +1,4 @@
 import { ajax } from "jquery";
-
 import Geocode from "react-geocode";
 
 export const fetchRestaurants = (filters) =>
