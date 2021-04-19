@@ -5,11 +5,12 @@ module Api
   class RestaurantsController < ApplicationController
     def create
       @restaurant = Restaurant.new(restaurant_params)
+      @restaurant.submitter_id = current_user.id
 
       if @restaurant.save
-        render 'api/restaurants/'
+        render :show
       else
-        render json: ['Restaurant not created']
+        render json: @restaurant.errors.full_messages, status: :unprocessable_entity
       end
     end
 
@@ -25,7 +26,6 @@ module Api
 
     def index
       @restaurants = bounds ? Restaurant.in_bounds(bounds) : Restaurant.all
-
       render :index
     end
 

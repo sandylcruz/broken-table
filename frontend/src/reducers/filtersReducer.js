@@ -2,8 +2,8 @@ import { UPDATE_BOUNDS } from "../actions/filterActions";
 
 const defaultState = {
   bounds: {
-    northEast: { lat: 37.80971, lng: -122.39208 },
-    southWest: { lat: 37.74187, lng: -122.47791 },
+    northEast: { latitude: 37.80971, longitude: -122.39208 },
+    southWest: { latitude: 37.74187, longitude: -122.47791 },
   },
 };
 

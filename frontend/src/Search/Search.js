@@ -1,10 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import RestaurantIndex from "../Restaurant/RestaurantIndex";
 import RestaurantMap from "../RestaurantMap/RestaurantMap";
-import { restaurantsSelector } from "../reducers/selectors";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -12,13 +10,20 @@ const StyledDiv = styled.div`
   width: 100%;
 `;
 
-const Search = React.memo(({ updateBounds }) => {
-  const restaurants = useSelector(restaurantsSelector);
+const Search = React.memo(({ history, restaurants, updateBounds }) => {
+  // will need to fix in the future for resizing window
+  const shouldRenderMap = useMemo(() => window.innerWidth > 900, []);
 
   return (
     <StyledDiv>
       <RestaurantIndex restaurants={restaurants} />
-      <RestaurantMap restaurants={restaurants} updateBounds={updateBounds} />
+      {shouldRenderMap && (
+        <RestaurantMap
+          history={history}
+          restaurants={restaurants}
+          updateBounds={updateBounds}
+        />
+      )}
     </StyledDiv>
   );
 });

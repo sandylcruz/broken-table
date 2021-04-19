@@ -13,6 +13,7 @@ module.exports = {
   },
   globals: {
     google: "readonly",
+    MAPS_API_KEY: "readonly",
   },
   plugins: ["react", "prettier"],
   rules: {

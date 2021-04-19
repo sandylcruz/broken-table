@@ -1,10 +1,11 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import AuthRoute from "../util/routeUtil";
+import { AuthRoute, ProtectedRoute } from "../util/routeUtil";
 import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
 import NavBar from "../NavBar";
+import RestaurantFormContainer from "../RestaurantForm/RestaurantFormContainer";
 import SignupFormContainer from "../SessionForm/SignupFormContainer";
 import SearchContainer from "../Search/SearchContainer";
 
@@ -18,6 +19,11 @@ const App = React.memo(() => (
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
     <Route exact path="/" component={SearchContainer} />
+    <ProtectedRoute
+      exact
+      path="/restaurants/new"
+      component={RestaurantFormContainer}
+    />
   </div>
 ));
 
