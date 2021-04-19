@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from "react";
+
 import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
-  width: 500px;
+  width: 50%;
   height: 500px;
+  display: none;
 `;
 
-const RestaurantMap = React.memo(({ restaurants }) => {
+const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
   const markerManagerRef = useRef();
   const mapNodeRef = useRef();
   const mapRef = useRef();
@@ -27,6 +29,35 @@ const RestaurantMap = React.memo(({ restaurants }) => {
     markerManagerRef.current.updateMarkers(restaurants);
   }, [restaurants]);
 
+  useEffect(() => {
+    const map = mapRef.current;
+
+    const idleListener = map.addListener("idle", () => {
+      const LatLngBounds = map.getBounds();
+      const northEast = LatLngBounds.getNorthEast();
+      const southWest = LatLngBounds.getSouthWest();
+
+      const boundsObject = {
+        northEast: {
+          latitude: northEast.lat(),
+          longitude: northEast.lng(),
+        },
+
+        southWest: {
+          latitude: southWest.lat(),
+          longitude: southWest.lng(),
+        },
+      };
+
+      updateBounds(boundsObject);
+    });
+
+    return () => {
+      google.maps.event.removeListener(idleListener);
+    };
+  }, [updateBounds]);
+
   return <StyledMapDiv ref={mapNodeRef} />;
 });
+
 export default RestaurantMap;

@@ -24,14 +24,19 @@ module Api
     end
 
     def index
-      @restaurants = Restaurant.all
+      @restaurants = bounds ? Restaurant.in_bounds(bounds) : Restaurant.all
+
       render :index
     end
 
     private
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description, :location)
+      params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude)
+    end
+
+    def bounds
+      params[:filters][:bounds]
     end
   end
 end

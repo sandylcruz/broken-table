@@ -7,19 +7,37 @@ class MarkerManager {
   }
 
   updateMarkers(restaurants) {
-    restaurants.forEach((restaurant) => {
-      const myLatLng = { lat: restaurant.latitude, lng: restaurant.longitude };
-      const currentMarker = this.markers[restaurant.id];
+    const restaurantsObject = {};
 
-      if (!currentMarker) {
-        const newMarker = new google.maps.Marker({
-          position: myLatLng,
-          map: this.map,
-          title: restaurant.name,
-        });
+    restaurants.forEach((restaurant) => {
+      restaurantsObject[restaurant.id] = restaurant;
+    });
+
+    Object.keys(this.markers).forEach((key) => {
+      const marker = this.markers[key];
+      if (!restaurantsObject[marker.id]) {
+        delete this.markers[key];
+      }
+    });
+
+    restaurants.forEach((restaurant) => {
+      if (!this.markers[restaurant.id]) {
+        const newMarker = this.createMarkerFromRestaurant(restaurant);
         this.markers[restaurant.id] = newMarker;
       }
     });
+  }
+
+  createMarkerFromRestaurant(restaurant) {
+    const myLatLng = { lat: restaurant.latitude, lng: restaurant.longitude };
+
+    const newMarker = new google.maps.Marker({
+      position: myLatLng,
+      map: this.map,
+      title: restaurant.name,
+    });
+
+    return newMarker;
   }
 }
 
