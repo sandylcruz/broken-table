@@ -16,4 +16,5 @@ const SearchContainer = (props) => {
 
   return <Search {...props} updateBounds={updateBounds} />;
 };
+
 export default SearchContainer;

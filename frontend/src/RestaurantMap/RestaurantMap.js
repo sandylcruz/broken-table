@@ -53,7 +53,7 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
     });
 
     return () => {
-      map.removeListener(idleListener);
+      google.maps.event.removeListener(idleListener);
     };
   }, [updateBounds]);
 

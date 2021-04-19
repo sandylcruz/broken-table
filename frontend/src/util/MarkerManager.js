@@ -16,7 +16,7 @@ class MarkerManager {
     Object.keys(this.markers).forEach((key) => {
       const marker = this.markers[key];
       if (!restaurantsObject[marker.id]) {
-        delete this.markers[marker.id];
+        delete this.markers[key];
       }
     });
 
