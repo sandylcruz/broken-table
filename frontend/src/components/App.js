@@ -19,7 +19,7 @@ const App = React.memo(() => (
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
     <Route exact path="/" component={SearchContainer} />
-    <Route path="/restaurants/create" component={RestaurantFormContainer} />
+    <Route path="/restaurants/new" component={RestaurantFormContainer} />
   </div>
 ));
 

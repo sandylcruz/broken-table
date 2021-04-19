@@ -35,11 +35,11 @@ export const selectRestaurantsInBounds = createSelector(
     Object.keys(restaurants).reduce((accumulator, key) => {
       const restaurant = restaurants[key];
       const isLatitudeValid =
-        restaurant.latitude < bounds.northEast.latitude &&
-        restaurant.latitude > bounds.southWest.latitude;
+        restaurant.latitude <= bounds.northEast.latitude &&
+        restaurant.latitude >= bounds.southWest.latitude;
       const isLongitudeValid =
-        restaurant.longitude < bounds.northEast.longitude &&
-        restaurant.longitude > bounds.southWest.longitude;
+        restaurant.longitude <= bounds.northEast.longitude &&
+        restaurant.longitude >= bounds.southWest.longitude;
 
       if (isLatitudeValid && isLongitudeValid) {
         accumulator.push(restaurant);
