@@ -12,6 +12,16 @@ export const fetchRestaurants = (filters) =>
     });
   });
 
+export const fetchRestaurant = (id) =>
+  new Promise((resolve, reject) => {
+    ajax({
+      method: "GET",
+      url: `api/restaurants/${id}`,
+      success: resolve,
+      error: reject,
+    });
+  });
+
 export const createRestaurant = (restaurant) =>
   new Promise((resolve, reject) => {
     ajax({

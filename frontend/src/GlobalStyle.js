@@ -19,8 +19,8 @@ const GlobalStyle = createGlobalStyle`
     font: inherit;
     text-decoration: inherit;
     text-align: inherit;
-    color: inherit;
     background: transparent;
+    color: inherit;
     font-family: helvetica;
   }
 

@@ -26,3 +26,8 @@ export const createRestaurant = (partialRestaurant) => (dispatch) =>
     })
     .then((restaurant) => RestaurantAPIUtil.createRestaurant(restaurant))
     .then((restaurant) => dispatch(receiveRestaurant(restaurant)));
+
+export const fetchRestaurant = (id) => (dispatch) =>
+  RestaurantAPIUtil.fetchRestaurant(id).then((restaurant) =>
+    dispatch(receiveRestaurant(restaurant))
+  );

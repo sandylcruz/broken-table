@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+// import { fetchRestaurant } from "../util/restaurantApiUtil";
 
 const StyledSideBar = styled.div`
   border: 3px solid black;
@@ -22,18 +23,25 @@ const StyledReservationContainer = styled.div`
   height: 70px;
 `;
 
+// const restaurant = fetchRestaurant(id);
+
 const RestaurantDetail = React.memo(({ restaurant }) => (
   <StyledParentContainer>
-    <StyledRestaurantOverview>
-      <h1>{restaurant.name}</h1>
-      <h2>{restaurant.location}</h2>
+    {!restaurant ? (
+      <div>Loading...</div>
+    ) : (
+      <StyledRestaurantOverview>
+        <h1>{restaurant.name}</h1>
+        <h2>{restaurant.location}</h2>
 
-      <h2>About {restaurant.name} </h2>
-      <p>{restaurant.description}</p>
-      <StyledReservationContainer>
-        Make a reservation
-      </StyledReservationContainer>
-    </StyledRestaurantOverview>
+        <h2>About {restaurant.name} </h2>
+        <p>{restaurant.description}</p>
+        <StyledReservationContainer>
+          Make a reservation
+        </StyledReservationContainer>
+      </StyledRestaurantOverview>
+    )}
+
     <StyledSideBar>
       <button type="button">Overview</button>
       <button type="button">Photos</button>
