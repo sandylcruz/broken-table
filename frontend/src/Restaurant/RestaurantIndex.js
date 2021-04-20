@@ -28,12 +28,13 @@ const RestaurantContainer = styled.div`
 const RestaurantIndex = React.memo(({ restaurants }) => (
   <RestaurantContainer>
     {restaurants.map((restaurant) => (
-      <RestaurantItem key={restaurant.id}>
-        <h3>{restaurant.name}</h3>
-        <span>{restaurant.location}</span>
-        <span>Rating: 0 stars</span>
-        <Link to={`restaurants/${restaurant.id}`}>Click</Link>
-      </RestaurantItem>
+      <Link to={`restaurants/${restaurant.id}`}>
+        <RestaurantItem key={restaurant.id}>
+          <h3>{restaurant.name}</h3>
+          <span>{restaurant.location}</span>
+          <span>Rating: 0 stars</span>
+        </RestaurantItem>
+      </Link>
     ))}
   </RestaurantContainer>
 ));
