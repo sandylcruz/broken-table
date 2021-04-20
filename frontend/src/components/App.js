@@ -6,6 +6,7 @@ import GlobalStyle from "../GlobalStyle";
 import LoginFormContainer from "../SessionForm/LoginFormContainer";
 import NavBar from "../NavBar";
 import RestaurantFormContainer from "../RestaurantForm/RestaurantFormContainer";
+import RestaurantShowContainer from "../RestaurantShow/RestaurantShowContainer";
 import SignupFormContainer from "../SessionForm/SignupFormContainer";
 import SearchContainer from "../Search/SearchContainer";
 
@@ -19,6 +20,7 @@ const App = React.memo(() => (
     <AuthRoute path="/login" component={LoginFormContainer} />
     <AuthRoute path="/signup" component={SignupFormContainer} />
     <Route exact path="/" component={SearchContainer} />
+    <Route exact path="/restaurants/:id" component={RestaurantShowContainer} />
     <ProtectedRoute
       exact
       path="/restaurants/new"
