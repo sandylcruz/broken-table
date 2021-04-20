@@ -23,8 +23,6 @@ const StyledReservationContainer = styled.div`
   height: 70px;
 `;
 
-// const restaurant = fetchRestaurant(id);
-
 const RestaurantDetail = React.memo(({ restaurant }) => (
   <StyledParentContainer>
     {!restaurant ? (
