@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -31,6 +32,7 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
         <h3>{restaurant.name}</h3>
         <span>{restaurant.location}</span>
         <span>Rating: 0 stars</span>
+        <Link to={`restaurants/${restaurant.id}`}>Click</Link>
       </RestaurantItem>
     ))}
   </RestaurantContainer>

@@ -1,14 +1,11 @@
 import React from "react";
 
-const RestaurantShow = (restaurant) => {
-  const newRestaurant = restaurant;
+import RestaurantDetail from "./RestaurantDetail";
 
-  return (
-    <div>
-      <h1>Restaurant Show Page</h1>
-      <h2>{newRestaurant}</h2>
-    </div>
-  );
-};
+const RestaurantShow = React.memo(({ restaurant }) => (
+  <div>
+    <RestaurantDetail restaurant={restaurant} />
+  </div>
+));
 
 export default RestaurantShow;
