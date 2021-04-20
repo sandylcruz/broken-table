@@ -1,35 +1,44 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledHeader = styled.div`
+const StyledSideBar = styled.div`
   border: 3px solid black;
-  height: 50px;
 `;
 
 const StyledRestaurantOverview = styled.div`
   border: 3px solid purple;
-  height: 500px;
+  width: 80%;
 `;
 
 const StyledParentContainer = styled.div`
   border: 3px solid pink;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 20px;
+`;
+
+const StyledReservationContainer = styled.div`
+  border: 3px solid blue;
+  height: 70px;
 `;
 
 const RestaurantDetail = React.memo(({ restaurant }) => (
   <StyledParentContainer>
-    <StyledHeader>
+    <StyledRestaurantOverview>
+      <h1>{restaurant.name}</h1>
+      <h2>{restaurant.location}</h2>
+
+      <h2>About {restaurant.name} </h2>
+      <p>{restaurant.description}</p>
+      <StyledReservationContainer>
+        Make a reservation
+      </StyledReservationContainer>
+    </StyledRestaurantOverview>
+    <StyledSideBar>
       <button type="button">Overview</button>
       <button type="button">Photos</button>
       <button type="button">Reviews</button>
-    </StyledHeader>
-
-    <StyledRestaurantOverview>
-      <h1>{restaurant.name}</h1>
-
-      <h2>About {restaurant.name} </h2>
-    </StyledRestaurantOverview>
+    </StyledSideBar>
   </StyledParentContainer>
 ));
 
