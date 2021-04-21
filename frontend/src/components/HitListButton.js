@@ -7,8 +7,8 @@ const HitListButton = styled.button`
   margin: 10px;
   padding: 10px;
   font-weight: bold;
-  background-color: #2a2ae9;
-  font-size: 15px;
+  background-color: #336dde;
+  font-size: 20px;
   color: white;
   height: 40%;
   outline: none;

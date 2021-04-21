@@ -6,17 +6,23 @@ import MarkerManager from "../util/MarkerManager";
 import Star from "./Star.svg";
 import HitListButton from "../components/HitListButton";
 
+const StyledAboutBlock = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
 const StyledH3 = styled.div`
-  margin: 5px;
   padding: 5px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
 `;
 const StyledHitList = styled.div`
-  border-top: 1px solid #d3d3d3;
-  border-bottom: 1px solid #d3d3d3;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   display: block;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 `;
 
 const StyledMapDiv = styled.div`
@@ -38,15 +44,15 @@ const StyledPTag = styled.div`
 `;
 
 const StyledReservationContainer = styled.div`
-  border: 1px solid #d3d3d3;
-  margin: 10px;
-  padding: 10px;
+  border-top: 1px solid #eaeaea;
+  padding-top: 10px;
   height: 70px;
-  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 const StyledRestaurantSummary = styled.div`
-  border: 1px solid #d3d3d3;
+  border: 1px solid #eaeaea;
   margin: 10px;
   padding: 10px;
 `;
@@ -54,12 +60,22 @@ const StyledRestaurantSummary = styled.div`
 const StyledRestaurantOverview = styled.div`
   width: 80%;
   padding: 10px;
-  border-right: 1px solid #d3d3d3;
+`;
+
+const StyledReviewsSection = styled.div`
+  border-top: 1px solid #eaeaea;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
 `;
 
 const StyledSideBar = styled.div`
   border-left: 0;
   padding: 10px;
+  display: none;
+  @media (min-width: 600px) {
+    display: block;
+  }
 `;
 
 const StyledStar = styled(Star)`
@@ -116,11 +132,16 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
             <HitListButton>❤️ Add to Hit List</HitListButton>
           </StyledHitList>
-          <StyledH3>About {restaurant.name} </StyledH3>
-          <StyledPTag>{restaurant.description}</StyledPTag>
+          <StyledAboutBlock>
+            <StyledH3>About {restaurant.name}</StyledH3>
+            <StyledPTag>{restaurant.description}</StyledPTag>
+          </StyledAboutBlock>
           <StyledReservationContainer>
-            Make a reservation
+            <StyledH3>Make a reservation</StyledH3>
           </StyledReservationContainer>
+          <StyledReviewsSection>
+            <StyledH3>Reviews</StyledH3>
+          </StyledReviewsSection>
         </StyledRestaurantOverview>
       )}
 
