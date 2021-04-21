@@ -4,6 +4,20 @@ import styled from "styled-components";
 import food from "./food.png";
 import MarkerManager from "../util/MarkerManager";
 import Star from "./Star.svg";
+import HitListButton from "../components/HitListButton";
+
+const StyledH3 = styled.div`
+  margin: 5px;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 20px;
+`;
+const StyledHitList = styled.div`
+  border-top: 1px solid #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+  display: block;
+  padding: 10px;
+`;
 
 const StyledMapDiv = styled.div`
   height: 200px;
@@ -14,9 +28,13 @@ const StyledParentContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 10px;
-  border: 1px solid #d3d3d3;
   border-radius: 5%;
   padding: 10px;
+`;
+
+const StyledPTag = styled.div`
+  margin: 5px;
+  padding: 5px;
 `;
 
 const StyledReservationContainer = styled.div`
@@ -47,6 +65,7 @@ const StyledSideBar = styled.div`
 const StyledStar = styled(Star)`
   transform: scale(0.75);
   fill: red;
+  margin: 10px;
 `;
 
 const RestaurantDetail = React.memo(({ restaurant }) => {
@@ -91,8 +110,14 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         <StyledRestaurantOverview>
           <h1>{restaurant.name}</h1>
           <StyledStar />
-          <h3>About {restaurant.name} </h3>
-          <p>{restaurant.description}</p>
+
+          <StyledHitList>
+            <h2>Now open</h2>
+            <StyledPTag>Add to your hit list to get updated</StyledPTag>
+            <HitListButton>❤️ Add to Hit List</HitListButton>
+          </StyledHitList>
+          <StyledH3>About {restaurant.name} </StyledH3>
+          <StyledPTag>{restaurant.description}</StyledPTag>
           <StyledReservationContainer>
             Make a reservation
           </StyledReservationContainer>
