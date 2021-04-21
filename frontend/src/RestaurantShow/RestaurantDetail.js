@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import food from "./food.png";
 import MarkerManager from "../util/MarkerManager";
+import { selectRestaurantsInBounds } from "../reducers/selectors";
 import Star from "./Star.svg";
 
 const StyledMapDiv = styled.div`
@@ -54,6 +56,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
+  const restaurants = useSelector(selectRestaurantsInBounds);
 
   useEffect(() => {
     if (restaurant) {
@@ -77,9 +80,9 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
     return true;
   }, [restaurant]);
 
-  // useEffect(() => {
-  //   markerManagerRef.current.updateMarkers(restaurants);
-  // }, [restaurants]);
+  useEffect(() => {
+    markerManagerRef.current.updateMarkers(restaurants);
+  }, [restaurants]);
 
   return (
     <StyledParentContainer>
