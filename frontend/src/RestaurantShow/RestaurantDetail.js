@@ -1,16 +1,13 @@
 import React, { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import food from "./food.png";
 import MarkerManager from "../util/MarkerManager";
-import { selectRestaurantsInBounds } from "../reducers/selectors";
 import Star from "./Star.svg";
 
 const StyledMapDiv = styled.div`
   height: 200px;
-  margin: 10px;
-  padding: 10px;
+  width: 100%;
 `;
 
 const StyledParentContainer = styled.div`
@@ -56,7 +53,6 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
-  const restaurants = useSelector(selectRestaurantsInBounds);
 
   useEffect(() => {
     if (restaurant) {
@@ -67,6 +63,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         },
         zoom: 15,
         disableDefaultUI: true,
+        draggable: false,
       };
 
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);
@@ -81,8 +78,10 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
   }, [restaurant]);
 
   useEffect(() => {
-    markerManagerRef.current.updateMarkers(restaurants);
-  }, [restaurants]);
+    if (markerManagerRef.current && restaurant) {
+      markerManagerRef.current.updateMarkers([restaurant]);
+    }
+  }, [restaurant]);
 
   return (
     <StyledParentContainer>

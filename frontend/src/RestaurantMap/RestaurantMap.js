@@ -4,10 +4,10 @@ import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
-  width: 50%;
-  height: 500px;
-  margin: 10px;
-  padding: 10px;
+  width: 70%;
+  height: 700px;
+  // margin: 10px;
+  // padding: 10px;
 `;
 
 const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
