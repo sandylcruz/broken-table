@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import food from "./food.png";
+import MarkerManager from "../util/MarkerManager";
 import Star from "./Star.svg";
 
 const StyledMapDiv = styled.div`
@@ -52,6 +53,7 @@ const StyledStar = styled(Star)`
 const RestaurantDetail = React.memo(({ restaurant }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
+  const markerManagerRef = useRef();
 
   useEffect(() => {
     if (restaurant) {
@@ -61,10 +63,12 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
           lng: restaurant.longitude,
         },
         zoom: 15,
+        disableDefaultUI: true,
       };
 
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);
       mapRef.current = map;
+      markerManagerRef.current = new MarkerManager(map);
 
       return () => {
         mapRef.current = undefined;
@@ -72,6 +76,10 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
     }
     return true;
   }, [restaurant]);
+
+  // useEffect(() => {
+  //   markerManagerRef.current.updateMarkers(restaurants);
+  // }, [restaurants]);
 
   return (
     <StyledParentContainer>
