@@ -60,7 +60,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
           lat: restaurant.latitude,
           lng: restaurant.longitude,
         },
-        zoom: 13,
+        zoom: 15,
       };
 
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);
