@@ -97,10 +97,9 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
             {" "}
             <img src={food} height="300" width="300" alt="food" />
             <StyledRestaurantSummary>
-              <StyledMapDiv />
+              <StyledMapDiv ref={mapNodeRef} />
               <h3>{restaurant.name}</h3>
               <span>{restaurant.location}</span>
-              <div ref={mapNodeRef} />
             </StyledRestaurantSummary>
           </div>
         )}
