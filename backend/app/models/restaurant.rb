@@ -13,6 +13,8 @@ class Restaurant < ApplicationRecord
              foreign_key: :submitter_id,
              primary_key: :id
 
+  has_one_attached :photo
+
   def self.in_bounds(bounds)
     where('latitude < ?', bounds[:northEast][:latitude])
       .where('latitude > ?', bounds[:southWest][:latitude])

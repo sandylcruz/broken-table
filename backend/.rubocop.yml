@@ -8,6 +8,7 @@ AllCops:
     - "config/application.rb"
     - "db/schema.rb"
     - "app/spec"
+    - "db/migrate/20210421203610_create_active_storage_tables.active_storage.rb"
 
 Lint/ShadowingOuterLocalVariable:
   Exclude:
