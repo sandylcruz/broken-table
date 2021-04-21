@@ -4,15 +4,10 @@ import styled from "styled-components";
 import food from "./food.png";
 import Star from "./Star.svg";
 
-const StyledSideBar = styled.div`
-  border-left: 0;
+const StyledMapDiv = styled.div`
+  height: 200px;
+  margin: 10px;
   padding: 10px;
-`;
-
-const StyledRestaurantOverview = styled.div`
-  width: 80%;
-  padding: 10px;
-  border-right: 1px solid #d3d3d3;
 `;
 
 const StyledParentContainer = styled.div`
@@ -31,10 +26,6 @@ const StyledReservationContainer = styled.div`
   height: 70px;
   text-align: center;
 `;
-const StyledStar = styled(Star)`
-  transform: scale(0.75);
-  fill: red;
-`;
 
 const StyledRestaurantSummary = styled.div`
   border: 1px solid #d3d3d3;
@@ -42,11 +33,21 @@ const StyledRestaurantSummary = styled.div`
   padding: 10px;
 `;
 
-// const loader = new Loader({
-//   apiKey: MAPS_API_KEY,
-//   version: "weekly",
-//   ...additionalOptions,
-// });
+const StyledRestaurantOverview = styled.div`
+  width: 80%;
+  padding: 10px;
+  border-right: 1px solid #d3d3d3;
+`;
+
+const StyledSideBar = styled.div`
+  border-left: 0;
+  padding: 10px;
+`;
+
+const StyledStar = styled(Star)`
+  transform: scale(0.75);
+  fill: red;
+`;
 
 const RestaurantDetail = React.memo(({ restaurant }) => {
   const mapNodeRef = useRef();
@@ -56,8 +57,8 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
     if (restaurant) {
       const mapLocation = {
         center: {
-          lat: `${restaurant.latitude}`,
-          lng: `${restaurant.latitude}`,
+          lat: restaurant.latitude,
+          lng: restaurant.longitude,
         },
         zoom: 13,
       };
@@ -96,6 +97,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
             {" "}
             <img src={food} height="300" width="300" alt="food" />
             <StyledRestaurantSummary>
+              <StyledMapDiv />
               <h3>{restaurant.name}</h3>
               <span>{restaurant.location}</span>
               <div ref={mapNodeRef} />
