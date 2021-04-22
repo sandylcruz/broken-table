@@ -17,6 +17,7 @@ const StyledH3 = styled.div`
   font-weight: bold;
   font-size: 25px;
 `;
+
 const StyledHitList = styled.div`
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
@@ -130,7 +131,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
           <StyledHitList>
             <h2>Now open</h2>
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
-            <HitListButton>❤️ Add to Hit List</HitListButton>
+            <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>

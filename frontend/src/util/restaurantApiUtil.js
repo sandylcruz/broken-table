@@ -22,16 +22,27 @@ export const fetchRestaurant = (id) =>
     });
   });
 
-export const createRestaurant = (restaurant) =>
-  new Promise((resolve, reject) => {
+export const createRestaurant = (restaurant) => {
+  const formData = new FormData();
+  formData.append("restaurant[name]", restaurant.name);
+  formData.append("restaurant[location]", restaurant.location);
+  formData.append("restaurant[description]", restaurant.description);
+  formData.append("restaurant[photo]", restaurant.photo);
+  formData.append("restaurant[latitude]", restaurant.latitude);
+  formData.append("restaurant[longitude]", restaurant.longitude);
+
+  return new Promise((resolve, reject) => {
     ajax({
       method: "POST",
       url: "api/restaurants/",
-      data: { restaurant },
+      data: formData,
+      contentType: false,
+      processData: false,
       success: resolve,
       error: reject,
     });
   });
+};
 
 Geocode.setApiKey(MAPS_API_KEY);
 Geocode.enableDebug();

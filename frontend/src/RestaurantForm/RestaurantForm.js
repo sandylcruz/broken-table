@@ -10,6 +10,8 @@ const ButtonContentDiv = styled.div`
   align-items: space-between;
   justify-content: space-between;
   color: #209cee;
+  font-weight: bold;
+  font-size: 20px;
 
   &:hover {
     color: white;
@@ -53,7 +55,6 @@ const Span = styled.span`
 const UploadedImg = styled.img`
   margin: 10px;
   padding: 10px;
-  border: 1px solid red;
   display: block;
 `;
 
@@ -79,9 +80,6 @@ const VisibleDiv = styled.div`
   background: white;
   border: 1px solid #209cee;
   border-radius: 10px;
-  font-color: #209cee;
-  font-weight: bold;
-  font-size: 20px;
 
   &:hover {
     border: 1 px solid #0099ff;
@@ -93,6 +91,7 @@ const VisibleDiv = styled.div`
 
   &:active {
     background-color: #1081cb;
+    font-color: white;
   }
 
   &:focus {
@@ -122,7 +121,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
     if (file) {
       reader.readAsDataURL(file);
     } else {
-      setPhoto({ imageURL: "", imageFile: null });
+      setPhoto({ imageUrl: "", imageFile: null });
     }
   }, []);
 
@@ -133,11 +132,11 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
         name,
         description,
         location,
+        photo: photo.imageFile,
       };
-
       createRestaurant(partialRestaurant);
     },
-    [name, description, location, createRestaurant]
+    [name, description, location, createRestaurant, photo]
   );
 
   const updateName = useCallback((event) => {
@@ -156,7 +155,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
       <h2>Create a New Restaurant</h2>
       <Span>
         <Input
-          type="test"
+          type="text"
           value={name}
           onChange={updateName}
           placeholder="Restaurant Name"
@@ -165,7 +164,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
 
       <Span>
         <Input
-          type="test"
+          type="text"
           value={location}
           onChange={updateLocation}
           placeholder="Address"
