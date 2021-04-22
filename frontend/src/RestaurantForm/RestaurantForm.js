@@ -33,6 +33,20 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [photo, setPhoto] = useState(null);
+
+  const handlePhotoSubmit = useCallback((event) => {
+    const reader = new FileReader();
+    const file = event.currentTarget.files[0];
+    reader.onloadend = () =>
+      setPhoto({ imageUrl: reader.result, imageFile: file });
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setPhoto({ imageURL: "", imageFile: null });
+    }
+  }, []);
 
   const handleSubmit = useCallback(
     (event) => {
@@ -88,6 +102,11 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           onChange={updateDescription}
           placeholder="Describe here...."
         />
+      </Span>
+
+      <Span>
+        <input type="file" onChange={handlePhotoSubmit} />
+        {photo && <img src={photo.imageUrl} alt="" />}
       </Span>
       <Span>
         <SubmitButton>Submit</SubmitButton>
