@@ -48,9 +48,18 @@ const UploadButtonVisible = styled.button`
   font-color: hsl(204, 86%, 53%);
   font-weight: bold;
   background-color: white;
-  border-radius: 15%;
+  border-radius: 4px;
   margin: 10px;
   padding: 10px;
+
+  &:hover {
+    border-color: hsl(204, 86%, 53%);
+    background-color: hsl(204, 86%, 96%);
+  }
+
+  &:active {
+    background-color: #bce3b;
+  }
 `;
 
 const UploadedImg = styled.img`
@@ -62,7 +71,6 @@ const UploadedImg = styled.img`
 
 const UploadWrap = styled.div`
   position: relative;
-  color: purple;
 `;
 
 const RestaurantForm = React.memo(({ createRestaurant }) => {
