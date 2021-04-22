@@ -121,7 +121,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
   return (
     <StyledParentContainer>
       {!restaurant ? (
-        <div>Loading...</div>
+        <div>Loading Restaurant...</div>
       ) : (
         <StyledRestaurantOverview>
           <h1>{restaurant.name}</h1>
@@ -147,7 +147,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
 
       <StyledSideBar>
         {!restaurant ? (
-          <div>Loading...</div>
+          <div>Loading Sidebar...</div>
         ) : (
           <div>
             {" "}

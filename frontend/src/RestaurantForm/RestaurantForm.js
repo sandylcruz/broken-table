@@ -4,6 +4,22 @@ import styled from "styled-components";
 import cloudUpload from "./cloudUpload.svg";
 import SubmitButton from "../components/SubmitButton";
 
+const ButtonContentDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  color: #209cee;
+
+  &:hover {
+    color: white;
+  }
+
+  &:active {
+    color: white;
+  }
+`;
+
 const CloudUpload = styled(cloudUpload)`
   color: #209cee;
 `;
@@ -34,39 +50,6 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-// const UploadButtonHidden = styled.input`
-//   position: relative;
-//   width: 200px;
-//   height: 70px;
-//   left: 0;
-//   opacity: 0;
-// `;
-
-// const UploadButtonVisible = styled.button`
-//   position: absolute;
-//   color: hsl(204, 86%, 53%);
-//   width: 180px;
-//   height: 50px;
-//   line-height: 1.15;
-//   border: 1px solid hsl(204, 86%, 53%);
-//   font-weight: bold;
-//   font-size: 20px;
-//   font-color: #209cee
-//   background-color: white;
-//   border-radius: 4px;
-//   margin: 10px;
-//   padding: 10px;
-
-//   &:hover {
-//     border-color: hsl(204, 86%, 53%);
-//     background-color: hsl(204, 86%, 96%);
-//   }
-
-//   &:active {
-//     background-color: #bce3b;
-//   }
-// `;
-
 const UploadedImg = styled.img`
   margin: 10px;
   padding: 10px;
@@ -76,14 +59,14 @@ const UploadedImg = styled.img`
 
 const UploadWrap = styled.div``;
 
-const HiddenInput = styled.input`
-  position: absolute;
-  left: 0;
-  opacity: 0;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-`;
+// const HiddenInput = styled.input`
+//   position: absolute;
+//   left: 0;
+//   opacity: 0;
+//   top: 0;
+//   bottom: 0;
+//   width: 100%;
+// `;
 
 const VisibleDiv = styled.div`
   position: absolute;
@@ -100,7 +83,7 @@ const VisibleDiv = styled.div`
   font-weight: bold;
   font-size: 20px;
 
-  &: hover {
+  &:hover {
     border: 1 px solid #0099ff;
     background-color: #88caf6;
     transition: border-color 0.25s ease-in-out 0s,
@@ -108,9 +91,13 @@ const VisibleDiv = styled.div`
       color 0.25s ease-in-out 0s;
   }
 
-  // &:active {
-  //   background-color: #1081cb;
-  // }
+  &:active {
+    background-color: #1081cb;
+  }
+
+  &:focus {
+    color: purple;
+  }
 `;
 
 const Label = styled.label`
@@ -196,19 +183,11 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
 
       <Span>
         <UploadWrap>
-          {/* <UploadButtonVisible type="button">
-            <CloudUpload /> Upload
-          </UploadButtonVisible>
-          <UploadButtonHidden
-            type="file"
-            name="file"
-            onChange={handlePhotoSubmit}
-            tabIndex={-1}
-          /> */}
-
           <Label>
             <VisibleDiv>
-              <CloudUpload /> Upload
+              <ButtonContentDiv>
+                <CloudUpload /> &nbsp; Upload
+              </ButtonContentDiv>
             </VisibleDiv>
 
             <Input
