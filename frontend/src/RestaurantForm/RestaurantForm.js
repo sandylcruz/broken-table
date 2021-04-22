@@ -155,8 +155,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
       <Span>
         <UploadWrap>
           <UploadButtonVisible type="button">
-            <CloudUpload />
-            Upload
+            <CloudUpload /> Upload
           </UploadButtonVisible>
           <UploadButtonHidden
             type="file"
