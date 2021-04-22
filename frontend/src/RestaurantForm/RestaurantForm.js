@@ -34,37 +34,38 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const UploadButtonHidden = styled.input`
-  position: absolute;
-  width: 200px;
-  height: 70px;
-  left: 0;
-  opacity: 0;
-`;
+// const UploadButtonHidden = styled.input`
+//   position: relative;
+//   width: 200px;
+//   height: 70px;
+//   left: 0;
+//   opacity: 0;
+// `;
 
-const UploadButtonVisible = styled.button`
-  color: hsl(204, 86%, 53%);
-  width: 180px;
-  height: 50px;
-  line-height: 1.15;
-  border: 1px solid hsl(204, 86%, 53%);
-  font-color: hsl(204, 86%, 53%);
-  font-weight: bold;
-  font-size: 20px;
-  background-color: white;
-  border-radius: 4px;
-  margin: 10px;
-  padding: 10px;
+// const UploadButtonVisible = styled.button`
+//   position: absolute;
+//   color: hsl(204, 86%, 53%);
+//   width: 180px;
+//   height: 50px;
+//   line-height: 1.15;
+//   border: 1px solid hsl(204, 86%, 53%);
+//   font-weight: bold;
+//   font-size: 20px;
+//   font-color: #209cee
+//   background-color: white;
+//   border-radius: 4px;
+//   margin: 10px;
+//   padding: 10px;
 
-  &:hover {
-    border-color: hsl(204, 86%, 53%);
-    background-color: hsl(204, 86%, 96%);
-  }
+//   &:hover {
+//     border-color: hsl(204, 86%, 53%);
+//     background-color: hsl(204, 86%, 96%);
+//   }
 
-  &:active {
-    background-color: #bce3b;
-  }
-`;
+//   &:active {
+//     background-color: #bce3b;
+//   }
+// `;
 
 const UploadedImg = styled.img`
   margin: 10px;
@@ -73,8 +74,47 @@ const UploadedImg = styled.img`
   display: block;
 `;
 
-const UploadWrap = styled.div`
+const UploadWrap = styled.div``;
+
+const HiddenInput = styled.input`
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+`;
+
+const VisibleDiv = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #209cee;
+  border-radius: 10px;
+  font-color: #209cee;
+  font-weight: bold;
+  font-size: 20px;
+
+  &: hover {
+    border: 1 px solid #0099ff;
+    background-color: #88caf6;
+  }
+
+  // &:active {
+  //   background-color: #1081cb;
+  // }
+`;
+
+const Label = styled.label`
+  display: inline-block;
   position: relative;
+  height: 60px;
+  width: 150px;
 `;
 
 const RestaurantForm = React.memo(({ createRestaurant }) => {
@@ -126,7 +166,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
     <Form onSubmit={handleSubmit}>
       <h2>Create a New Restaurant</h2>
       <Span>
-        <Input
+        <HiddenInput
           type="test"
           value={name}
           onChange={updateName}
@@ -154,7 +194,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
 
       <Span>
         <UploadWrap>
-          <UploadButtonVisible type="button">
+          {/* <UploadButtonVisible type="button">
             <CloudUpload /> Upload
           </UploadButtonVisible>
           <UploadButtonHidden
@@ -162,7 +202,20 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
             name="file"
             onChange={handlePhotoSubmit}
             tabIndex={-1}
-          />
+          /> */}
+
+          <Label>
+            <VisibleDiv>
+              <CloudUpload /> Upload
+            </VisibleDiv>
+            <Input
+              type="file"
+              name="file"
+              onChange={handlePhotoSubmit}
+              tabIndex={-1}
+            />
+          </Label>
+
           {photo && <UploadedImg src={photo.imageUrl} alt="Uploaded Image" />}
         </UploadWrap>
       </Span>
