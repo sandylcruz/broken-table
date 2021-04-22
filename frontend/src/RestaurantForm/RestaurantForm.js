@@ -35,6 +35,8 @@ const UploadButtonHidden = styled.input`
   height: 55px;
   left: 0;
   opacity: 0;
+  margin: 10px;
+  padding: 10px;
 `;
 
 const UploadButtonVisible = styled.button`
@@ -47,6 +49,15 @@ const UploadButtonVisible = styled.button`
   font-weight: bold;
   background-color: white;
   border-radius: 15%;
+  margin: 10px;
+  padding: 10px;
+`;
+
+const UploadedImg = styled.img`
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid red;
+  display: block;
 `;
 
 const UploadWrap = styled.div`
@@ -138,7 +149,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
             onChange={handlePhotoSubmit}
             tabIndex={-1}
           />
-          {photo && <img src={photo.imageUrl} alt="" />}
+          {photo && <UploadedImg src={photo.imageUrl} alt="Uploaded Image" />}
         </UploadWrap>
       </Span>
       <Span>
