@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
     text-align: inherit;
     background: transparent;
     color: inherit;
-    font-family: helvetica;
+    font-family: 'helvetica';
   }
 
   h1 {

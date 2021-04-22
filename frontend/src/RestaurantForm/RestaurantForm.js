@@ -29,6 +29,31 @@ const Span = styled.span`
   justify-content: center;
 `;
 
+const UploadButtonHidden = styled.input`
+  position: absolute;
+  width: 115px;
+  height: 55px;
+  left: 0;
+  opacity: 0;
+`;
+
+const UploadButtonVisible = styled.button`
+  color: hsl(204, 86%, 53%);
+  width: 110px;
+  height: 50px;
+  line-height: 1.15;
+  border: 1px solid hsl(204, 86%, 53%);
+  font-color: hsl(204, 86%, 53%);
+  font-weight: bold;
+  background-color: white;
+  border-radius: 15%;
+`;
+
+const UploadWrap = styled.div`
+  position: relative;
+  color: purple;
+`;
+
 const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -105,8 +130,16 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
       </Span>
 
       <Span>
-        <input type="file" onChange={handlePhotoSubmit} />
-        {photo && <img src={photo.imageUrl} alt="" />}
+        <UploadWrap>
+          <UploadButtonVisible type="button">Upload file</UploadButtonVisible>
+          <UploadButtonHidden
+            type="file"
+            name="file"
+            onChange={handlePhotoSubmit}
+            tabIndex={-1}
+          />
+          {photo && <img src={photo.imageUrl} alt="" />}
+        </UploadWrap>
       </Span>
       <Span>
         <SubmitButton>Submit</SubmitButton>
