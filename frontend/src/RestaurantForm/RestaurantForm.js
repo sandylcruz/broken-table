@@ -103,6 +103,9 @@ const VisibleDiv = styled.div`
   &: hover {
     border: 1 px solid #0099ff;
     background-color: #88caf6;
+    transition: border-color 0.25s ease-in-out 0s,
+      box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
+      color 0.25s ease-in-out 0s;
   }
 
   // &:active {
@@ -161,12 +164,11 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const updateLocation = useCallback((event) => {
     setLocation(event.currentTarget.value);
   }, []);
-
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Create a New Restaurant</h2>
       <Span>
-        <HiddenInput
+        <Input
           type="test"
           value={name}
           onChange={updateName}
@@ -208,6 +210,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
             <VisibleDiv>
               <CloudUpload /> Upload
             </VisibleDiv>
+
             <Input
               type="file"
               name="file"
