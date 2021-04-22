@@ -1,7 +1,12 @@
 import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
+import cloudUpload from "./cloudUpload.svg";
 import SubmitButton from "../components/SubmitButton";
+
+const CloudUpload = styled(cloudUpload)`
+  color: #209cee;
+`;
 
 const Form = styled.form`
   font-family: helvetica;
@@ -31,22 +36,21 @@ const Span = styled.span`
 
 const UploadButtonHidden = styled.input`
   position: absolute;
-  width: 115px;
-  height: 55px;
+  width: 200px;
+  height: 70px;
   left: 0;
   opacity: 0;
-  margin: 10px;
-  padding: 10px;
 `;
 
 const UploadButtonVisible = styled.button`
   color: hsl(204, 86%, 53%);
-  width: 110px;
+  width: 180px;
   height: 50px;
   line-height: 1.15;
   border: 1px solid hsl(204, 86%, 53%);
   font-color: hsl(204, 86%, 53%);
   font-weight: bold;
+  font-size: 20px;
   background-color: white;
   border-radius: 4px;
   margin: 10px;
@@ -150,7 +154,10 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
 
       <Span>
         <UploadWrap>
-          <UploadButtonVisible type="button">Upload file</UploadButtonVisible>
+          <UploadButtonVisible type="button">
+            <CloudUpload />
+            Upload
+          </UploadButtonVisible>
           <UploadButtonHidden
             type="file"
             name="file"
