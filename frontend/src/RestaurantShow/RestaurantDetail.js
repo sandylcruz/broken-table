@@ -125,9 +125,10 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         <div>Loading Restaurant...</div>
       ) : (
         <StyledRestaurantOverview>
+          {console.log(restaurant)}
           <h1>{restaurant.name}</h1>
           <StyledStar />
-
+          <img src={restaurant.photo.imageUrl} alt={restaurant.name} />
           <StyledHitList>
             <h2>Now open</h2>
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
