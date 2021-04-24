@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import cloudUpload from "./cloudUpload.svg";
@@ -106,6 +107,8 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [location, setLocation] = useState("");
   const [photo, setPhoto] = useState(null);
 
+  const history = useHistory();
+
   const handlePhotoSubmit = useCallback((event) => {
     const reader = new FileReader();
     const file = event.currentTarget.files[0];
@@ -131,9 +134,11 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
         location,
         photo: photo.imageFile,
       };
-      createRestaurant(partialRestaurant);
+      createRestaurant(partialRestaurant).then((restaurant) => {
+        history.push(`/restaurants/${restaurant.id}`);
+      });
     },
-    [name, description, location, createRestaurant, photo]
+    [name, description, history, location, createRestaurant, photo]
   );
 
   const updateName = useCallback((event) => {
