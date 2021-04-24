@@ -97,6 +97,9 @@ const Label = styled.label`
   width: 150px;
 `;
 
+// const TEN_MEGABYTES = 1000 * 1000 * 10;
+const TWO_MEGABYTES = 1000 * 1000 * 2;
+
 const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -106,13 +109,16 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const handlePhotoSubmit = useCallback((event) => {
     const reader = new FileReader();
     const file = event.currentTarget.files[0];
-    reader.onloadend = () =>
-      setPhoto({ imageUrl: reader.result, imageFile: file });
 
-    if (file) {
+    const isValidSize = file.size <= TWO_MEGABYTES;
+
+    if (file && isValidSize) {
+      reader.onloadend = () => {
+        setPhoto({ imageUrl: reader.result, imageFile: file });
+      };
       reader.readAsDataURL(file);
     } else {
-      setPhoto({ imageUrl: "", imageFile: null });
+      setPhoto(null);
     }
   }, []);
 

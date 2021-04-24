@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import food from "./food.png";
 import MarkerManager from "../util/MarkerManager";
 import Star from "./Star.svg";
 import HitListButton from "../components/HitListButton";
+
+const ResizedImage = styled.img`
+  max-height: 400px;
+  max-width: 500px;
+`;
 
 const StyledAboutBlock = styled.div`
   padding-top: 10px;
@@ -119,20 +123,15 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
     }
   }, [restaurant]);
 
-  if (restaurant) {
-    console.log("***", restaurant.photo);
-  }
-
   return (
     <StyledParentContainer>
       {!restaurant ? (
         <div>Loading Restaurant...</div>
       ) : (
         <StyledRestaurantOverview>
-          {console.log(restaurant)}
           <h1>{restaurant.name}</h1>
           <StyledStar />
-          <img src={restaurant.photoUrl} alt={restaurant.name} />
+          {/* <img src={restaurant.photoUrl} alt={restaurant.name} /> */}
           <StyledHitList>
             <h2>Now open</h2>
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
@@ -157,7 +156,13 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         ) : (
           <div>
             {" "}
-            <img src={food} height="300" width="300" alt="food" />
+            {/* { if (restaurant.photoUrl.width > height) } */}
+            <ResizedImage
+              src={restaurant.photoUrl}
+              max-height="200"
+              max-width="200"
+              alt="food"
+            />
             <StyledRestaurantSummary>
               <StyledMapDiv ref={mapNodeRef} />
               <h3>{restaurant.name}</h3>
