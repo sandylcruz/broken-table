@@ -28,7 +28,7 @@ const StyledLogo = styled(Logo)`
 const NavBar = React.memo(() => (
   <NavBarContainer>
     <Link to="/">
-      <StyledLogo />
+      <StyledLogo alt="broken-table-logo" />
     </Link>
     <StyledGreetingContainer />
   </NavBarContainer>

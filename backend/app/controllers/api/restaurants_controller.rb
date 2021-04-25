@@ -3,6 +3,8 @@
 module Api
   # Restaurants Controller
   class RestaurantsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def create
       @restaurant = Restaurant.new(restaurant_params)
       @restaurant.submitter_id = current_user.id
@@ -32,7 +34,7 @@ module Api
     private
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude)
+      params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude, :photo)
     end
 
     def bounds

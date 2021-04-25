@@ -8,9 +8,7 @@ const RestaurantFormContainer = React.memo(() => {
   const dispatch = useDispatch();
 
   const createRestaurant = useCallback(
-    (partialRestaurant) => {
-      dispatch(createRestaurantAction(partialRestaurant));
-    },
+    (partialRestaurant) => dispatch(createRestaurantAction(partialRestaurant)),
     [dispatch]
   );
 

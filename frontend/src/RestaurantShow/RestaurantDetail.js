@@ -1,10 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import food from "./food.png";
 import MarkerManager from "../util/MarkerManager";
 import Star from "./Star.svg";
 import HitListButton from "../components/HitListButton";
+
+const ResizedImage = styled.img`
+  max-height: 400px;
+  max-width: 500px;
+`;
 
 const StyledAboutBlock = styled.div`
   padding-top: 10px;
@@ -17,6 +21,7 @@ const StyledH3 = styled.div`
   font-weight: bold;
   font-size: 25px;
 `;
+
 const StyledHitList = styled.div`
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
@@ -121,16 +126,15 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
   return (
     <StyledParentContainer>
       {!restaurant ? (
-        <div>Loading...</div>
+        <div>Loading Restaurant...</div>
       ) : (
         <StyledRestaurantOverview>
           <h1>{restaurant.name}</h1>
           <StyledStar />
-
           <StyledHitList>
             <h2>Now open</h2>
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
-            <HitListButton>❤️ Add to Hit List</HitListButton>
+            <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>
@@ -147,11 +151,17 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
 
       <StyledSideBar>
         {!restaurant ? (
-          <div>Loading...</div>
+          <div>Loading Sidebar...</div>
         ) : (
           <div>
             {" "}
-            <img src={food} height="300" width="300" alt="food" />
+            {/* { if (restaurant.photoUrl.width > height) } */}
+            <ResizedImage
+              src={restaurant.photoUrl}
+              max-height="200"
+              max-width="200"
+              alt="food"
+            />
             <StyledRestaurantSummary>
               <StyledMapDiv ref={mapNodeRef} />
               <h3>{restaurant.name}</h3>

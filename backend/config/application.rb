@@ -13,20 +13,20 @@ module BrokenTableServer
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
-    initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) { |app|
-    app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
-    app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }
-    }
+
+    initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) do |app|
+      app.routes_reloader.paths.delete_if { |path| path =~ /activestorage/ }
+      app.routes_reloader.paths.delete_if { |path| path =~ /actionmailbox/ }
+    end
     config.generators do |g|
       g.test_framework :rspec,
-        :fixtures => false,
-        :view_specs => false,
-        :helper_specs => false,
-        :routing_specs => false,
-        :controller_specs => true,
-        :request_specs => false
-end
+                       fixtures: false,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: true,
+                       request_specs: false
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

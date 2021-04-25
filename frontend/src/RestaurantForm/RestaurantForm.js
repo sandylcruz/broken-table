@@ -1,7 +1,31 @@
 import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import cloudUpload from "./cloudUpload.svg";
 import SubmitButton from "../components/SubmitButton";
+
+const ButtonContentDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: space-between;
+  justify-content: space-between;
+  color: #209cee;
+  font-weight: bold;
+  font-size: 20px;
+
+  &:hover {
+    color: white;
+  }
+
+  &:active {
+    color: white;
+  }
+`;
+
+const CloudUpload = styled(cloudUpload)`
+  color: #209cee;
+`;
 
 const Form = styled.form`
   font-family: helvetica;
@@ -29,10 +53,74 @@ const Span = styled.span`
   justify-content: center;
 `;
 
+const UploadedImg = styled.img`
+  margin: 10px;
+  padding: 10px;
+  display: block;
+`;
+
+const VisibleDiv = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #209cee;
+  border-radius: 10px;
+
+  &:hover {
+    border: 1 px solid #0099ff;
+    background-color: #88caf6;
+    transition: border-color 0.25s ease-in-out 0s,
+      box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
+      color 0.25s ease-in-out 0s;
+  }
+
+  &:active {
+    background-color: #1081cb;
+    font-color: white;
+  }
+
+  &:focus {
+    color: purple;
+  }
+`;
+
+const Label = styled.label`
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  width: 150px;
+`;
+
+const TWO_MEGABYTES = 1000 * 1000 * 2;
+
 const RestaurantForm = React.memo(({ createRestaurant }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [photo, setPhoto] = useState(null);
+
+  const history = useHistory();
+
+  const handlePhotoSubmit = useCallback((event) => {
+    const reader = new FileReader();
+    const file = event.currentTarget.files[0];
+
+    const isValidSize = file.size <= TWO_MEGABYTES;
+
+    if (file && isValidSize) {
+      reader.onloadend = () => {
+        setPhoto({ imageUrl: reader.result, imageFile: file });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPhoto(null);
+    }
+  }, []);
 
   const handleSubmit = useCallback(
     (event) => {
@@ -41,11 +129,13 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
         name,
         description,
         location,
+        photo: photo.imageFile,
       };
-
-      createRestaurant(partialRestaurant);
+      createRestaurant(partialRestaurant).then((restaurant) => {
+        history.push(`/restaurants/${restaurant.id}`);
+      });
     },
-    [name, description, location, createRestaurant]
+    [createRestaurant, description, history, location, name, photo]
   );
 
   const updateName = useCallback((event) => {
@@ -59,13 +149,12 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const updateLocation = useCallback((event) => {
     setLocation(event.currentTarget.value);
   }, []);
-
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Create a New Restaurant</h2>
       <Span>
         <Input
-          type="test"
+          type="text"
           value={name}
           onChange={updateName}
           placeholder="Restaurant Name"
@@ -74,7 +163,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
 
       <Span>
         <Input
-          type="test"
+          type="text"
           value={location}
           onChange={updateLocation}
           placeholder="Address"
@@ -88,6 +177,27 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           onChange={updateDescription}
           placeholder="Describe here...."
         />
+      </Span>
+
+      <Span>
+        <div>
+          <Label>
+            <VisibleDiv>
+              <ButtonContentDiv>
+                <CloudUpload /> &nbsp; Upload
+              </ButtonContentDiv>
+            </VisibleDiv>
+
+            <Input
+              type="file"
+              name="file"
+              onChange={handlePhotoSubmit}
+              tabIndex={-1}
+            />
+          </Label>
+
+          {photo && <UploadedImg src={photo.imageUrl} alt="Uploaded Image" />}
+        </div>
       </Span>
       <Span>
         <SubmitButton>Submit</SubmitButton>
