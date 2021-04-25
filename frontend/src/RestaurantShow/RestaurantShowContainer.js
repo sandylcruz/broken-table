@@ -16,11 +16,7 @@ const RestaurantShowContainer = React.memo(() => {
     dispatch(fetchRestaurant(id));
   }, []);
 
-  return (
-    <div>
-      <RestaurantShow restaurant={restaurant} />
-    </div>
-  );
+  return <RestaurantShow restaurant={restaurant} />;
 });
 
 export default RestaurantShowContainer;

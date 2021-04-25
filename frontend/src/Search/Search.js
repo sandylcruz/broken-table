@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import GLOBAL_MINIMUM_WIDTH from "../util/styles";
+import { GLOBAL_MINIMUM_WIDTH } from "../util/styles";
 import RestaurantIndex from "../Restaurant/RestaurantIndex";
 import RestaurantMap from "../RestaurantMap/RestaurantMap";
 
