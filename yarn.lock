@@ -1246,11 +1246,6 @@ acorn@^8.0.4:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.1.0.tgz#52311fd7037ae119cbb134309e901aa46295b3fe"
   integrity sha512-LWCF/Wn0nfHOmJ9rzQApGnxnvgfROzGilS8936rqN/lfcYkY9MYZzdMqN+2NJ4SlTc+m5HiSa+kNfDtI64dwUA==
 
-addressable@0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/addressable/-/addressable-0.3.3.tgz#e76fa0636d0581cb6a33f18705f47200256d7be0"
-  integrity sha1-52+gY20FgctqM/GHBfRyACVte+A=
-
 ajv-keywords@^3.5.2:
   version "3.5.2"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-3.5.2.tgz#31f29da5ab6e00d1c2d329acf7b5929614d5014d"
@@ -2225,11 +2220,6 @@ fs.realpath@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
-ftp@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ftp/-/ftp-0.1.1.tgz#3349d08a87363187fefacd4a658b2b0963603a48"
-  integrity sha1-M0nQioc2MYf++s1KZYsrCWNgOkg=
-
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
@@ -2789,11 +2779,6 @@ mime-types@^2.1.27:
   dependencies:
     mime-db "1.47.0"
 
-mime@1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/mime/-/mime-1.2.5.tgz#9eed073022a8bf5e16c8566c6867b8832bfbfa13"
-  integrity sha1-nu0HMCKov14WyFZsaGe4gyv7+hM=
-
 mimic-fn@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
@@ -2952,16 +2937,6 @@ onetime@^5.1.2:
   integrity sha512-kbpaSSGJTWdAY5KPVeMOKXSrPtr8C8C7wodJbcsd51jRnmD+GZu8Y0VoU6Dm5Z4vWr0Ig/1NKuWRKf7j5aaYSg==
   dependencies:
     mimic-fn "^2.1.0"
-
-open-uri@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/open-uri/-/open-uri-0.4.3.tgz#6a6d0367262f22dfd649965179562f331d74db12"
-  integrity sha1-am0DZyYvIt/WSZZReVYvMx102xI=
-  dependencies:
-    addressable "0.3.3"
-    mime "1.2.5"
-  optionalDependencies:
-    ftp "0.1.1"
 
 optionator@^0.9.1:
   version "0.9.1"

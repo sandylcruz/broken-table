@@ -59,8 +59,6 @@ const UploadedImg = styled.img`
   display: block;
 `;
 
-const UploadWrap = styled.div``;
-
 const VisibleDiv = styled.div`
   position: absolute;
   top: 0;
@@ -98,7 +96,6 @@ const Label = styled.label`
   width: 150px;
 `;
 
-// const TEN_MEGABYTES = 1000 * 1000 * 10;
 const TWO_MEGABYTES = 1000 * 1000 * 2;
 
 const RestaurantForm = React.memo(({ createRestaurant }) => {
@@ -138,7 +135,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
         history.push(`/restaurants/${restaurant.id}`);
       });
     },
-    [name, description, history, location, createRestaurant, photo]
+    [createRestaurant, description, history, location, name, photo]
   );
 
   const updateName = useCallback((event) => {
@@ -183,7 +180,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
       </Span>
 
       <Span>
-        <UploadWrap>
+        <div>
           <Label>
             <VisibleDiv>
               <ButtonContentDiv>
@@ -200,7 +197,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           </Label>
 
           {photo && <UploadedImg src={photo.imageUrl} alt="Uploaded Image" />}
-        </UploadWrap>
+        </div>
       </Span>
       <Span>
         <SubmitButton>Submit</SubmitButton>

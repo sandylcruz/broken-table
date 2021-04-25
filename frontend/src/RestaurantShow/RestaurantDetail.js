@@ -131,7 +131,6 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         <StyledRestaurantOverview>
           <h1>{restaurant.name}</h1>
           <StyledStar />
-          {/* <img src={restaurant.photoUrl} alt={restaurant.name} /> */}
           <StyledHitList>
             <h2>Now open</h2>
             <StyledPTag>Add to your hit list to get updated</StyledPTag>
