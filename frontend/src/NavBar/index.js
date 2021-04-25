@@ -11,6 +11,7 @@ const NavBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.06);
 `;
 
 const StyledGreetingContainer = styled(GreetingContainer)`

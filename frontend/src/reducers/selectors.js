@@ -48,3 +48,8 @@ export const selectRestaurantsInBounds = createSelector(
       return accumulator;
     }, [])
 );
+
+export const selectRestaurantById = createSelector(
+  (state, id) => state.entities.restaurants[id],
+  (restaurant) => restaurant
+);
