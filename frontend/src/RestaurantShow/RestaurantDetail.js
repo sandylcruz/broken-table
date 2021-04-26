@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import MarkerManager from "../util/MarkerManager";
-import Star from "./Star.svg";
+import ReviewContainer from "./ReviewForm/ReviewContainer";
+// import ReviewShow from "./ReviewShow";
+import Star from "./svgs/Star.svg";
 import HitListButton from "../components/HitListButton";
 
 const ResizedImage = styled.img`
@@ -145,6 +147,7 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
           </StyledReservationContainer>
           <StyledReviewsSection>
             <StyledH3>Reviews</StyledH3>
+            <ReviewContainer />
           </StyledReviewsSection>
         </StyledRestaurantOverview>
       )}
@@ -155,7 +158,6 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
         ) : (
           <div>
             {" "}
-            {/* { if (restaurant.photoUrl.width > height) } */}
             <ResizedImage
               src={restaurant.photoUrl}
               max-height="200"
