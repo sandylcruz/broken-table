@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_25_185617) do
+ActiveRecord::Schema.define(version: 2021_04_26_164418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,17 @@ ActiveRecord::Schema.define(version: 2021_04_25_185617) do
     t.index ["latitude", "longitude"], name: "index_restaurants_on_latitude_and_longitude", unique: true
     t.index ["name"], name: "index_restaurants_on_name"
     t.index ["submitter_id"], name: "index_restaurants_on_submitter_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.integer "user_id", null: false
+    t.integer "rating", null: false
+    t.text "body", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
