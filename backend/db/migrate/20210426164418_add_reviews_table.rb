@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Migration add to reviews table
 class AddReviewsTable < ActiveRecord::Migration[6.1]
   def change
     create_table :reviews do |t|

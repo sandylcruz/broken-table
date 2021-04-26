@@ -17,7 +17,4 @@ class Reservation < ApplicationRecord
              class_name: 'Restaurant',
              foreign_key: :restaurant_id,
              primary_key: id
-
 end
-
-
