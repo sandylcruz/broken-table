@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { Body, Close, Modal } from "@zendeskgarden/react-modals";
 import ReactStars from "react-rating-stars-component";
+import SubmitButton from "../../components/SubmitButton";
 
 const StyledButtonDiv = styled.div`
   text-align: center;
@@ -61,7 +62,6 @@ const ReviewForm = () => {
 
   return (
     <div>
-      <h4>Review Form: Leave a review </h4>
       <ReviewButton type="button" onClick={() => setVisible(true)}>
         <StyledButtonDiv>☆ &nbsp; Write a Review</StyledButtonDiv>
       </ReviewButton>
@@ -71,9 +71,7 @@ const ReviewForm = () => {
             <StyledForm onSubmit={handleSubmit}>
               <h2>Write a review</h2>
               <span>
-                <p>
-                  How likely are you to recommend this restaurant to others?
-                </p>
+                <p>Select your rating</p>
                 <ReactStars
                   count={5}
                   onChange={setRating}
@@ -95,7 +93,7 @@ const ReviewForm = () => {
                 />
               </span>
 
-              <button type="submit">Submit</button>
+              <SubmitButton type="submit">Post review</SubmitButton>
             </StyledForm>
           </Body>
 

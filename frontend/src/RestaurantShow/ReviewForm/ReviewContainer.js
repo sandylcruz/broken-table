@@ -6,8 +6,8 @@ import ReviewSummary from "./ReviewSummary";
 
 const ReviewContainer = () => (
   <div>
-    <ReviewSummary />
     <ReviewForm />
+    <ReviewSummary />
     <ReviewShow />
   </div>
 );
