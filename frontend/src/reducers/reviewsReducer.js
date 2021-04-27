@@ -15,7 +15,7 @@ const reviewsReducer = (state = {}, action) => {
           id: review.id,
           body: review.body,
           rating: review.rating,
-          userId: review.user.id,
+          authorId: review.user.id,
         };
       });
 
