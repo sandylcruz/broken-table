@@ -25,6 +25,9 @@ zuni = Restaurant.create!(name: 'Zuni Cafe', description: 'Zuni Cafe opened in S
                           latitude: 37.773610, longitude: -122.421430,
                           submitter: stinky)
 
-Review.create!(user_id: 1, restaurant: nopa, rating: 5, body: "This is the cat's meow")
-Review.create!(user_id: 2, restaurant: lardoise, rating: 5, body: 'Very good')
-Review.create!(user_id: 3, restaurant: zuni, rating: 5, body: 'Excellent')
+Review.create!(author: callie, restaurant: nopa, rating: 5, body: "This is the cat's meow")
+Review.create!(author: squeaky, restaurant: nopa, rating: 5, body: 'I like nopa')
+Review.create!(author: stinky, restaurant: nopa, rating: 5, body: 'Is good')
+
+Review.create!(author: squeaky, restaurant: lardoise, rating: 5, body: 'Very good')
+Review.create!(author: stinky, restaurant: zuni, rating: 5, body: 'Excellent')
