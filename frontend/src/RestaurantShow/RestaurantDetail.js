@@ -34,7 +34,7 @@ const StyledHitList = styled.div`
 
 const StyledIndividualReview = styled.div`
   border: 1px solid black;
-  list-style: none;
+  list-style-type: none;
   margin: 10px;
   padding: 10px;
 `;
@@ -98,6 +98,10 @@ const StyledStar = styled(Star)`
   margin: 10px;
 `;
 
+const StyledUl = styled.ul`
+  list-style: none;
+`;
+
 const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
@@ -156,13 +160,13 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
             <StyledH3>Reviews</StyledH3>
             <ReviewContainer />
             {reviews.map((review) => (
-              <StyledIndividualReview>
-                <ul>
+              <StyledIndividualReview key={review.id}>
+                <StyledUl>
                   <li>Rating: {review.rating}</li>
                   <li>Body: {review.body}</li>
                   <li>Author: {review.author.username}</li>
-                  <li>Created at: {review.createdAt}</li>
-                </ul>
+                  <li>Created at: {review.created_at}</li>
+                </StyledUl>
               </StyledIndividualReview>
             ))}
           </StyledReviewsSection>
