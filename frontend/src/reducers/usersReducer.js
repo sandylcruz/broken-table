@@ -16,16 +16,16 @@ const usersReducer = (state = {}, action) => {
       const { reviews } = restaurant;
 
       reviews.forEach((review) => {
-        const existingUser = state[review.user.id];
+        const existingUser = state[review.author.id];
 
         if (existingUser) {
-          nextState[review.user.id] = {
+          nextState[review.author.id] = {
             ...existingUser,
-            username: review.user.username,
-            id: review.user.id,
+            username: review.author.username,
+            id: review.author.id,
           };
         } else {
-          nextState[review.user.id] = review.user;
+          nextState[review.author.id] = review.user;
         }
       });
 

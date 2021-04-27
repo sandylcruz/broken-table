@@ -11,11 +11,12 @@ const reviewsReducer = (state = {}, action) => {
       const { reviews } = action.restaurant; // array of review objects
 
       reviews.forEach((review) => {
+        console.log(review);
         nextState[review.id] = {
           id: review.id,
           body: review.body,
           rating: review.rating,
-          authorId: review.user.id,
+          authorId: review.author.id,
         };
       });
 
