@@ -23,11 +23,14 @@ const usersReducer = (state = {}, action) => {
             ...existingUser,
             username: review.author.username,
             id: review.author.id,
+            created_at: review.createdAt,
           };
         } else {
-          nextState[review.author.id] = review.user;
+          nextState[review.author.id] = review.author;
         }
       });
+
+      console.log(nextState);
 
       return nextState;
     }

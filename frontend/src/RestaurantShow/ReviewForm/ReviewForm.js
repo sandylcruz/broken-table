@@ -87,7 +87,6 @@ const ReviewForm = () => {
                   rows="4"
                   cols="40"
                   type="text"
-                  placeholder=".."
                   onChange={setBody}
                   value={body}
                 />

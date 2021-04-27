@@ -32,6 +32,13 @@ const StyledHitList = styled.div`
   padding-bottom: 10px;
 `;
 
+const StyledIndividualReview = styled.div`
+  border: 1px solid black;
+  list-style: none;
+  margin: 10px;
+  padding: 10px;
+`;
+
 const StyledMapDiv = styled.div`
   height: 200px;
   width: 100%;
@@ -149,7 +156,14 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
             <StyledH3>Reviews</StyledH3>
             <ReviewContainer />
             {reviews.map((review) => (
-              <div key={review.id}>{review.rating}</div>
+              <StyledIndividualReview>
+                <ul>
+                  <li>Rating: {review.rating}</li>
+                  <li>Body: {review.body}</li>
+                  <li>Author: {review.author.username}</li>
+                  <li>Created at: {review.createdAt}</li>
+                </ul>
+              </StyledIndividualReview>
             ))}
           </StyledReviewsSection>
         </StyledRestaurantOverview>
