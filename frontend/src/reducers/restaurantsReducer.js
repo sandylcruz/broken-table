@@ -9,7 +9,21 @@ const restaurantsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_RESTAURANT: {
       const restaurantId = action.restaurant.id;
-      return { ...state, [restaurantId]: action.restaurant };
+      const { restaurant } = action;
+
+      return {
+        ...state,
+        [restaurantId]: {
+          id: restaurant.id,
+          name: restaurant.name,
+          location: restaurant.location,
+          latitude: restaurant.latitude,
+          longitude: restaurant.longitude,
+          description: restaurant.description,
+          photoUrl: restaurant.photoUrl,
+          reviewIds: restaurant.reviews.map((review) => review.id),
+        },
+      };
     }
     case RECEIVE_RESTAURANTS:
       return { ...state, ...action.restaurants };
