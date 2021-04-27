@@ -30,8 +30,6 @@ const usersReducer = (state = {}, action) => {
         }
       });
 
-      console.log(nextState);
-
       return nextState;
     }
     default:
