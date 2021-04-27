@@ -8,6 +8,7 @@ json.reviews @restaurant.reviews do |review|
   json.rating review.rating
   json.createdAt review.created_at
   json.updatedAt review.updated_at
+  json.username review.author.username
   json.author do
     json.id review.author.id
     json.username review.author.username

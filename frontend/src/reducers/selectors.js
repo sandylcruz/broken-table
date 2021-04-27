@@ -53,3 +53,28 @@ export const selectRestaurantById = createSelector(
   (state, id) => state.entities.restaurants[id],
   (restaurant) => restaurant
 );
+
+// Select review for given restaurant AND each review will include its user
+export const selectReviewsByRestaurantId = createSelector(
+  (state, id) => {
+    const restaurant = state.entities.restaurants[id];
+    return !restaurant ? [] : restaurant.reviewIds;
+  },
+
+  (state) => state.entities.reviews,
+  (state) => state.entities.users,
+
+  (reviewIds, allReviews, allUsers) => {
+    const reviews = reviewIds.map((reviewId) => {
+      const { authorId, ...review } = allReviews[reviewId];
+      const author = allUsers[authorId];
+
+      return {
+        ...review,
+        author,
+      };
+    });
+
+    return reviews;
+  }
+);

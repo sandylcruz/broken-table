@@ -91,7 +91,7 @@ const StyledStar = styled(Star)`
   margin: 10px;
 `;
 
-const RestaurantDetail = React.memo(({ restaurant }) => {
+const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
@@ -148,6 +148,9 @@ const RestaurantDetail = React.memo(({ restaurant }) => {
           <StyledReviewsSection>
             <StyledH3>Reviews</StyledH3>
             <ReviewContainer />
+            {reviews.map((review) => (
+              <div key={review.id}>{review.rating}</div>
+            ))}
           </StyledReviewsSection>
         </StyledRestaurantOverview>
       )}
