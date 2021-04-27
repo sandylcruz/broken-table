@@ -7,7 +7,7 @@ class Restaurant < ApplicationRecord
   validates :description, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
-  validates :photo, presence: true
+  # validates :photo, presence: true
 
   belongs_to :submitter,
              class_name: 'User',
