@@ -58,13 +58,20 @@ export const selectRestaurantById = createSelector(
 export const selectReviewsByRestaurantId = createSelector(
   (state, id) => {
     const restaurant = state.entities.restaurants[id];
-    return !restaurant ? [] : restaurant.reviewIds;
+
+    if (!restaurant) {
+      return undefined;
+    }
+    return restaurant.reviewIds;
   },
 
   (state) => state.entities.reviews,
   (state) => state.entities.users,
 
   (reviewIds, allReviews, allUsers) => {
+    if (!reviewIds) {
+      return [];
+    }
     const reviews = reviewIds.map((reviewId) => {
       const { authorId, ...review } = allReviews[reviewId];
       const author = allUsers[authorId];

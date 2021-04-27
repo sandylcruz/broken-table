@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import MarkerManager from "../util/MarkerManager";
-import ReviewContainer from "./ReviewForm/ReviewContainer";
+import ReviewForm from "./ReviewForm";
 // import ReviewShow from "./ReviewShow";
 import Star from "./svgs/Star.svg";
 import HitListButton from "../components/HitListButton";
@@ -158,7 +158,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           </StyledReservationContainer>
           <StyledReviewsSection>
             <StyledH3>Reviews</StyledH3>
-            <ReviewContainer />
+            <ReviewForm />
             {reviews.map((review) => (
               <StyledIndividualReview key={review.id}>
                 <StyledUl>

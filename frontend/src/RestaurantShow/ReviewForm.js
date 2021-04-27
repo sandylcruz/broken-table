@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Body, Close, Modal } from "@zendeskgarden/react-modals";
 import ReactStars from "react-rating-stars-component";
-import SubmitButton from "../../components/SubmitButton";
+import SubmitButton from "../components/SubmitButton";
 
 const StyledButtonDiv = styled.div`
   text-align: center;
