@@ -1,6 +1,8 @@
 import React from "react";
 
 import styled from "styled-components";
+import ReactStars from "react-rating-stars-component";
+
 import ReviewForm from "./ReviewForm";
 
 const StyledH3 = styled.div`
@@ -34,10 +36,9 @@ const Reviews = ({ reviews }) => (
     {reviews.map((review) => (
       <StyledIndividualReview key={review.id}>
         <StyledUl>
-          <li>Rating: {review.rating}</li>
-          <li>Body: {review.body}</li>
-          <li>Author: {review.author.username}</li>
-          <li>Created at: {review.created_at}</li>
+          <ReactStars value={review.rating} edit={false} />
+          <li>{review.body}</li>
+          <li>By: {review.author.username}</li>
         </StyledUl>
       </StyledIndividualReview>
     ))}

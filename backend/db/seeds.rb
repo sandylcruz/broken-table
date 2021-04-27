@@ -27,7 +27,7 @@ zuni = Restaurant.create!(name: 'Zuni Cafe', description: 'Zuni Cafe opened in S
 
 Review.create!(author: callie, restaurant: nopa, rating: 5, body: "This is the cat's meow")
 Review.create!(author: squeaky, restaurant: nopa, rating: 5, body: 'I like nopa')
-Review.create!(author: stinky, restaurant: nopa, rating: 5, body: 'Is good')
+Review.create!(author: stinky, restaurant: nopa, rating: 4, body: 'Is good')
 
 Review.create!(author: squeaky, restaurant: lardoise, rating: 5, body: 'Very good')
 Review.create!(author: stinky, restaurant: zuni, rating: 5, body: 'Excellent')
