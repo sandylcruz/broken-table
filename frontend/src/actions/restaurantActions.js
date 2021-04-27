@@ -3,6 +3,7 @@ import * as RestaurantAPIUtil from "../util/restaurantApiUtil";
 export const RECEIVE_RESTAURANTS = "RECEIVE_RESTAURANTS";
 export const RECEIVE_RESTAURANT = "RECEIVE_RESTAURANT";
 export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS";
+export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 
 const receiveRestaurant = (restaurant) => ({
   type: RECEIVE_RESTAURANT,
@@ -14,9 +15,15 @@ const receiveRestaurants = (restaurants) => ({
   restaurants,
 });
 
-const createReview = () => {};
+export const receiveReview = (review) => ({
+  type: RECEIVE_REVIEWS,
+  review,
+});
 
-export const receiveReviews = () => {};
+export const createReview = (review) => (dispatch) =>
+  RestaurantAPIUtil.createReview(review).then(() =>
+    dispatch(receiveReview(review))
+  );
 
 export const fetchRestaurant = (id) => (dispatch) =>
   RestaurantAPIUtil.fetchRestaurant(id).then((restaurant) =>

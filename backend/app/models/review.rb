@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class Reviews < ApplicationRecord
-  validates :rating, null: false
-  validates :body, null: false
+class Review < ApplicationRecord
+  validates :rating, presence: true
+  validates :body, presence: true
 
   belongs_to :author,
              class_name: 'User',

@@ -1,5 +1,7 @@
-import { RECEIVE_RESTAURANT } from "../actions/restaurantActions";
-// import { RECEIVE_REVIEW } from "../actions/restaurantActions";
+import {
+  RECEIVE_RESTAURANT,
+  RECEIVE_REVIEW,
+} from "../actions/restaurantActions";
 
 const reviewsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -19,11 +21,9 @@ const reviewsReducer = (state = {}, action) => {
 
       return nextState;
     }
-
-    // case RECEIVE_REVIEWS: {
-    //   return { ...state, [review.id]: review, user: user.id };
-    // }
-
+    case RECEIVE_REVIEW: {
+      return state;
+    }
     default:
       return state;
   }
