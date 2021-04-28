@@ -45,9 +45,8 @@ const StyledMapDiv = styled.div`
 const StyledParentContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 10px;
+  margin: 30px;
   border-radius: 5%;
-  // padding: 10px;
   padding-top: 70px;
 `;
 

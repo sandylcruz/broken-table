@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 
 import { Body, Close, Modal } from "@zendeskgarden/react-modals";
@@ -58,7 +58,15 @@ const ReviewForm = () => {
   const [rating, setRating] = useState(0);
   const [visible, setVisible] = useState(false);
 
-  const handleSubmit = () => {};
+  const updateBody = useCallback((event) => {
+    setBody(event.currentTarget.value);
+  }, []);
+
+  const updateRating = useCallback((event) => {
+    setRating(event.currentTarget.value);
+  }, []);
+
+  const handleSubmit = useCallback(() => {});
 
   return (
     <div>
@@ -74,7 +82,7 @@ const ReviewForm = () => {
                 <p>Select your rating</p>
                 <ReactStars
                   count={5}
-                  onChange={setRating}
+                  onChange={updateRating}
                   size={30}
                   activeColor="#ffd700"
                   value={rating}
@@ -87,7 +95,7 @@ const ReviewForm = () => {
                   rows="4"
                   cols="40"
                   type="text"
-                  onChange={setBody}
+                  onChange={updateBody}
                   value={body}
                 />
               </span>
