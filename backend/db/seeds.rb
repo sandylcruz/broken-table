@@ -27,7 +27,18 @@ zuni = Restaurant.create!(name: 'Zuni Cafe', description: 'Zuni Cafe opened in S
 
 Review.create!(author: callie, restaurant: nopa, rating: 5, body: "This is the cat's meow")
 Review.create!(author: squeaky, restaurant: nopa, rating: 5, body: 'I like nopa')
-Review.create!(author: stinky, restaurant: nopa, rating: 4, body: 'Is good')
+Review.create!(author: stinky, restaurant: nopa, rating: 4,
+               body: 'Cat ipsum dolor sit amet, ignore the squirrels, you’ll never
+               catch them anyway. Rub face on owner my left donut is missing,
+               as is my right please let me outside pouty face yay! wait,
+               it’s cold out please let me inside pouty face oh, thank you
+               rub against mommy’s leg oh it looks so nice out, please let
+               me outside again the neighbor cat was mean to me please
+               let me back inside destroy house in 5 seconds. Sleep on
+               keyboard i’m so hungry i’m so hungry but ew not for that
+               scratch leg; meow for can opener to feed me present belly,
+               scratch hand when stroked play riveting piece on synthesizer
+               keyboard. Burrow under covers.')
 
 Review.create!(author: squeaky, restaurant: lardoise, rating: 5, body: 'Very good')
 Review.create!(author: stinky, restaurant: zuni, rating: 5, body: 'Excellent')

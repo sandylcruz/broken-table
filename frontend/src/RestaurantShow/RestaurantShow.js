@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import MarkerManager from "../util/MarkerManager";
 import Reviews from "./Reviews";
-// import ReviewShow from "./ReviewShow";
 import Star from "./svgs/Star.svg";
 import HitListButton from "../components/HitListButton";
 
