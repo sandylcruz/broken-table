@@ -26,8 +26,8 @@ class Restaurant < ApplicationRecord
 
   has_one_attached :photo
 
-  def average_review
-    reviews.average(rating)
+  def average_rating
+    reviews.average(:rating)
   end
 
   def self.in_bounds(bounds)
