@@ -20,17 +20,12 @@ const ReviewBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  // border-bottom: 1px solid #eaeaea;
 `;
 
 const ReviewContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const StyledH3 = styled.div`
-  padding: 5px;
-  font-weight: bold;
-  font-size: 25px;
 `;
 
 const StyledIndividualReview = styled.div`
@@ -39,12 +34,9 @@ const StyledIndividualReview = styled.div`
   padding: 10px;
 `;
 
-const StyledReviewsSection = styled.div`
-  border-top: 1px solid #eaeaea;
-`;
+const StyledReviewsSection = styled.div``;
 
 const StyledSpan = styled.span`
-  // margin: 10px;
   padding: 5px;
 `;
 
@@ -57,7 +49,6 @@ const UserInfoDiv = styled.div`
   display: flex;
   justify-content: left;
   flex-direction: row;
-  // border: 1px solid purple;
 `;
 
 const UserTextDiv = styled.div`
@@ -67,7 +58,6 @@ const UserTextDiv = styled.div`
 
 const Reviews = ({ reviews }) => (
   <StyledReviewsSection>
-    <StyledH3>Reviews</StyledH3>
     <ReviewForm />
     {reviews.map((review) => (
       <StyledIndividualReview key={review.id}>
@@ -85,6 +75,7 @@ const Reviews = ({ reviews }) => (
                 value={review.rating}
                 size={24}
                 activeColor="#ffd700"
+                edit={false}
               />
             </StyledSpan>
             <StyledSpan>{review.body}</StyledSpan>

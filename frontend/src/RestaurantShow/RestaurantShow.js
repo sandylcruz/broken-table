@@ -18,6 +18,11 @@ const StyledAboutBlock = styled.div`
   margin-bottom: 10px;
 `;
 
+const StyledH1 = styled.h1`
+  font-size: 50px;
+  margin-top: 50px;
+`;
+
 const StyledH3 = styled.div`
   padding: 5px;
   font-weight: bold;
@@ -42,7 +47,8 @@ const StyledParentContainer = styled.div`
   flex-direction: row;
   margin: 10px;
   border-radius: 5%;
-  padding: 10px;
+  // padding: 10px;
+  padding-top: 70px;
 `;
 
 const StyledPTag = styled.div`
@@ -72,6 +78,8 @@ const StyledRestaurantOverview = styled.div`
 const StyledSideBar = styled.div`
   border-left: 0;
   padding: 10px;
+  padding-top: 70px;
+
   display: none;
   @media (min-width: 600px) {
     display: block;
@@ -124,11 +132,11 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
         <div>Loading Restaurant...</div>
       ) : (
         <StyledRestaurantOverview>
-          <h1>{restaurant.name}</h1>
+          <StyledH1>{restaurant.name}</StyledH1>
           <StyledStar />
           <StyledHitList>
-            <h2>Now open</h2>
-            <StyledPTag>Add to your hit list to get updated</StyledPTag>
+            <h2>Now open.</h2>
+            <StyledPTag>Add to your hit list to get updated.</StyledPTag>
             <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>
           <StyledAboutBlock>

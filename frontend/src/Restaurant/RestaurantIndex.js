@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const RestaurantItem = styled.div`
+
   display: flex;
   flex-direction: column;
   border: 1px solid #bababa;
@@ -25,6 +26,7 @@ const RestaurantItem = styled.div`
 const RestaurantContainer = styled.div`
   width: 400px;
   margin: 40px;
+  padding-top: 70px;
 `;
 
 const RestaurantIndex = React.memo(({ restaurants }) => (
