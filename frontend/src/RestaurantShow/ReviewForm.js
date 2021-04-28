@@ -84,7 +84,6 @@ const ReviewForm = () => {
     (event) => {
       event.preventDefault();
       const review = { body, rating, user_id, restaurant_id };
-      console.log(review);
 
       processForm(review).then(() => {
         setVisible(false);
