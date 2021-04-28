@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
+// import Marker from "./Marker.svg";
 
 const RestaurantItem = styled.div`
 
@@ -13,7 +14,7 @@ const RestaurantItem = styled.div`
   margin-bottom: 15px;
   padding: 10px;
   width: 400px;
-  height: 150px;
+  height: 130px;
   line-height: 1.5;
   cursor: pointer;
   &:hover {

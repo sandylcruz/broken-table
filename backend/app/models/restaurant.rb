@@ -26,6 +26,10 @@ class Restaurant < ApplicationRecord
 
   has_one_attached :photo
 
+  def average_review
+    reviews.average(rating)
+  end
+
   def self.in_bounds(bounds)
     where('latitude < ?', bounds[:northEast][:latitude])
       .where('latitude > ?', bounds[:southWest][:latitude])
