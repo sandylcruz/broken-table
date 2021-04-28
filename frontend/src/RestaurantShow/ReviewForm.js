@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import ReactStars from "react-rating-stars-component";
 import { Body, Close, Modal } from "@zendeskgarden/react-modals";
-import { createReview } from "../actions/restaurantActions";
+import { createReview } from "../actions/reviewActions";
 import { selectCurrentUser } from "../reducers/selectors";
 
 import SubmitButton from "../components/SubmitButton";
