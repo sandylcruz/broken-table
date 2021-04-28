@@ -1,13 +1,15 @@
+/* eslint-disable camelcase */
 import React, { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 import styled from "styled-components";
 
-import { Body, Close, Modal } from "@zendeskgarden/react-modals";
 import ReactStars from "react-rating-stars-component";
-import SubmitButton from "../components/SubmitButton";
+import { Body, Close, Modal } from "@zendeskgarden/react-modals";
+import { createReview } from "../actions/restaurantActions";
+import { selectCurrentUser } from "../reducers/selectors";
 
-const StyledButtonDiv = styled.div`
-  text-align: center;
-`;
+import SubmitButton from "../components/SubmitButton";
 
 const ReviewButton = styled.button`
   border-radius: 5px;
@@ -44,6 +46,9 @@ const ReviewButton = styled.button`
       color 0.25s ease-in-out 0s;
   }
 `;
+const StyledButtonDiv = styled.div`
+  text-align: center;
+`;
 
 const StyledForm = styled.form`
   display: flex;
@@ -57,16 +62,40 @@ const ReviewForm = () => {
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
   const [visible, setVisible] = useState(false);
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
+  const user_id = currentUser.id;
+  const queryParams = useParams();
+  const restaurant_id = parseInt(queryParams.id, 10);
+
+  // console.log(useParams());
+
+  const processForm = useCallback(
+    (review) => {
+      dispatch(createReview(review));
+    },
+    [dispatch]
+  );
 
   const updateBody = useCallback((event) => {
     setBody(event.currentTarget.value);
   }, []);
 
   const updateRating = useCallback((event) => {
-    setRating(event.currentTarget.value);
+    setRating(event);
   }, []);
 
-  const handleSubmit = useCallback(() => {});
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      // console.log(event);
+      const review = { body, rating, user_id, restaurant_id };
+      console.log(review);
+
+      processForm(review);
+    },
+    [body, rating, user_id, restaurant_id]
+  );
 
   return (
     <div>

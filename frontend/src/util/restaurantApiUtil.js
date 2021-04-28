@@ -1,12 +1,12 @@
 import { ajax } from "jquery";
 import Geocode from "react-geocode";
 
-export const fetchRestaurants = (filters) =>
+export const createReview = (review) =>
   new Promise((resolve, reject) => {
     ajax({
-      method: "GET",
-      url: "api/restaurants",
-      data: { filters },
+      method: "POST",
+      url: `api/reviews`,
+      data: { review },
       success: resolve,
       error: reject,
     });
@@ -17,6 +17,17 @@ export const fetchRestaurant = (id) =>
     ajax({
       method: "GET",
       url: `api/restaurants/${id}`,
+      success: resolve,
+      error: reject,
+    });
+  });
+
+export const fetchRestaurants = (filters) =>
+  new Promise((resolve, reject) => {
+    ajax({
+      method: "GET",
+      url: "api/restaurants",
+      data: { filters },
       success: resolve,
       error: reject,
     });

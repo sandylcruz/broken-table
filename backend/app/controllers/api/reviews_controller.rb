@@ -3,9 +3,11 @@
 module Api
   # Reviews Controller class
   class ReviewsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def create
       @review = Review.new(review_params)
-      @review.user_id = current_user.id
+      @review.author = current_user
 
       if @review.save
         render :show

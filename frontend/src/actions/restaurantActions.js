@@ -16,7 +16,7 @@ const receiveRestaurants = (restaurants) => ({
 });
 
 export const receiveReview = (review) => ({
-  type: RECEIVE_REVIEWS,
+  type: RECEIVE_REVIEW,
   review,
 });
 
