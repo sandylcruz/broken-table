@@ -25,20 +25,47 @@ zuni = Restaurant.create!(name: 'Zuni Cafe', description: 'Zuni Cafe opened in S
                           latitude: 37.773610, longitude: -122.421430,
                           submitter: stinky)
 
-Review.create!(author: callie, restaurant: nopa, rating: 5, body: "This is the cat's meow")
-Review.create!(author: squeaky, restaurant: nopa, rating: 5, body: 'I like nopa')
+Review.create!(author: callie, restaurant: nopa, rating: 5,
+               body: "Cupcake ipsum dolor sit. Amet chocolate lemon drops
+              topping dragée icing. Dessert bear claw halvah. Biscuit
+              jelly beans fruitcake halvah gummi bears carrot cake
+              gummies sweet croissant. Chupa chups sugar plum sesame
+              snaps brownie marshmallow soufflé. Gummi bears gummies
+              liquorice sweet topping. Chocolate bar pie chocolate.
+              Caramels jujubes gingerbread jelly gummies jelly candy canes chocolate
+              bar. Jelly-o brownie liquorice dragée cotton candy tiramisu
+              jelly-o. Pie candy canes soufflé.
+
+              Dragée icing sesame snaps icing cupcake wafer oat cake
+              fruitcake. Pastry soufflé oat cake. Jelly beans dragée
+              caramels candy canes. Dessert jujubes pudding bonbon
+              halvah gummi bears jelly-o marzipan pie. Danish soufflé
+              macaroon caramels lollipop. Tiramisu bonbon topping marzipan.
+              Apple pie bonbon jujubes wafer lemon drops caramels jujubes.
+              Dessert ice cream jujubes muffin.")
+Review.create!(author: squeaky, restaurant: nopa, rating: 5,
+               body: 'Port-salut jarlsberg the big cheese. Goat emmental who
+               moved my cheese edam the big cheese cheese slices stilton
+               stinking bishop. Stinking bishop manchego airedale brie
+               taleggio port-salut gouda stilton. Cheese strings
+               bocconcini emmental camembert de normandie dolcelatte
+               stilton pecorino cheese slices. Who moved my cheese
+               mozzarella queso.
+
+              Swiss mascarpone cheesy feet. Parmesan cheese and biscuits
+              when the cheese comes out everybody is happy paneer
+              fromage cheese slices squirty cheese cheddar.
+              Fromage frais brie cheese and biscuits melted cheese
+              cheesecake stinking bishop pecorino st. agur blue cheese.
+              Cheese strings queso who moved my cheese parmesan ricotta when
+              the cheese comes out everybody is happy.')
+
 Review.create!(author: stinky, restaurant: nopa, rating: 4,
-               body: 'Cat ipsum dolor sit amet, ignore the squirrels, you’ll never
-               catch them anyway. Rub face on owner my left donut is missing,
-               as is my right please let me outside pouty face yay! wait,
-               it’s cold out please let me inside pouty face oh, thank you
-               rub against mommy’s leg oh it looks so nice out, please let
-               me outside again the neighbor cat was mean to me please
-               let me back inside destroy house in 5 seconds. Sleep on
-               keyboard i’m so hungry i’m so hungry but ew not for that
-               scratch leg; meow for can opener to feed me present belly,
-               scratch hand when stroked play riveting piece on synthesizer
-               keyboard. Burrow under covers.')
+               body: 'Gouda st. agur blue cheese roquefort. Roquefort
+              fromage cheese slices st. agur blue cheese pepper jack
+              rubber cheese brie squirty cheese. The big cheese
+              fromage the big cheese feta fondue cheese on toast
+              cheese dolcelatte. Fromage frais.')
 
 Review.create!(author: squeaky, restaurant: lardoise, rating: 5, body: 'Very good')
 Review.create!(author: stinky, restaurant: zuni, rating: 5, body: 'Excellent')

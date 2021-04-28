@@ -34,7 +34,6 @@ const StyledH3 = styled.div`
 `;
 
 const StyledIndividualReview = styled.div`
-  border: 1px solid black;
   list-style-type: none;
   margin: 10px;
   padding: 10px;
@@ -82,7 +81,11 @@ const Reviews = ({ reviews }) => (
           </UserInfoDiv>
           <ReviewContentDiv>
             <StyledSpan>
-              <ReactStars value={review.rating} edit={false} />
+              <ReactStars
+                value={review.rating}
+                size={24}
+                activeColor="#ffd700"
+              />
             </StyledSpan>
             <StyledSpan>{review.body}</StyledSpan>
           </ReviewContentDiv>
