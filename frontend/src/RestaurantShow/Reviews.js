@@ -5,6 +5,22 @@ import ReactStars from "react-rating-stars-component";
 
 import ReviewForm from "./ReviewForm";
 
+const ReviewContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const CitySpan = styled.span`
+  font-weight: normal;
+  margin-left: 4px;
+`;
+
+const ReviewBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const StyledH3 = styled.div`
   padding: 5px;
   font-weight: bold;
@@ -20,13 +36,23 @@ const StyledIndividualReview = styled.div`
 
 const StyledReviewsSection = styled.div`
   border-top: 1px solid #eaeaea;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-top: 10px;
 `;
 
-const StyledUl = styled.ul`
-  list-style: none;
+const StyledSpan = styled.span`
+  // margin: 10px;
+  padding: 5px;
+`;
+
+const UserInfoDiv = styled.div`
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid purple;
+`;
+
+const TopSpan = styled.span`
+  margin: 5px;
 `;
 
 const Reviews = ({ reviews }) => (
@@ -35,11 +61,18 @@ const Reviews = ({ reviews }) => (
     <ReviewForm />
     {reviews.map((review) => (
       <StyledIndividualReview key={review.id}>
-        <StyledUl>
-          <ReactStars value={review.rating} edit={false} />
-          <li>{review.body}</li>
-          <li>By: {review.author.username}</li>
-        </StyledUl>
+        <ReviewBody>
+          <UserInfoDiv>
+            <TopSpan>{review.author.username}</TopSpan>
+            <CitySpan>San Francisco, CA</CitySpan>
+          </UserInfoDiv>
+          <ReviewContentDiv>
+            <StyledSpan>
+              <ReactStars value={review.rating} edit={false} />
+            </StyledSpan>
+            <StyledSpan>{review.body}</StyledSpan>
+          </ReviewContentDiv>
+        </ReviewBody>
       </StyledIndividualReview>
     ))}
   </StyledReviewsSection>
