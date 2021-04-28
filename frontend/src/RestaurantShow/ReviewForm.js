@@ -68,14 +68,9 @@ const ReviewForm = () => {
   const queryParams = useParams();
   const restaurant_id = parseInt(queryParams.id, 10);
 
-  // console.log(useParams());
-
-  const processForm = useCallback(
-    (review) => {
-      dispatch(createReview(review));
-    },
-    [dispatch]
-  );
+  const processForm = useCallback((review) => dispatch(createReview(review)), [
+    dispatch,
+  ]);
 
   const updateBody = useCallback((event) => {
     setBody(event.currentTarget.value);
@@ -88,11 +83,12 @@ const ReviewForm = () => {
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      // console.log(event);
       const review = { body, rating, user_id, restaurant_id };
       console.log(review);
 
-      processForm(review);
+      processForm(review).then(() => {
+        setVisible(false);
+      });
     },
     [body, rating, user_id, restaurant_id]
   );

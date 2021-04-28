@@ -3,6 +3,8 @@ import {
   RECEIVE_RESTAURANTS,
 } from "../actions/restaurantActions";
 
+import { RECEIVE_REVIEW } from "../actions/reviewActions";
+
 const restaurantsReducer = (state = {}, action) => {
   Object.freeze(state);
 
@@ -27,6 +29,19 @@ const restaurantsReducer = (state = {}, action) => {
     }
     case RECEIVE_RESTAURANTS:
       return { ...state, ...action.restaurants };
+    case RECEIVE_REVIEW: {
+      const { restaurantId } = action.review;
+      const restaurant = state[restaurantId];
+      const newState = {
+        ...state,
+        [restaurantId]: {
+          ...restaurant,
+          reviewIds: [...restaurant.reviewIds, action.review.id],
+        },
+      };
+
+      return newState;
+    }
     default:
       return state;
   }

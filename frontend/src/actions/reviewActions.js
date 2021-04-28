@@ -9,8 +9,8 @@ export const receiveReview = (review) => ({
 });
 
 export const createReview = (review) => (dispatch) =>
-  RestaurantAPIUtil.createReview(review).then(() =>
-    dispatch(receiveReview(review))
+  RestaurantAPIUtil.createReview(review).then((reviewFromServer) =>
+    dispatch(receiveReview(reviewFromServer))
   );
 
 export default createReview;
