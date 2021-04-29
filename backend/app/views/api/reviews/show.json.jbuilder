@@ -1,4 +1,3 @@
 # frozen_string_literal: true
 
 json.partial! 'api/reviews/review', review: @review
-json.averageRating @review.restaurant.average_rating
