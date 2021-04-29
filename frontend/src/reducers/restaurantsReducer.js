@@ -31,14 +31,18 @@ const restaurantsReducer = (state = {}, action) => {
       return { ...state, ...action.restaurants };
     case RECEIVE_REVIEW: {
       const { restaurantId } = action.review;
+      const { averageRating } = action;
       const restaurant = state[restaurantId];
       const newState = {
         ...state,
         [restaurantId]: {
           ...restaurant,
           reviewIds: [...restaurant.reviewIds, action.review.id],
+          averageRating,
         },
       };
+
+      newState[restaurantId].averageRating = averageRating;
 
       return newState;
     }

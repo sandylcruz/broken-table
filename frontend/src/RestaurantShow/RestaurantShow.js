@@ -132,7 +132,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
       ) : (
         <StyledRestaurantOverview>
           <StyledH1>{restaurant.name}</StyledH1>
-          <StyledStar />
+          <StyledStar /> {restaurant.averageRating || "No reviews yet"}
           <StyledHitList>
             <h2>Now open.</h2>
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>

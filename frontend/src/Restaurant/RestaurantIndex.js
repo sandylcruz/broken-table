@@ -39,7 +39,7 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
       <Link to={`restaurants/${restaurant.id}`} key={restaurant.id}>
         <RestaurantItem key={restaurant.id}>
           <h3>{restaurant.name}</h3>
-          <span>Rating: 0 stars</span>
+          <span>Rating: {restaurant.average_rating || "No reviews yet"}</span>
           <span>📍 {restaurant.location}</span>
         </RestaurantItem>
       </Link>

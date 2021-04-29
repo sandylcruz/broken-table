@@ -5,8 +5,8 @@ export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
 
 export const receiveReview = (averageRating, review) => ({
   type: RECEIVE_REVIEW,
-  review,
   averageRating,
+  review,
 });
 
 export const createReview = (review) => (dispatch) =>
