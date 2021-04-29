@@ -12,7 +12,7 @@ const RatingDiv = styled.div`
   margin: 10px;
 `;
 
-const RatingsSignatureText = styled.text`
+const RatingsSignatureText = styled.div`
   color: #737373;
   font-size: 13px;
   margin-top: 3px;
@@ -113,6 +113,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
+  // const numberOfReviews = reviews.count;
 
   useEffect(() => {
     if (restaurant) {
