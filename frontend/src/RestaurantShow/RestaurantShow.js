@@ -6,6 +6,24 @@ import Reviews from "./Reviews";
 import Star from "./svgs/Star.svg";
 import HitListButton from "../components/HitListButton";
 
+const RatingDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+`;
+
+const RatingsSignatureText = styled.text`
+  color: #737373;
+  font-size: 13px;
+  margin-top: 3px;
+`;
+
+const RatingTextDiv = styled.div`
+  display: flex;
+  margin-top: 5px;
+  color: red;
+`;
+
 const ResizedImage = styled.img`
   max-height: 400px;
   max-width: 500px;
@@ -88,7 +106,7 @@ const StyledSideBar = styled.div`
 const StyledStar = styled(Star)`
   transform: scale(0.75);
   fill: red;
-  margin: 10px;
+  margin-bottom: 10px;
 `;
 
 const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
@@ -132,9 +150,15 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
       ) : (
         <StyledRestaurantOverview>
           <StyledH1>{restaurant.name}</StyledH1>
-          <StyledStar /> {restaurant.averageRating || "No reviews yet"}
+          <RatingDiv>
+            <StyledStar />{" "}
+            <RatingTextDiv>
+              {restaurant.averageRating || "No reviews yet"}
+              <RatingsSignatureText>&nbsp;- BrokenTable</RatingsSignatureText>
+            </RatingTextDiv>
+          </RatingDiv>
           <StyledHitList>
-            <h2>Now open.</h2>
+            <h2>Now Open.</h2>
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>
             <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>

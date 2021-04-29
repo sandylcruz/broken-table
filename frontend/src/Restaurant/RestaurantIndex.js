@@ -13,7 +13,7 @@ const RestaurantItem = styled.div`
   margin: 0 0 10px;
   margin-bottom: 15px;
   padding: 10px;
-  width: 400px;
+  width: 350px;
   height: 130px;
   line-height: 1.5;
   cursor: pointer;

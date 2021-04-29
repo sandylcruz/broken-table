@@ -3,12 +3,12 @@ import styled from "styled-components";
 const HitListButton = styled.button`
   border-radius: 5px;
   border: 1px solid #d3d3d3;
-  width: 70%;
+  width: 200px;
   margin: 10px;
   padding: 10px;
   font-weight: bold;
   background-color: #336dde;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   height: 40%;
   outline: none;

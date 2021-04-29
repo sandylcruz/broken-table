@@ -14,12 +14,12 @@ import SubmitButton from "../components/SubmitButton";
 const ReviewButton = styled.button`
   border-radius: 5px;
   border: 1px solid #f40d15;
-  width: 70%;
+  width: 200px;
   margin: 10px;
   padding: 10px;
   font-weight: bold;
   background-color: #f40d15;
-  font-size: 20px;
+  font-size: 18px;
   color: white;
   height: 20%;
   outline: none;
@@ -95,7 +95,7 @@ const ReviewForm = () => {
   return (
     <div>
       <ReviewButton type="button" onClick={() => setVisible(true)}>
-        <StyledButtonDiv>☆ &nbsp; Write a Review</StyledButtonDiv>
+        <StyledButtonDiv>☆ Write a Review</StyledButtonDiv>
       </ReviewButton>
       {visible && (
         <Modal isLarge onClose={() => setVisible(false)}>
