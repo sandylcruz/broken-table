@@ -3,6 +3,16 @@
 require 'faraday'
 require 'json'
 
+headers = {
+  "x-rapidapi-key": RESY_API_KEY,
+  "x-rapidapi-host": 'resy.p.rapidapi.com',
+  "useQueryString": true
+}
+
+# save string into file
+# gitignore the file
+#
+
 params = { 'lat' => '37.788719679657554',
            'long' => '-122.40057774847898',
            'day' => '2021-05-21',
