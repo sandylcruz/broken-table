@@ -2,42 +2,50 @@
 
 require 'faraday'
 require 'json'
+require 'pathname'
 
-headers = {
-  "x-rapidapi-key": Figaro.env.RESY_API_KEY,
-  "x-rapidapi-host": 'resy.p.rapidapi.com',
-  "useQueryString": 'true'
-}
+# headers = {
+#   "x-rapidapi-key": Figaro.env.RESY_API_KEY,
+#   "x-rapidapi-host": 'resy.p.rapidapi.com',
+#   "useQueryString": 'true'
+# }
 
-params = { 'lat' => '37.788719679657554',
-           'long' => '-122.40057774847898',
-           'day' => '2021-05-21',
-           'party_size' => '2',
-           'offset' => '0' }
+# params = { 'lat' => '37.788719679657554',
+#            'long' => '-122.40057774847898',
+#            'day' => '2021-05-21',
+#            'party_size' => '2',
+#            'offset' => '0' }
 
-response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
-raise 'did not work' unless response.status == 200
+# resy_pathname = Pathname.new()
 
-File.open('resy-response.json', 'w') { |file| file.write(response.body) }
+# response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
+# raise 'did not work' unless response.status == 200
 
-response_hash = JSON.parse(response.body)
+# resy_file = File.open('resy-response.json', 'w') { |file| file.write(response.body) }
 
-restaurants = response_hash['results']['venues']
+# response_hash = JSON.parse(response.body)
 
-mapped_restaurants = restaurants.map do |restaurant|
-  default_template_id = restaurant['venue']['default_template']
-  {
-    name: restaurant['venue']['name'],
-    id: restaurant['venue']['id']['resy'],
-    description: restaurant['templates'][default_template_id]['content']['en-us']['about']['body'],
-    latitude: restaurant['venue']['location']['geo']['lat'],
-    longitude: restaurant['venue']['location']['geo']['lon']
-  }
-end
+# restaurants = response_hash['results']['venues']
 
-puts mapped_restaurants
+# mapped_restaurants = restaurants.map do |restaurant|
+#   default_template_id = restaurant['venue']['default_template']
+#   {
+#     name: restaurant['venue']['name'],
+#     id: restaurant['venue']['id']['resy'],
+#     description: restaurant['templates'][default_template_id]['content']['en-us']['about']['body'],
+#     latitude: restaurant['venue']['location']['geo']['lat'],
+#     longitude: restaurant['venue']['location']['geo']['lon']
+#   }
+# end
 
-# resy_file = File.open('resy-response.json')
+# puts mapped_restaurants
+
+resy_file = File.open('resy-response.json')
+resy_string = resy_file.read
+resy_hash = JSON.parse(resy_string)
+
+puts resy_hash
+
 # resy_file = File.read('resy-response.json').split
 
 # resy_file_string = resy_file.read
