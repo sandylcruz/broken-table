@@ -4,14 +4,10 @@ require 'faraday'
 require 'json'
 
 headers = {
-  "x-rapidapi-key": RESY_API_KEY,
+  "x-rapidapi-key": Figaro.env.RESY_API_KEY,
   "x-rapidapi-host": 'resy.p.rapidapi.com',
-  "useQueryString": true
+  "useQueryString": 'true'
 }
-
-# save string into file
-# gitignore the file
-#
 
 params = { 'lat' => '37.788719679657554',
            'long' => '-122.40057774847898',
@@ -22,9 +18,12 @@ params = { 'lat' => '37.788719679657554',
 response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
 raise 'did not work' unless response.status == 200
 
+File.open('resy-response.json', 'w') { |file| file.write(response.body) }
+
 response_hash = JSON.parse(response.body)
 
 restaurants = response_hash['results']['venues']
+
 mapped_restaurants = restaurants.map do |restaurant|
   default_template_id = restaurant['venue']['default_template']
   {
@@ -38,6 +37,12 @@ end
 
 puts mapped_restaurants
 
+# resy_file = File.open('resy-response.json')
+# resy_file = File.read('resy-response.json').split
+
+# resy_file_string = resy_file.read
+
+# resy_file.close
 # callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
 # squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
 # stinky = User.create!(username: 'flapjack', password: 'password', email: 'flapjack@gmail.com')
