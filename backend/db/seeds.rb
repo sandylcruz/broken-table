@@ -21,8 +21,7 @@ unless File.exist?('resy-response.json')
   File.open('resy-response.json', 'w') { |file| file.write(response.body) }
 end
 
-resy_file = File.open('resy-response.json')
-resy_string = resy_file.read
+resy_string = File.read('resy-response.json')
 resy_hash = JSON.parse(resy_string)
 
 restaurants = resy_hash['results']['venues']
@@ -35,21 +34,43 @@ mapped_restaurants = restaurants.map do |restaurant|
     description: restaurant['templates'][default_template_id]['content']['en-us']['about']['body'],
     latitude: restaurant['venue']['location']['geo']['lat'],
     longitude: restaurant['venue']['location']['geo']['lon'],
-    # location: ,
-    submitter_id: 1
+    submitter_id: 1,
+    photo_url: 1
   }
 end
 
-resy_file.close
+unless File.exist?('tomtom-response.json')
+  restaurant_addresses = mapped_restaurants.map do |restaurant|
+    query_string = "https://api.tomtom.com/search/2/reverseGeocode/#{restaurant[:latitude]},#{restaurant[:longitude]}.json?key=#{Figaro.env.TOMTOM_API_KEY}"
+    response = Faraday.get(query_string)
+    sleep(1) # sleep because tomtom_api rate limits to one per second
 
-mapped_restaurants.each do |restaurant|
-  query_string = "https://api.tomtom.com/search/2/search/pizza.json?key=#{Figaro.env.TOMTOM_API_KEY}&lat=#{restaurant[:latitude]}&lon=#{restaurant[:longitude]}"
-  # query_string = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{restaurant[:latitude]},#{restaurant[:longitude]}&key=#{Figaro.env.MAPS_API_KEY}"
-  # puts query_string
-  response = Faraday.get(query_string)
-  # print restaurant[:latitude]
-  puts response.body
+    JSON.parse(response.body)
+  end
+  restaurant_addresses_string = restaurant_addresses.to_json
+
+  puts restaurant_addresses_string
+
+  File.open('tomtom-response.json', 'w') { |file| file.write(restaurant_addresses_string) }
 end
+
+tomtom_string = File.read('tomtom-response.json')
+tomtom_array_responses = JSON.parse(tomtom_string)
+
+addresses = tomtom_array_responses.map do |address_response|
+  address_response['addresses'][0]['address']['freeformAddress']
+end
+
+mapped_restaurants_with_addresses = mapped_restaurants.map.with_index do |restaurant, i|
+  restaurant_with_address = restaurant.dup
+  restaurant_with_address['location'] = addresses[i]
+  restaurant_with_address
+end
+
+puts mapped_restaurants_with_addresses
+# make request for every image.
+# iterate over mapped_restaurants_with_addresses
+#
 
 # callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
 # squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
