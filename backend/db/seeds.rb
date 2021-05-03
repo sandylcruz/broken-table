@@ -43,10 +43,11 @@ end
 resy_file.close
 
 mapped_restaurants.each do |restaurant|
-  query_string = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{restaurant[:latitude]},#{restaurant[:longitude]}&key=#{Figaro.env.MAPS_API_KEY}"
-
+  query_string = "https://api.tomtom.com/search/2/search/pizza.json?key=#{Figaro.env.TOMTOM_API_KEY}&lat=#{restaurant[:latitude]}&lon=#{restaurant[:longitude]}"
+  # query_string = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{restaurant[:latitude]},#{restaurant[:longitude]}&key=#{Figaro.env.MAPS_API_KEY}"
+  # puts query_string
   response = Faraday.get(query_string)
-
+  # print restaurant[:latitude]
   puts response.body
 end
 
