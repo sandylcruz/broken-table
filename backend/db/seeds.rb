@@ -2,55 +2,54 @@
 
 require 'faraday'
 require 'json'
-require 'pathname'
 
-# headers = {
-#   "x-rapidapi-key": Figaro.env.RESY_API_KEY,
-#   "x-rapidapi-host": 'resy.p.rapidapi.com',
-#   "useQueryString": 'true'
-# }
+unless File.exist?('resy-response.json')
+  headers = {
+    "x-rapidapi-key": Figaro.env.RESY_API_KEY,
+    "x-rapidapi-host": 'resy.p.rapidapi.com',
+    "useQueryString": 'true'
+  }
 
-# params = { 'lat' => '37.788719679657554',
-#            'long' => '-122.40057774847898',
-#            'day' => '2021-05-21',
-#            'party_size' => '2',
-#            'offset' => '0' }
+  params = { 'lat' => '37.788719679657554',
+             'long' => '-122.40057774847898',
+             'day' => '2021-05-21',
+             'party_size' => '2',
+             'offset' => '0' }
+  response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
+  raise 'did not work' unless response.status == 200
 
-# resy_pathname = Pathname.new()
-
-# response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
-# raise 'did not work' unless response.status == 200
-
-# resy_file = File.open('resy-response.json', 'w') { |file| file.write(response.body) }
-
-# response_hash = JSON.parse(response.body)
-
-# restaurants = response_hash['results']['venues']
-
-# mapped_restaurants = restaurants.map do |restaurant|
-#   default_template_id = restaurant['venue']['default_template']
-#   {
-#     name: restaurant['venue']['name'],
-#     id: restaurant['venue']['id']['resy'],
-#     description: restaurant['templates'][default_template_id]['content']['en-us']['about']['body'],
-#     latitude: restaurant['venue']['location']['geo']['lat'],
-#     longitude: restaurant['venue']['location']['geo']['lon']
-#   }
-# end
-
-# puts mapped_restaurants
+  File.open('resy-response.json', 'w') { |file| file.write(response.body) }
+end
 
 resy_file = File.open('resy-response.json')
 resy_string = resy_file.read
 resy_hash = JSON.parse(resy_string)
 
-puts resy_hash
+restaurants = resy_hash['results']['venues']
 
-# resy_file = File.read('resy-response.json').split
+mapped_restaurants = restaurants.map do |restaurant|
+  default_template_id = restaurant['venue']['default_template']
+  {
+    name: restaurant['venue']['name'],
+    id: restaurant['venue']['id']['resy'],
+    description: restaurant['templates'][default_template_id]['content']['en-us']['about']['body'],
+    latitude: restaurant['venue']['location']['geo']['lat'],
+    longitude: restaurant['venue']['location']['geo']['lon'],
+    # location: ,
+    submitter_id: 1
+  }
+end
 
-# resy_file_string = resy_file.read
+resy_file.close
 
-# resy_file.close
+mapped_restaurants.each do |restaurant|
+  query_string = "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{restaurant[:latitude]},#{restaurant[:longitude]}&key=#{Figaro.env.MAPS_API_KEY}"
+
+  response = Faraday.get(query_string)
+
+  puts response.body
+end
+
 # callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
 # squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
 # stinky = User.create!(username: 'flapjack', password: 'password', email: 'flapjack@gmail.com')

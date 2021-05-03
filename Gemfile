@@ -24,7 +24,6 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'securerandom'
 gem 'figaro'
 gem 'faraday'
-gem 'pathname'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
