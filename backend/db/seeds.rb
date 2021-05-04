@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+require 'base64'
 require 'faraday'
 require 'json'
-require 'base64'
+require 'open-uri'
+
 # require 'activesupport/lib/active_support/base64.rb'
 # require 'active_support'
 
@@ -77,12 +79,6 @@ mapped_restaurants = restaurants.map do |restaurant|
     photo_url = 'https://www.tibs.org.tw/images/default.jpg'
   end
 
-  opened_photo = URI.open(photo_url).read
-
-  photo = Base64.encode64(opened_photo)
-  # puts photo
-  # photo = Faraday.get(photo_url)
-  # puts photo.body
   {
     name: restaurant['venue']['name'],
     id: restaurant['venue']['id']['resy'],
@@ -90,11 +86,9 @@ mapped_restaurants = restaurants.map do |restaurant|
     latitude: restaurant['venue']['location']['geo']['lat'],
     longitude: restaurant['venue']['location']['geo']['lon'],
     submitter_id: 1,
-    photo: photo
+    photo_url: photo_url
   }
 end
-
-# puts mapped_restaurants
 
 unless File.exist?('tomtom-response.json')
   puts 'Generating tomtom response.json'
@@ -106,8 +100,6 @@ unless File.exist?('tomtom-response.json')
     JSON.parse(response.body)
   end
   restaurant_addresses_string = restaurant_addresses.to_json
-
-  # puts restaurant_addresses_string
 
   File.open('tomtom-response.json', 'w') { |file| file.write(restaurant_addresses_string) }
 end
@@ -122,15 +114,29 @@ end
 puts 'Getting addresses from coordinate'
 mapped_restaurants_with_addresses = mapped_restaurants.map.with_index do |restaurant, i|
   restaurant_with_address = restaurant.dup
-  restaurant_with_address['location'] = addresses[i]
+  restaurant_with_address[:location] = addresses[i]
   restaurant_with_address
 end
 
-# puts mapped_restaurants_with_addresses
 puts 'Creating first restaurant'
 first_restaurant = mapped_restaurants_with_addresses[0]
 
-Restaurant.create!(first_restaurant)
+Restaurant.new(
+  {
+    name: first_restaurant[:name],
+    location: first_restaurant[:location],
+    description: first_restaurant[:description],
+    latitude: first_restaurant[:latitude],
+    longitude: first_restaurant[:longitude],
+    submitter_id: first_restaurant[:submitter_id]
+  }
+)
+
+url = URI.parse(first_restaurant[:photo_url])
+filename = File.basename(url.path)
+photo_url = URI.open(url)
+new_restaurant.photo.attach(io: photo_url, filename: filename)
+new_restaurant.save!
 
 # make request for every image.
 # iterate over mapped_restaurants_with_addresses
