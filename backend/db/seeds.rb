@@ -3,6 +3,8 @@
 require 'faraday'
 require 'json'
 
+# rubocop:disable Metrics/BlockLength
+
 unless File.exist?('resy-response.json')
   headers = {
     "x-rapidapi-key": Figaro.env.RESY_API_KEY,
@@ -16,6 +18,7 @@ unless File.exist?('resy-response.json')
              'party_size' => '2',
              'offset' => '0' }
   response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
+  puts response.status
   raise 'did not work' unless response.status == 200
 
   File.open('resy-response.json', 'w') { |file| file.write(response.body) }
@@ -28,6 +31,31 @@ restaurants = resy_hash['results']['venues']
 
 mapped_restaurants = restaurants.map do |restaurant|
   default_template_id = restaurant['venue']['default_template']
+
+  photo_id = restaurant['venue']['responsive_images']['file_names'].first
+  partial_photo_url = restaurant['venue']['responsive_images']['urls'][photo_id]
+  photo_url = nil
+
+  if partial_photo_url
+    if partial_photo_url['1:1']
+      if partial_photo_url['1:1']['1600']
+        photo_url = partial_photo_url['1:1']['1600']
+      elsif partial_photo_url['1:1']['800']
+        photo_url = partial_photo_url['1:1']['800']
+      elsif partial_photo_url['1:1']['400']
+        photo_url = partial_photo_url['1:1']['400']
+      elsif partial_photo_url['1:1']['200']
+        photo_url = partial_photo_url['1:1']['200']
+      end
+    elsif  partial_photo_url['4:3']
+      puts 'has 4:3'
+    elsif partial_photo_url['16:9']
+      puts 'has 16:9'
+    end
+  else
+    photo_url = 'https://www.tibs.org.tw/images/default.jpg'
+  end
+
   {
     name: restaurant['venue']['name'],
     id: restaurant['venue']['id']['resy'],
@@ -35,9 +63,13 @@ mapped_restaurants = restaurants.map do |restaurant|
     latitude: restaurant['venue']['location']['geo']['lat'],
     longitude: restaurant['venue']['location']['geo']['lon'],
     submitter_id: 1,
-    photo_url: 1
+    photo_url: photo_url
+    # photo_url: restaurant['venue']['responsive_images']['urls'][photo_id]["1:1"]
+    # photo_url: restaurant['venue']['responsive_images']['urls'][0]["1:1"]["400"]
   }
 end
+
+# puts mapped_restaurants
 
 unless File.exist?('tomtom-response.json')
   restaurant_addresses = mapped_restaurants.map do |restaurant|
@@ -135,3 +167,5 @@ puts mapped_restaurants_with_addresses
 # Review.create!(author: squeaky, restaurant: lardoise, rating: 5, body: 'Very good')
 # Review.create!(author: stinky, restaurant: zuni, rating: 5, body: 'Excellent')
 # rubocop:enable Style/AsciiComments
+
+# rubocop:enable Metrics/BlockLength
