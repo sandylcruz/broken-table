@@ -2,10 +2,14 @@
 
 require 'faraday'
 require 'json'
+require 'base64'
+# require 'activesupport/lib/active_support/base64.rb'
+# require 'active_support'
 
+# rubocop:disable Security/Open
 # rubocop:disable Metrics/BlockLength
-
 unless File.exist?('resy-response.json')
+  puts "Getting resy response if file doesn't exist"
   headers = {
     "x-rapidapi-key": Figaro.env.RESY_API_KEY,
     "x-rapidapi-host": 'resy.p.rapidapi.com',
@@ -18,7 +22,7 @@ unless File.exist?('resy-response.json')
              'party_size' => '2',
              'offset' => '0' }
   response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
-  puts response.status
+  # puts response.status
   raise 'did not work' unless response.status == 200
 
   File.open('resy-response.json', 'w') { |file| file.write(response.body) }
@@ -29,6 +33,7 @@ resy_hash = JSON.parse(resy_string)
 
 restaurants = resy_hash['results']['venues']
 
+puts 'Getting photo urls from photo ids'
 mapped_restaurants = restaurants.map do |restaurant|
   default_template_id = restaurant['venue']['default_template']
 
@@ -72,6 +77,12 @@ mapped_restaurants = restaurants.map do |restaurant|
     photo_url = 'https://www.tibs.org.tw/images/default.jpg'
   end
 
+  opened_photo = URI.open(photo_url).read
+
+  photo = Base64.encode64(opened_photo)
+  # puts photo
+  # photo = Faraday.get(photo_url)
+  # puts photo.body
   {
     name: restaurant['venue']['name'],
     id: restaurant['venue']['id']['resy'],
@@ -79,13 +90,14 @@ mapped_restaurants = restaurants.map do |restaurant|
     latitude: restaurant['venue']['location']['geo']['lat'],
     longitude: restaurant['venue']['location']['geo']['lon'],
     submitter_id: 1,
-    photo_url: photo_url
+    photo: photo
   }
 end
 
-puts mapped_restaurants
+# puts mapped_restaurants
 
 unless File.exist?('tomtom-response.json')
+  puts 'Generating tomtom response.json'
   restaurant_addresses = mapped_restaurants.map do |restaurant|
     query_string = "https://api.tomtom.com/search/2/reverseGeocode/#{restaurant[:latitude]},#{restaurant[:longitude]}.json?key=#{Figaro.env.TOMTOM_API_KEY}"
     response = Faraday.get(query_string)
@@ -95,7 +107,7 @@ unless File.exist?('tomtom-response.json')
   end
   restaurant_addresses_string = restaurant_addresses.to_json
 
-  puts restaurant_addresses_string
+  # puts restaurant_addresses_string
 
   File.open('tomtom-response.json', 'w') { |file| file.write(restaurant_addresses_string) }
 end
@@ -107,13 +119,19 @@ addresses = tomtom_array_responses.map do |address_response|
   address_response['addresses'][0]['address']['freeformAddress']
 end
 
+puts 'Getting addresses from coordinate'
 mapped_restaurants_with_addresses = mapped_restaurants.map.with_index do |restaurant, i|
   restaurant_with_address = restaurant.dup
   restaurant_with_address['location'] = addresses[i]
   restaurant_with_address
 end
 
-puts mapped_restaurants_with_addresses
+# puts mapped_restaurants_with_addresses
+puts 'Creating first restaurant'
+first_restaurant = mapped_restaurants_with_addresses[0]
+
+Restaurant.create!(first_restaurant)
+
 # make request for every image.
 # iterate over mapped_restaurants_with_addresses
 #
@@ -183,3 +201,4 @@ puts mapped_restaurants_with_addresses
 # rubocop:enable Style/AsciiComments
 
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Security/Open
