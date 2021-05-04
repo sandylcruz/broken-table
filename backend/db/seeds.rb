@@ -47,10 +47,26 @@ mapped_restaurants = restaurants.map do |restaurant|
       elsif partial_photo_url['1:1']['200']
         photo_url = partial_photo_url['1:1']['200']
       end
-    elsif  partial_photo_url['4:3']
-      puts 'has 4:3'
+    elsif partial_photo_url['4:3']
+      if partial_photo_url['4:3']['1600']
+        photo_url = partial_photo_url['4:3']['1600']
+      elsif partial_photo_url['4:3']['800']
+        photo_url = partial_photo_url['4:3']['800']
+      elsif partial_photo_url['4:3']['400']
+        photo_url = partial_photo_url['4:3']['400']
+      elsif partial_photo_url['4:3']['200']
+        photo_url = partial_photo_url['4:3']['200']
+      end
     elsif partial_photo_url['16:9']
-      puts 'has 16:9'
+      if partial_photo_url['16:9']['1600']
+        photo_url = partial_photo_url['16:9']['1600']
+      elsif partial_photo_url['16:9']['800']
+        photo_url = partial_photo_url['16:9']['800']
+      elsif partial_photo_url['16:9']['400']
+        photo_url = partial_photo_url['16:9']['400']
+      elsif partial_photo_url['16:9']['200']
+        photo_url = partial_photo_url['16:9']['200']
+      end
     end
   else
     photo_url = 'https://www.tibs.org.tw/images/default.jpg'
@@ -69,7 +85,7 @@ mapped_restaurants = restaurants.map do |restaurant|
   }
 end
 
-# puts mapped_restaurants
+puts mapped_restaurants
 
 unless File.exist?('tomtom-response.json')
   restaurant_addresses = mapped_restaurants.map do |restaurant|
