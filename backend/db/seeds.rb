@@ -80,8 +80,6 @@ mapped_restaurants = restaurants.map do |restaurant|
     longitude: restaurant['venue']['location']['geo']['lon'],
     submitter_id: 1,
     photo_url: photo_url
-    # photo_url: restaurant['venue']['responsive_images']['urls'][photo_id]["1:1"]
-    # photo_url: restaurant['venue']['responsive_images']['urls'][0]["1:1"]["400"]
   }
 end
 
