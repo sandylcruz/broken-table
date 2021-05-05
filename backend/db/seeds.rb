@@ -7,12 +7,29 @@ require 'faraday'
 require 'json'
 require 'open-uri'
 
-30.times do
-  username = Faker::Internet.username
-  password = Faker::Internet.password(min_length: 6)
-  email = Faker::Internet.safe_email
-  User.create!(username: username, password: password, email: email)
+# 30.times do
+#   username = Faker::Internet.username
+#   password = Faker::Internet.password(min_length: 6)
+#   email = Faker::Internet.safe_email
+#   User.create!(username: username, password: password, email: email)
+# end
+
+all_restaurants = Restaurant.all
+
+User.all.each do |user|
+  restaurants = all_restaurants.sample(rand(2..7))
+
+  restaurants.each do |restaurant|
+    author = user
+    restaurant_to_add = restaurant
+    rating = rand(4..5)
+    body = Faker::Restaurant.review
+
+    Review.create!(author: author, restaurant: restaurant_to_add, rating: rating, body: body)
+  end
 end
+
+# call .sample on user
 
 # rubocop:disable Security/Open
 # rubocop:disable Metrics/BlockLength
@@ -153,7 +170,6 @@ unless File.exist?('tomtom-responses.json')
 end
 
 unless File.exist?('tomtom-responses.json')
-
   tomtom_string = File.read('tomtom-responses.json')
   tomtom_array_responses = JSON.parse(tomtom_string)
 
