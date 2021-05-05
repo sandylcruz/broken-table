@@ -7,8 +7,15 @@ import RestaurantMap from "../RestaurantMap/RestaurantMap";
 
 const StyledDiv = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: space-between;
   width: 100%;
+`;
+
+const LeftDiv = styled.div``;
+
+const RightDiv = styled.div`
+  position: fixed;
+  left: 600px;
 `;
 
 const Search = React.memo(({ history, restaurants, updateBounds }) => {
@@ -31,14 +38,19 @@ const Search = React.memo(({ history, restaurants, updateBounds }) => {
 
   return (
     <StyledDiv>
-      <RestaurantIndex restaurants={restaurants} />
-      {shouldRenderMap && (
-        <RestaurantMap
-          history={history}
-          restaurants={restaurants}
-          updateBounds={updateBounds}
-        />
-      )}
+      <LeftDiv>
+        <RestaurantIndex restaurants={restaurants} />
+      </LeftDiv>
+
+      <RightDiv>
+        {shouldRenderMap && (
+          <RestaurantMap
+            history={history}
+            restaurants={restaurants}
+            updateBounds={updateBounds}
+          />
+        )}
+      </RightDiv>
     </StyledDiv>
   );
 });

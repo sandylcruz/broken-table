@@ -20,7 +20,7 @@ const RestaurantItem = styled.div`
   margin: 0 0 10px;
   margin-bottom: 15px;
   padding: 10px;
-  width: 350px;
+  width: 500px;
   height: 130px;
   line-height: 1.5;
   cursor: pointer;
@@ -48,7 +48,7 @@ const RatingTextDiv = styled.div`
 const RightDiv = styled.div``;
 
 const RestaurantContainer = styled.div`
-  width: 400px;
+  // width: 400px;
   margin: 40px;
   padding-top: 70px;
 `;
@@ -56,7 +56,6 @@ const RestaurantContainer = styled.div`
 const RestaurantInfoDiv = styled.div`
   display: flex;
   flex-direction: row;
-  // background-color: #d0e1f5;
 `;
 
 const StyledH3 = styled.div`
@@ -77,7 +76,6 @@ const StyledLocationSpan = styled.span`
   padding: 0;
   color: #737373;
   font-size: 14px;
-  // background-color: #c6e2d1;
 `;
 
 const StyledStar = styled(Star)`
