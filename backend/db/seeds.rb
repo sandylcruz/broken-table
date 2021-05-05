@@ -4,12 +4,14 @@ require 'base64'
 require 'faraday'
 require 'json'
 require 'open-uri'
+require 'addressable/uri'
 
 # require 'activesupport/lib/active_support/base64.rb'
 # require 'active_support'
 
 # rubocop:disable Security/Open
 # rubocop:disable Metrics/BlockLength
+
 unless File.exist?('resy-response.json')
   puts "Getting resy response if file doesn't exist"
   headers = {
@@ -36,7 +38,8 @@ resy_hash = JSON.parse(resy_string)
 restaurants = resy_hash['results']['venues']
 
 puts 'Getting photo urls from photo ids'
-mapped_restaurants = restaurants.map do |restaurant|
+
+non_unique_mapped_restaurants = restaurants.map do |restaurant|
   default_template_id = restaurant['venue']['default_template']
 
   photo_id = restaurant['venue']['responsive_images']['file_names'].first
@@ -76,8 +79,10 @@ mapped_restaurants = restaurants.map do |restaurant|
       end
     end
   else
-    photo_url = 'https://www.tibs.org.tw/images/default.jpg'
+    photo_url = 'https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=6fe0ebd22151102996062fa1287f824c'
   end
+
+  puts photo_url
 
   {
     name: restaurant['venue']['name'],
@@ -89,6 +94,8 @@ mapped_restaurants = restaurants.map do |restaurant|
     photo_url: photo_url
   }
 end
+
+mapped_restaurants = non_unique_mapped_restaurants.uniq { |restaurant| restaurant[:latitude] }
 
 unless File.exist?('tomtom-response.json')
   puts 'Generating tomtom response.json'
@@ -118,25 +125,29 @@ mapped_restaurants_with_addresses = mapped_restaurants.map.with_index do |restau
   restaurant_with_address
 end
 
-puts 'Creating first restaurant'
-first_restaurant = mapped_restaurants_with_addresses[0]
+puts 'Creating restaurants'
+mapped_restaurants_with_addresses.each do |restaurant|
+  partial_restaurant = Restaurant.new(
+    {
+      name: restaurant[:name],
+      location: restaurant[:location],
+      description: restaurant[:description],
+      latitude: restaurant[:latitude],
+      longitude: restaurant[:longitude],
+      submitter_id: restaurant[:submitter_id]
+    }
+  )
 
-Restaurant.new(
-  {
-    name: first_restaurant[:name],
-    location: first_restaurant[:location],
-    description: first_restaurant[:description],
-    latitude: first_restaurant[:latitude],
-    longitude: first_restaurant[:longitude],
-    submitter_id: first_restaurant[:submitter_id]
-  }
-)
+  puts '*****************'
+  puts partial_restaurant
 
-url = URI.parse(first_restaurant[:photo_url])
-filename = File.basename(url.path)
-photo_url = URI.open(url)
-new_restaurant.photo.attach(io: photo_url, filename: filename)
-new_restaurant.save!
+  # encoded_url = URI.encode(partial_restaurant[:photo_url])
+  parsed_url = URI.encode_www_form(restaurant[:photo_url])
+  filename = File.basename(parsed_url)
+  photo_file = URI.open(parsed_url)
+  partial_restaurant.photo.attach(io: photo_file, filename: filename)
+  partial_restaurant.save!
+end
 
 # make request for every image.
 # iterate over mapped_restaurants_with_addresses
