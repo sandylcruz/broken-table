@@ -25,6 +25,7 @@ const RatingTextDiv = styled.div`
 `;
 
 const ResizedImage = styled.img`
+  margin-top: -35px;
   max-height: 400px;
   max-width: 500px;
 `;
@@ -40,13 +41,18 @@ const StyledAboutBlock = styled.div`
 
 const StyledH1 = styled.h1`
   font-size: 50px;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
 
 const StyledH3 = styled.div`
   padding: 5px;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
+`;
+
+const StyledH4 = styled.div`
+  font-size: 20px;
+  font-weight: bold;
 `;
 
 const StyledHitList = styled.div`
@@ -80,7 +86,7 @@ const StyledPTag = styled.div`
 `;
 
 const StyledReservationContainer = styled.div`
-  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   padding-top: 10px;
   height: 70px;
   margin-top: 10px;
@@ -91,6 +97,12 @@ const StyledRestaurantSummary = styled.div`
   border: 1px solid #eaeaea;
   margin: 10px;
   padding: 10px;
+  line-height: 1.5;
+`;
+
+const StyledRestaurantSummaryText = styled.div`
+  margin: 5px;
+  padding: 5px;
 `;
 
 const StyledRestaurantOverview = styled.div`
@@ -188,8 +200,10 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
             />
             <StyledRestaurantSummary>
               <StyledMapDiv ref={mapNodeRef} />
-              <h3>{restaurant.name}</h3>
-              <StyledLocationSpan>{restaurant.location}</StyledLocationSpan>
+              <StyledRestaurantSummaryText>
+                <StyledH4>{restaurant.name}</StyledH4>
+                <StyledLocationSpan>{restaurant.location}</StyledLocationSpan>
+              </StyledRestaurantSummaryText>
             </StyledRestaurantSummary>
           </div>
         )}
