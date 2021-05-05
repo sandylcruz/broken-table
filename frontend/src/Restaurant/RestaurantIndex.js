@@ -4,7 +4,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Star from "../RestaurantShow/svgs/Star.svg";
 
-const LeftDiv = styled.div``;
+const LeftDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  justify-content: left;
+`;
 
 const RatingDiv = styled.div`
   display: flex;
@@ -20,7 +25,7 @@ const RestaurantItem = styled.div`
   margin: 0 0 10px;
   margin-bottom: 15px;
   padding: 10px;
-  width: 500px;
+  width: 560px;
   height: 130px;
   line-height: 1.5;
   cursor: pointer;
@@ -38,17 +43,21 @@ const RestaurantItem = styled.div`
 const RatingTextDiv = styled.div`
   display: flex;
   color: red;
-  // background-color: #b696c7;
 `;
 
-// const RestaurantShortBody = styled.div`
-
-// `;
+const RestaurantShortBody = styled.p`
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 400px;
+  color: gray;
+  font-size: 14px;
+  margin: 5px;
+`;
 
 const RightDiv = styled.div``;
 
 const RestaurantContainer = styled.div`
-  // width: 400px;
   margin: 40px;
   padding-top: 70px;
 `;
@@ -65,8 +74,8 @@ const StyledH3 = styled.div`
 `;
 
 const StyledImg = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   margin: 5px;
   border-radius: 5px;
 `;
@@ -103,7 +112,9 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
                 </RatingTextDiv>
               </RatingDiv>
               <StyledLocationSpan>📍{restaurant.location}</StyledLocationSpan>
-              {/* <RestaurantShortBody>{restaurant.description}</RestaurantShortBody> */}
+              <RestaurantShortBody>
+                {restaurant.description}
+              </RestaurantShortBody>
             </RightDiv>
           </RestaurantInfoDiv>
         </RestaurantItem>

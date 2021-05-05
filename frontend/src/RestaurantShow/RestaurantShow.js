@@ -30,6 +30,12 @@ const ResizedImage = styled.img`
   max-width: 500px;
 `;
 
+const SidebarContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const StyledAboutBlock = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
@@ -114,10 +120,14 @@ const StyledSideBar = styled.div`
   border-left: 0;
   padding: 10px;
   padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   display: none;
   @media (min-width: 600px) {
-    display: block;
+    display: flex;
+    width: 100%;
   }
 `;
 
@@ -191,7 +201,8 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
         {!restaurant ? (
           <div>Loading Sidebar...</div>
         ) : (
-          <div>
+          <SidebarContentDiv>
+            {" "}
             <ResizedImage
               src={restaurant.photoUrl}
               height="350"
@@ -205,7 +216,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
                 <StyledLocationSpan>{restaurant.location}</StyledLocationSpan>
               </StyledRestaurantSummaryText>
             </StyledRestaurantSummary>
-          </div>
+          </SidebarContentDiv>
         )}
       </StyledSideBar>
     </StyledParentContainer>

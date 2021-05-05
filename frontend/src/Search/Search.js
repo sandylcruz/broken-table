@@ -15,7 +15,8 @@ const LeftDiv = styled.div``;
 
 const RightDiv = styled.div`
   position: fixed;
-  left: 600px;
+  left: 670px;
+  width: 100%;
 `;
 
 const Search = React.memo(({ history, restaurants, updateBounds }) => {

@@ -7,6 +7,7 @@ const StyledMapDiv = styled.div`
   width: 500px;
   height: 700px;
   padding-top: 70px;
+
   position: fixed;
 `;
 
