@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
+import MapMarker from "../RestaurantShow/svgs/MapMarker.svg";
 import Star from "../RestaurantShow/svgs/Star.svg";
 
 const LeftDiv = styled.div`
@@ -14,7 +15,6 @@ const LeftDiv = styled.div`
 const RatingDiv = styled.div`
   display: flex;
   flex-direction: row;
-  // background-color: #f0adb0;
 `;
 
 const RestaurantItem = styled.div`
@@ -27,7 +27,6 @@ const RestaurantItem = styled.div`
   padding: 10px;
   width: 560px;
   height: 130px;
-  line-height: 1.5;
   cursor: pointer;
   &:hover {
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.04);
@@ -80,17 +79,27 @@ const StyledImg = styled.img`
   border-radius: 5px;
 `;
 
-const StyledLocationSpan = styled.span`
+const StyledLocationDiv = styled.div`
   margin: 0;
   padding: 0;
   color: #737373;
   font-size: 14px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyledMapMarker = styled(MapMarker)`
+  transform: scale(0.75);
+  fill: #737373;
+`;
+
+const StyledRestaurantLocationText = styled.div`
+  margin-top: 5px;
 `;
 
 const StyledStar = styled(Star)`
   transform: scale(0.75);
   fill: red;
-  margin-bottom: 10px;
 `;
 
 const RestaurantIndex = React.memo(({ restaurants }) => (
@@ -111,7 +120,13 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
                   {restaurant.averageRating || "No reviews yet"}
                 </RatingTextDiv>
               </RatingDiv>
-              <StyledLocationSpan>📍{restaurant.location}</StyledLocationSpan>
+              <StyledLocationDiv>
+                <StyledMapMarker />
+                <StyledRestaurantLocationText>
+                  {restaurant.location}
+                </StyledRestaurantLocationText>
+              </StyledLocationDiv>
+
               <RestaurantShortBody>
                 {restaurant.description}
               </RestaurantShortBody>
