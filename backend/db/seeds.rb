@@ -11,31 +11,62 @@ require 'addressable/uri'
 
 # rubocop:disable Security/Open
 # rubocop:disable Metrics/BlockLength
+# rubocop:disable Lint/UriEscapeUnescape
 
-unless File.exist?('resy-response.json')
-  puts "Getting resy response if file doesn't exist"
+# Create users, have each user create 5 reviews
+
+unless File.exist?('resy-responses.json')
+  puts 'Getting resy response'
   headers = {
     "x-rapidapi-key": Figaro.env.RESY_API_KEY,
     "x-rapidapi-host": 'resy.p.rapidapi.com',
     "useQueryString": 'true'
   }
 
-  params = { 'lat' => '37.788719679657554',
-             'long' => '-122.40057774847898',
-             'day' => '2021-05-21',
-             'party_size' => '2',
-             'offset' => '0' }
-  response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
-  # puts response.status
-  raise 'did not work' unless response.status == 200
+  coordinates = [
+    { 'lat' => '37.787765', 'long' => '-122.403627' }, # soma
+    { 'lat' => '37.775218', 'long' => '-122.419305' }, # hayes valley
+    # {'lat' => '37.754792', 'long' => '-122.414428'}, # mission
+    { 'lat' => '37.796902', 'long' => '-122.438171' }, # cow hollow
+    { 'lat' => '37.791257', 'long' => '-122.422779' }, # nob hill/pac heights
+    { 'lat' => '37.782621', 'long' => '-122.472477' }, # richmond
+    { 'lat' => '37.758395', 'long' => '-122.388444' }, # dogpatch
+    { 'lat' => '37.808546', 'long' => '-122.266554' } # downtown oakland
+  ]
 
-  File.open('resy-response.json', 'w') { |file| file.write(response.body) }
+  restaurants_array = []
+
+  coordinates.each do |coordinate|
+    params = { 'lat' => coordinate['lat'],
+               'long' => coordinate['long'],
+               'day' => '2021-05-21',
+               'party_size' => '2',
+               'offset' => '0' }
+
+    puts "About to make request for [#{coordinate['lat']}, #{coordinate['long']}]"
+    response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
+    parsed_response = JSON.parse(response.body)
+
+    # body_string = response.body.to_json
+    # File.open('debug.json', 'w') { |file| file.write(body_string)}
+
+    raise 'did not work' unless response.status == 200
+
+    sleep(1)
+    restaurants_array += parsed_response['results']['venues']
+  end
+
+  restaurants_string = restaurants_array.to_json
+
+  File.open('resy-responses.json', 'w') { |file| file.write(restaurants_string) }
+
+  # make an array of venues, load it up
+  # list of coordinates, for each one make a request, accumulator to store responses in
+
 end
 
-resy_string = File.read('resy-response.json')
-resy_hash = JSON.parse(resy_string)
-
-restaurants = resy_hash['results']['venues']
+resy_string = File.read('resy-responses.json')
+restaurants = JSON.parse(resy_string)
 
 puts 'Getting photo urls from photo ids'
 
@@ -82,8 +113,7 @@ non_unique_mapped_restaurants = restaurants.map do |restaurant|
     photo_url = 'https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=620&quality=45&auto=format&fit=max&dpr=2&s=6fe0ebd22151102996062fa1287f824c'
   end
 
-  puts photo_url
-
+  puts "Determined that photo for #{restaurant['name']} is #{photo_url}"
   {
     name: restaurant['venue']['name'],
     id: restaurant['venue']['id']['resy'],
@@ -97,21 +127,28 @@ end
 
 mapped_restaurants = non_unique_mapped_restaurants.uniq { |restaurant| restaurant[:latitude] }
 
-unless File.exist?('tomtom-response.json')
-  puts 'Generating tomtom response.json'
+unless File.exist?('tomtom-responses.json')
+  puts 'Generating tomtom responses.json...'
   restaurant_addresses = mapped_restaurants.map do |restaurant|
     query_string = "https://api.tomtom.com/search/2/reverseGeocode/#{restaurant[:latitude]},#{restaurant[:longitude]}.json?key=#{Figaro.env.TOMTOM_API_KEY}"
+
     response = Faraday.get(query_string)
+
+    raise "Error getting address for #{restaurant[:name]}" unless response.status == 200
+
+    puts "Received #{restaurant[:name]} address"
+
     sleep(1) # sleep because tomtom_api rate limits to one per second
 
     JSON.parse(response.body)
   end
   restaurant_addresses_string = restaurant_addresses.to_json
 
-  File.open('tomtom-response.json', 'w') { |file| file.write(restaurant_addresses_string) }
+  File.open('tomtom-responses.json', 'w') { |file| file.write(restaurant_addresses_string) }
+  puts 'Successfully wrote tomtom-responses.json'
 end
 
-tomtom_string = File.read('tomtom-response.json')
+tomtom_string = File.read('tomtom-responses.json')
 tomtom_array_responses = JSON.parse(tomtom_string)
 
 addresses = tomtom_array_responses.map do |address_response|
@@ -127,6 +164,8 @@ end
 
 puts 'Creating restaurants'
 mapped_restaurants_with_addresses.each do |restaurant|
+  puts "Creating #{restaurant[:name]}"
+
   partial_restaurant = Restaurant.new(
     {
       name: restaurant[:name],
@@ -138,20 +177,16 @@ mapped_restaurants_with_addresses.each do |restaurant|
     }
   )
 
-  puts '*****************'
-  puts partial_restaurant
-
-  # encoded_url = URI.encode(partial_restaurant[:photo_url])
-  parsed_url = URI.encode_www_form(restaurant[:photo_url])
+  parsed_url = URI.encode(restaurant[:photo_url])
   filename = File.basename(parsed_url)
   photo_file = URI.open(parsed_url)
   partial_restaurant.photo.attach(io: photo_file, filename: filename)
   partial_restaurant.save!
+
+  puts "Created #{restaurant[:name]}"
 end
 
-# make request for every image.
-# iterate over mapped_restaurants_with_addresses
-#
+puts 'Finished seeding'
 
 # callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
 # squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
@@ -219,3 +254,4 @@ end
 
 # rubocop:enable Metrics/BlockLength
 # rubocop:enable Security/Open
+# rubocop:enable Lint/UriEscapeUnescape
