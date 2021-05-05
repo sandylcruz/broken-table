@@ -32,8 +32,10 @@ const ResizedImage = styled.img`
 const StyledAboutBlock = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
+  line-height: 1.5;
   margin-top: 10px;
   margin-bottom: 10px;
+  color: #737373;
 `;
 
 const StyledH1 = styled.h1`
@@ -44,7 +46,7 @@ const StyledH1 = styled.h1`
 const StyledH3 = styled.div`
   padding: 5px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 30px;
 `;
 
 const StyledHitList = styled.div`
@@ -53,6 +55,10 @@ const StyledHitList = styled.div`
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;
+`;
+
+const StyledLocationSpan = styled.div`
+  color: #737373; ;
 `;
 
 const StyledMapDiv = styled.div`
@@ -157,13 +163,14 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>
             <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>
+
+          <StyledReservationContainer>
+            <StyledH3>Make a reservation</StyledH3>
+          </StyledReservationContainer>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>
             <StyledPTag>{restaurant.description}</StyledPTag>
           </StyledAboutBlock>
-          <StyledReservationContainer>
-            <StyledH3>Make a reservation</StyledH3>
-          </StyledReservationContainer>
           <Reviews reviews={reviews} />
         </StyledRestaurantOverview>
       )}
@@ -175,14 +182,14 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           <div>
             <ResizedImage
               src={restaurant.photoUrl}
-              max-height="200"
-              max-width="200"
+              height="350"
+              width="350"
               alt="food"
             />
             <StyledRestaurantSummary>
               <StyledMapDiv ref={mapNodeRef} />
               <h3>{restaurant.name}</h3>
-              <span>{restaurant.location}</span>
+              <StyledLocationSpan>{restaurant.location}</StyledLocationSpan>
             </StyledRestaurantSummary>
           </div>
         )}
