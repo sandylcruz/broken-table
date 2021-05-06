@@ -20,7 +20,6 @@ const RatingsSignatureText = styled.div`
 
 const RatingTextDiv = styled.div`
   display: flex;
-  margin-top: 5px;
   color: red;
 `;
 
