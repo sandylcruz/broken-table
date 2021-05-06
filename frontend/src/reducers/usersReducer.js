@@ -24,6 +24,7 @@ const usersReducer = (state = {}, action) => {
             username: review.author.username,
             id: review.author.id,
             created_at: review.createdAt,
+            photoUrl: review.author.photoUrl,
           };
         } else {
           nextState[review.author.id] = review.author;

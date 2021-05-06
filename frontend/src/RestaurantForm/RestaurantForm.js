@@ -45,6 +45,13 @@ const Input = styled.input`
   width: 70%;
 `;
 
+const Label = styled.label`
+  display: inline-block;
+  position: relative;
+  height: 60px;
+  width: 150px;
+`;
+
 const Span = styled.span`
   padding: 10px;
   display: flex;
@@ -87,13 +94,6 @@ const VisibleDiv = styled.div`
   &:focus {
     color: purple;
   }
-`;
-
-const Label = styled.label`
-  display: inline-block;
-  position: relative;
-  height: 60px;
-  width: 150px;
 `;
 
 const TWO_MEGABYTES = 1000 * 1000 * 2;
@@ -149,6 +149,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
   const updateLocation = useCallback((event) => {
     setLocation(event.currentTarget.value);
   }, []);
+
   return (
     <Form onSubmit={handleSubmit}>
       <h2>Create a New Restaurant</h2>

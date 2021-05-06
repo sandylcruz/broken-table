@@ -2,7 +2,6 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import styled from "styled-components";
 
-import callie from "./callie.png";
 import ReviewForm from "./ReviewForm";
 
 const CitySpan = styled.span`
@@ -62,7 +61,7 @@ const Reviews = React.memo(({ reviews }) => (
       <StyledIndividualReview key={review.id}>
         <ReviewBody>
           <UserInfoDiv>
-            <ResizedImg src={callie} />
+            <ResizedImg src={review.author.photoUrl} />
             <UserTextDiv>
               <TopSpan>{review.author.username}</TopSpan>
               <CitySpan>San Francisco, CA</CitySpan>
