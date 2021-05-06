@@ -7,17 +7,47 @@ require 'faraday'
 require 'json'
 require 'open-uri'
 
-# 30.times do
-#   username = Faker::Internet.username
-#   password = Faker::Internet.password(min_length: 6)
-#   email = Faker::Internet.safe_email
-#   User.create!(username: username, password: password, email: email)
-# end
+# rubocop:disable Security/Open
+# rubocop:disable Metrics/BlockLength
+# rubocop:disable Lint/UriEscapeUnescape
+# rubocop:disable Metrics/BlockNesting
+
+30.times do
+  puts 'making partial user'
+
+  user_with_photo_url = {
+    username: Faker::Internet.username,
+    password: Faker::Internet.password(min_length: 6),
+    email: Faker::Internet.safe_email,
+    photo_url: Faker::Avatar.image
+  }
+
+  partial_user = User.new({
+                            username: Faker::Internet.username,
+                            password: Faker::Internet.password(min_length: 6),
+                            email: Faker::Internet.safe_email
+                          })
+
+  puts 'parsing photo_url'
+  parsed_url = URI.encode(user_with_photo_url[:photo_url])
+  filename = File.basename(parsed_url)
+  photo_file = URI.open(parsed_url)
+  partial_user.photo.attach(io: photo_file, filename: filename)
+
+  partial_user.save!
+
+  # partial_user.create!(username: username, password: password, email: email, photo: photo)
+  puts 'User created successfully'
+end
+
+# callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
+# squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
+# stinky = User.create!(username: 'flapjack', password: 'password', email: 'flapjack@gmail.com')
 
 all_restaurants = Restaurant.all
 
 User.all.each do |user|
-  restaurants = all_restaurants.sample(rand(2..7))
+  restaurants = all_restaurants.sample(rand(3..7))
 
   restaurants.each do |restaurant|
     author = user
@@ -30,11 +60,6 @@ User.all.each do |user|
 end
 
 # call .sample on user
-
-# rubocop:disable Security/Open
-# rubocop:disable Metrics/BlockLength
-# rubocop:disable Lint/UriEscapeUnescape
-# rubocop:disable Metrics/BlockNesting
 
 # Create users, have each user create 5 reviews
 
@@ -203,6 +228,7 @@ unless File.exist?('tomtom-responses.json')
     filename = File.basename(parsed_url)
     photo_file = URI.open(parsed_url)
     partial_restaurant.photo.attach(io: photo_file, filename: filename)
+
     partial_restaurant.save!
 
     puts "Created #{restaurant[:name]}"
@@ -210,10 +236,6 @@ unless File.exist?('tomtom-responses.json')
 
   puts 'Finished seeding'
 end
-
-# callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
-# squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
-# stinky = User.create!(username: 'flapjack', password: 'password', email: 'flapjack@gmail.com')
 
 # rubocop:disable Style/AsciiComments
 
