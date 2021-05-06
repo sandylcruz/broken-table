@@ -1,11 +1,19 @@
 import { ajax } from "jquery";
 
-export const signUp = (user) =>
-  new Promise((resolve, reject) => {
+export const signUp = (user) => {
+  const formData = new FormData();
+  formData.append("user[username]", user.username);
+  formData.append("user[password]", user.password);
+  formData.append("user[email]", user.email);
+  formData.append("user[photo]", user.photo);
+
+  return new Promise((resolve, reject) => {
     ajax({
       type: "POST",
       url: "/api/users",
-      data: { user },
+      data: formData,
+      contentType: false,
+      processData: false,
       success: (userResponse) => {
         resolve(userResponse);
       },
@@ -14,6 +22,7 @@ export const signUp = (user) =>
       },
     });
   });
+};
 
 export const login = (user) =>
   new Promise((resolve, reject) => {
