@@ -121,7 +121,6 @@ const SignupForm = React.memo(({ processForm }) => {
   const [photo, setPhoto] = useState(null);
 
   const handlePhotoSubmit = useCallback((event) => {
-    console.log(event);
     const reader = new FileReader();
     const file = event.currentTarget.files[0];
 
@@ -131,13 +130,7 @@ const SignupForm = React.memo(({ processForm }) => {
 
     if (file && isValidSize) {
       reader.onloadend = () => {
-        // console.log("Reader result:", reader.result);
-        // console.log("file:", file);
         setPhoto({ imageUrl: reader.result, imageFile: file });
-
-        // console.log("imageUrl:", imageUrl);
-        // console.log("imageFile:", imageFile);
-        // console.log(photo);
       };
       reader.readAsDataURL(file);
     } else {
@@ -147,7 +140,6 @@ const SignupForm = React.memo(({ processForm }) => {
 
   const handleSubmit = useCallback(
     (event) => {
-      console.log("Event:", event);
       event.preventDefault();
       const user = {
         username,
@@ -155,8 +147,6 @@ const SignupForm = React.memo(({ processForm }) => {
         email,
         photo: photo.imageFile,
       };
-
-      console.log("User object:", user);
 
       processForm(user);
     },

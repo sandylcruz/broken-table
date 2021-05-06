@@ -12,6 +12,7 @@ const CitySpan = styled.span`
 const ResizedImg = styled.img`
   width: 50px;
   height: 50px;
+  border-radius: 50%;
 `;
 
 const ReviewBody = styled.div`
