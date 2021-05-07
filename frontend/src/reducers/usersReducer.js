@@ -16,8 +16,6 @@ const usersReducer = (state = {}, action) => {
       const { reviews } = restaurant;
 
       reviews.forEach((review) => {
-        console.log(review);
-
         const existingUser = state[review.author.id];
 
         if (existingUser) {
