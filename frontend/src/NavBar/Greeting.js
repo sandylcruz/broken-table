@@ -10,7 +10,6 @@ const GreetingAndLogoutDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: right;
-  margin-top: 30px;
   margin-right: 20px;
 `;
 
@@ -18,6 +17,11 @@ const GreetingText = styled.p`
   font-size: 15px;
   font-family: helvetica;
   margin-top: 5px;
+`;
+
+const StyledNav = styled.nav`
+  display: flex;
+  align-items: center;
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
@@ -31,8 +35,12 @@ const Greeting = React.memo(({ currentUser, logout }) => {
     history.push("/login");
   }, [history]);
 
+  // const handleLogoutClick = useCallback(() => {
+  //   history.push("/");
+  // }, []);
+
   return (
-    <nav>
+    <StyledNav>
       {!currentUser ? (
         <div>
           <PrimaryButton onClick={handleSignupClick}>Sign up</PrimaryButton>
@@ -48,7 +56,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           </GreetingAndLogoutDiv>
         </div>
       )}
-    </nav>
+    </StyledNav>
   );
 });
 
