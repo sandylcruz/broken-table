@@ -65,7 +65,9 @@ const Reviews = React.memo(({ reviews }) => (
             <ResizedImg src={review.author.photoUrl} />
             <UserTextDiv>
               <TopSpan>{review.author.username}</TopSpan>
-              <CitySpan>San Francisco, CA</CitySpan>
+              <CitySpan>
+                {review.author.city}, {review.author.state}
+              </CitySpan>
             </UserTextDiv>
           </UserInfoDiv>
           <ReviewContentDiv>

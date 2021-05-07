@@ -16,6 +16,8 @@ const usersReducer = (state = {}, action) => {
       const { reviews } = restaurant;
 
       reviews.forEach((review) => {
+        console.log(review);
+
         const existingUser = state[review.author.id];
 
         if (existingUser) {
@@ -25,6 +27,8 @@ const usersReducer = (state = {}, action) => {
             id: review.author.id,
             created_at: review.createdAt,
             photoUrl: review.author.photoUrl,
+            city: review.author.city,
+            state: review.author.state,
           };
         } else {
           nextState[review.author.id] = review.author;

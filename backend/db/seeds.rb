@@ -12,23 +12,31 @@ require 'open-uri'
 # rubocop:disable Lint/UriEscapeUnescape
 # rubocop:disable Metrics/BlockNesting
 
-30.times do
+40.times do
   puts 'making partial user'
 
   user_with_photo_url = {
     username: Faker::Internet.username,
     password: Faker::Internet.password(min_length: 6),
     email: Faker::Internet.safe_email,
-    photo_url: Faker::Avatar.image
+    photo_url: Faker::Avatar.image,
+    name: Faker::Games::Zelda.character,
+    city: Faker::Games::Zelda.location,
+    state: Faker::Address.state_abbr,
+    phone_number: Faker::PhoneNumber.cell_phone
   }
 
   partial_user = User.new({
                             username: Faker::Internet.username,
                             password: Faker::Internet.password(min_length: 6),
-                            email: Faker::Internet.safe_email
+                            email: Faker::Internet.safe_email,
+                            name: Faker::Games::Zelda.character,
+                            city: Faker::Games::Zelda.location,
+                            state: Faker::Address.state_abbr,
+                            phone_number: Faker::PhoneNumber.cell_phone
                           })
 
-  puts 'parsing photo_url'
+  puts 'parsing photo'
   parsed_url = URI.encode(user_with_photo_url[:photo_url])
   filename = File.basename(parsed_url)
   photo_file = URI.open(parsed_url)
@@ -36,7 +44,6 @@ require 'open-uri'
 
   partial_user.save!
 
-  # partial_user.create!(username: username, password: password, email: email, photo: photo)
   puts 'User created successfully'
 end
 
@@ -47,12 +54,12 @@ end
 all_restaurants = Restaurant.all
 
 User.all.each do |user|
-  restaurants = all_restaurants.sample(rand(3..7))
+  restaurants = all_restaurants.sample(rand(4..7))
 
   restaurants.each do |restaurant|
     author = user
     restaurant_to_add = restaurant
-    rating = rand(4..5)
+    rating = rand(3..5)
     body = Faker::Restaurant.review
 
     Review.create!(author: author, restaurant: restaurant_to_add, rating: rating, body: body)
