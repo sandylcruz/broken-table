@@ -119,10 +119,10 @@ const SignupForm = React.memo(({ processForm }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [photo, setPhoto] = useState(null);
-  // const [name, setName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [city, setCity] = useState("");
-  // const [state, setState] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
 
   const handlePhotoSubmit = useCallback((event) => {
     const reader = new FileReader();
@@ -149,6 +149,10 @@ const SignupForm = React.memo(({ processForm }) => {
         username,
         password,
         email,
+        phoneNumber,
+        city,
+        state,
+        name,
         photo: photo.imageFile,
       };
 
@@ -169,6 +173,22 @@ const SignupForm = React.memo(({ processForm }) => {
     setEmail(event.currentTarget.value);
   }, []);
 
+  const updateName = useCallback((event) => {
+    setName(event.currentTarget.value);
+  }, []);
+
+  const updatePhoneNumber = useCallback((event) => {
+    setPhoneNumber(event.currentTarget.value);
+  }, []);
+
+  const updateCity = useCallback((event) => {
+    setCity(event.currentTarget.value);
+  }, []);
+
+  const updateState = useCallback((event) => {
+    setState(event.currentTarget.value);
+  }, []);
+
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -178,12 +198,12 @@ const SignupForm = React.memo(({ processForm }) => {
         </GreetingMessage>
 
         <Span>
-          {/* <Input
+          <Input
             onChange={updateName}
-            type="name"
+            type="text"
             value={name}
-            placeholder="Full name"
-          /> */}
+            placeholder="Name"
+          />
 
           <Input
             onChange={updateUsername}
@@ -197,6 +217,27 @@ const SignupForm = React.memo(({ processForm }) => {
             type="text"
             value={email}
             placeholder="Email"
+          />
+
+          <Input
+            onChange={updatePhoneNumber}
+            type="tel"
+            value={phoneNumber}
+            placeholder="Phone Number"
+          />
+
+          <Input
+            onChange={updateCity}
+            type="text"
+            value={city}
+            placeholder="City"
+          />
+
+          <Input
+            onChange={updateState}
+            type="text"
+            value={state}
+            placeholder="State"
           />
 
           <Input
