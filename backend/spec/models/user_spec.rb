@@ -67,6 +67,46 @@ RSpec.describe User, type: :model do
                           phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C')
       expect(bad_user.session_token).to_not equal(user.session_token)
     end
+
+    it 'validates presence of name' do
+      user = valid_user
+      user.name = ''
+      expect(user).not_to be_valid
+
+      bad_user = User.new(username: 'cat', email: '', password: 'password', phone_number: '555-6792',
+                          city: 'San Francisco', state: 'CA', name: '')
+      expect(bad_user).not_to be_valid
+    end
+
+    it 'validates presence of phone number' do
+      user = valid_user
+      user.name = ''
+      expect(user).not_to be_valid
+
+      bad_user = User.new(username: 'cat', email: 'cat@gmail.com', password: 'password', phone_number: '',
+                          city: 'San Francisco', state: 'CA', name: '')
+      expect(bad_user).not_to be_valid
+    end
+
+    it 'validates presence of city' do
+      user = valid_user
+      user.name = ''
+      expect(user).not_to be_valid
+
+      bad_user = User.new(username: 'cat', email: 'cat@gmail.com', password: 'password', phone_number: '555-6792',
+                          city: '', state: 'CA', name: 'Callie')
+      expect(bad_user).not_to be_valid
+    end
+
+    it 'validates presence of state' do
+      user = valid_user
+      user.name = ''
+      expect(user).not_to be_valid
+
+      bad_user = User.new(username: 'cat', email: 'cat@gmail.com', password: 'password', phone_number: '555-6792',
+                          city: 'San Francisco', state: '', name: 'Callie')
+      expect(bad_user).not_to be_valid
+    end
   end
 
   describe '#is_password?' do
