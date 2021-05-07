@@ -5,8 +5,8 @@ require 'rails_helper'
 # rubocop:disable Layout/LineLength
 RSpec.describe User, type: :model do
   let(:valid_user) do
-    User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password', name: 'Callie', city: 'SF',
-             state: 'CA', phone_number: '555-6782')
+    User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password', phone_number: '555-6792',
+             city: 'San Francisco', state: 'CA', name: 'Callie C')
   end
 
   describe 'Validations' do
@@ -22,8 +22,8 @@ RSpec.describe User, type: :model do
       user.save!
       expect(user).to be_valid
 
-      bad_user = User.new(username: 'calliethecat', email: 'adfasfd@gmail.com', password: 'password', name: 'Callie',
-                          city: 'SF', state: 'CA', phone_number: '555-6782')
+      bad_user = User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password',
+                          phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C')
       expect(bad_user).not_to be_valid
     end
 
@@ -32,8 +32,8 @@ RSpec.describe User, type: :model do
       user.email = ''
       expect(user).not_to be_valid
 
-      bad_user = User.new(username: 'cat', email: '', password: 'password', name: 'Callie', city: 'SF', state: 'CA',
-                          phone_number: '555-6782')
+      bad_user = User.new(username: 'cat', email: '', password: 'password', phone_number: '555-6792',
+                          city: 'San Francisco', state: 'CA', name: 'Callie C')
       expect(bad_user).not_to be_valid
     end
 
@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
 
       bad_user = User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password',
-                          name: 'Callie', city: 'SF', state: 'CA', phone_number: '555-6782')
+                          phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C')
       expect(bad_user).not_to be_valid
     end
 
@@ -63,8 +63,8 @@ RSpec.describe User, type: :model do
       user = valid_user
       user.save!
 
-      bad_user = User.new(username: 'squeaky', email: 'squeaky@gmail.com', password: 'password', name: 'Callie',
-                          city: 'SF', state: 'CA', phone_number: '555-6782')
+      bad_user = User.new(username: 'squeaky', email: 'squeaky@gmail.com', password: 'password',
+                          phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C')
       expect(bad_user.session_token).to_not equal(user.session_token)
     end
   end
