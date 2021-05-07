@@ -47,10 +47,6 @@ require 'open-uri'
   puts 'User created successfully'
 end
 
-# callie = User.create!(username: 'calpal', password: 'password', email: 'calpal@gmail.com')
-# squeaky = User.create!(username: 'squeakfreak', password: 'password', email: 'squeaks@gmail.com')
-# stinky = User.create!(username: 'flapjack', password: 'password', email: 'flapjack@gmail.com')
-
 all_restaurants = Restaurant.all
 
 User.all.each do |user|

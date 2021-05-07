@@ -103,6 +103,7 @@ const StyledRestaurantSummary = styled.div`
   margin: 10px;
   padding: 10px;
   line-height: 1.5;
+  width: 350px;
 `;
 
 const StyledRestaurantSummaryText = styled.div`
