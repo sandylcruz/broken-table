@@ -119,6 +119,10 @@ const SignupForm = React.memo(({ processForm }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [photo, setPhoto] = useState(null);
+  // const [name, setName] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  // const [city, setCity] = useState("");
+  // const [state, setState] = useState("");
 
   const handlePhotoSubmit = useCallback((event) => {
     const reader = new FileReader();
@@ -174,6 +178,13 @@ const SignupForm = React.memo(({ processForm }) => {
         </GreetingMessage>
 
         <Span>
+          {/* <Input
+            onChange={updateName}
+            type="name"
+            value={name}
+            placeholder="Full name"
+          /> */}
+
           <Input
             onChange={updateUsername}
             type="text"

@@ -6,6 +6,10 @@ export const signUp = (user) => {
   formData.append("user[password]", user.password);
   formData.append("user[email]", user.email);
   formData.append("user[photo]", user.photo);
+  formData.append("user[name]", user.name);
+  formData.append("user[phoneNumber]", user.phoneNumber);
+  formData.append("user[city]", user.city);
+  formData.append("user[state]", user.state);
 
   return new Promise((resolve, reject) => {
     ajax({
