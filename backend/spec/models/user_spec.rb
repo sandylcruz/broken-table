@@ -2,7 +2,6 @@
 
 require 'rails_helper'
 
-# rubocop:disable Layout/LineLength
 RSpec.describe User, type: :model do
   let(:valid_user) do
     User.new(username: 'calliethecat', email: 'calliethecat@gmail.com', password: 'password', phone_number: '555-6792',
@@ -165,4 +164,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-# rubocop:enable Layout/LineLength

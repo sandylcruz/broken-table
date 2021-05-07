@@ -19,6 +19,12 @@ const GreetingText = styled.p`
   margin-top: 5px;
 `;
 
+const StyledAvatar = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+`;
+
 const StyledNav = styled.nav`
   display: flex;
   align-items: center;
@@ -49,6 +55,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
       ) : (
         <div>
           <GreetingAndLogoutDiv>
+            <StyledAvatar src={currentUser.photoUrl} alt="" />
             <GreetingText>Hi, {currentUser.username}!</GreetingText>
             <LogoutButton type="submit" onClick={logout}>
               Log Out
