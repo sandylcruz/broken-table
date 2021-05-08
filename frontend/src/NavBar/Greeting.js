@@ -6,62 +6,90 @@ import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 // import LogoutButton from "../components/LogoutButton";
 
-const DropdownButton = styled.button`
-  color: pink;
-`;
-
-const DropdownContentA = styled.a`
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-`;
-
-const DropdownContentDiv = styled.div`
-  // display: none;
-  position: fixed;
-  background-color: pink;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 5;
-`;
-
-const DropdownDiv = styled.div`
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-`;
-
 const AvatarImg = styled.img`
   height: 50px;
   width: 50px;
+  border: 3px solid #dddddd;
   border-radius: 50%;
 
   &:hover {
-    box-shadow: #c6c6c6 0px 0px 0px 4px;
+    box-shadow: #dddddd 0px 0px 0px 2px;
     transition: border-color 0.35s ease-in-out 0s,
       box-shadow 0.2s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 
   &:active {
-    box-shadow: #adadad 0px 0px 0px 5px;
+    box-shadow: #c6c6c6 0px 0px 0px 2px;
     transition: border-color 0.25s ease-in-out 0s,
       box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 
   &:focus {
-    box-shadow: #a0a0a0 0px 0px 0px 6px;
+    border: 1px solid #adadad
+    box-shadow: #adadad 0px 0px 0px 2px;
     transition: border-color 0.25s ease-in-out 0s,
       box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 `;
 
+const DropdownLi = styled.li`
+  display: inline-block;
+  position: relative;
+  line-height: 21px;
+  text-align: left;
+`;
+
+const DropdownUl = styled.ul`
+  // display: none;
+  min-width: 200px;
+  position: absolute;
+  z-index: 999;
+  list-style: none;
+  background-color: pink;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    background-color: purple;
+  }
+`;
+
+const Li = styled.li`
+  display: inline-block;
+  position: relative;
+  line-height: 21px;
+  text-align: left;
+`;
+
+const UlLiA = styled.a`
+  display: block;
+  padding: 8px 25px;
+  color: #333;
+  text-decoration: none;
+
+  &:hover {
+    color: red;
+    background: #939393;
+  }
+`;
+
 const StyledNav = styled.nav`
   display: flex;
   align-items: center;
+`;
+
+const Ul = styled.ul`
+  padding: 0;
+  list-style: none;
+  background-color: green;
+`;
+
+const DropdownLiA = styled.a`
+  display: block;
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
@@ -84,29 +112,55 @@ const Greeting = React.memo(({ currentUser, logout }) => {
         </div>
       ) : (
         <div>
-          <DropdownDiv>
-            <DropdownButton type="submit">
-              <AvatarImg src={currentUser.photoUrl} />
-            </DropdownButton>
+          <Ul>
+            <Li>
+              <UlLiA href="#">
+                {" "}
+                <AvatarImg src={currentUser.photoUrl} />
+              </UlLiA>
 
-            {/* <StyledAvatarInput
-              type="image"
-              src={currentUser.photoUrl}
-              alt="user-photo"
-            /> */}
-            <DropdownContentDiv>
-              <DropdownContentA href="#">Create a Restaurant</DropdownContentA>
-              <DropdownContentA href="#" onClick={logout}>
-                Logout
-              </DropdownContentA>
-            </DropdownContentDiv>
-
-            {/* <GreetingText>Hi, {currentUser.username}!</GreetingText> */}
-            {/* <LogoutButton type="submit" onClick={logout}> */}
-            {/* Log Out
-            </LogoutButton> */}
-          </DropdownDiv>
+              <DropdownUl>
+                <DropdownLi>
+                  <DropdownLiA href="#">Create Resturant</DropdownLiA>
+                </DropdownLi>
+                <DropdownLi>
+                  <DropdownLiA href="#">Favorites</DropdownLiA>
+                </DropdownLi>
+                <DropdownLi>
+                  <DropdownLiA href={logout}>Log out</DropdownLiA>
+                </DropdownLi>
+              </DropdownUl>
+            </Li>
+          </Ul>
+          {/* <Ul>
+            <UlLi>
+              <UlLiA href="#">Picture ▾</UlLiA>
+              <DropdownUl>
+                <DropdownLi>
+                  <DropdownLiA href="#">Make a restaurant</DropdownLiA>
+                </DropdownLi>
+                <DropdownLi>
+                  <DropdownLiA href="#">Logout</DropdownLiA>
+                </DropdownLi>
+              </DropdownUl>
+            </UlLi>
+          </Ul> */}
         </div>
+
+        // <div>
+        //   <DropdownDiv>
+        //     <DropdownButton type="submit">
+        //       <AvatarImg src={currentUser.photoUrl} />
+        //     </DropdownButton>
+
+        //     <DropdownContentDiv>
+        //       <DropdownContentA href="#">Create a Restaurant</DropdownContentA>
+        //       <DropdownContentA href="#" onClick={logout}>
+        //         Logout
+        //       </DropdownContentA>
+        //     </DropdownContentDiv>
+        //   </DropdownDiv>
+        // </div>
       )}
     </StyledNav>
   );
