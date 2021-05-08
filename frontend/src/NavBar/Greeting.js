@@ -6,6 +6,10 @@ import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 // import LogoutButton from "../components/LogoutButton";
 
+const DropdownButton = styled.button`
+  color: pink;
+`;
+
 const DropdownContentA = styled.a`
   color: black;
   padding: 12px 16px;
@@ -14,21 +18,21 @@ const DropdownContentA = styled.a`
 `;
 
 const DropdownContentDiv = styled.div`
-  display: none;
-  position: absolute;
+  // display: none;
+  position: fixed;
   background-color: pink;
-  // background-color: #f1f1f1;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 5;
 `;
 
 const DropdownDiv = styled.div`
   position: relative;
   display: inline-block;
+  overflow: hidden;
 `;
 
-const StyledAvatarInput = styled.input`
+const AvatarImg = styled.img`
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -81,11 +85,15 @@ const Greeting = React.memo(({ currentUser, logout }) => {
       ) : (
         <div>
           <DropdownDiv>
-            <StyledAvatarInput
+            <DropdownButton type="submit">
+              <AvatarImg src={currentUser.photoUrl} />
+            </DropdownButton>
+
+            {/* <StyledAvatarInput
               type="image"
               src={currentUser.photoUrl}
               alt="user-photo"
-            />
+            /> */}
             <DropdownContentDiv>
               <DropdownContentA href="#">Create a Restaurant</DropdownContentA>
               <DropdownContentA href="#" onClick={logout}>
