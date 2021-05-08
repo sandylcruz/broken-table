@@ -7,17 +7,12 @@ class Restaurant < ApplicationRecord
   validates :description, presence: true
   validates :latitude, presence: true
   validates :longitude, presence: true
-  # validates :photo, presence: true
+  validates :photo, presence: true
 
   belongs_to :submitter,
              class_name: 'User',
              foreign_key: :submitter_id,
              primary_key: :id
-
-  has_many :reservations,
-           class_name: 'Reservation',
-           foreign_key: :restaurant_id,
-           primary_key: :id
 
   has_many :reviews,
            class_name: 'Review',

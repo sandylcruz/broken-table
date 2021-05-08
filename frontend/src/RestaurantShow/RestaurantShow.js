@@ -113,7 +113,6 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
-  // const numberOfReviews = reviews.count;
 
   useEffect(() => {
     if (restaurant) {
@@ -130,18 +129,13 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);
       mapRef.current = map;
       markerManagerRef.current = new MarkerManager(map);
+      markerManagerRef.current.updateMarkers([restaurant]);
 
       return () => {
         mapRef.current = undefined;
       };
     }
-    return true;
-  }, [restaurant]);
-
-  useEffect(() => {
-    if (markerManagerRef.current && restaurant) {
-      markerManagerRef.current.updateMarkers([restaurant]);
-    }
+    return undefined;
   }, [restaurant]);
 
   return (
@@ -179,7 +173,6 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           <div>Loading Sidebar...</div>
         ) : (
           <div>
-            {" "}
             <ResizedImage
               src={restaurant.photoUrl}
               max-height="200"

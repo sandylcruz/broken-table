@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_26_164418) do
+ActiveRecord::Schema.define(version: 2021_05_09_003229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,19 +43,6 @@ ActiveRecord::Schema.define(version: 2021_04_26_164418) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.integer "restaurant_id", null: false
-    t.integer "user_id", null: false
-    t.integer "party_size", null: false
-    t.datetime "date", null: false
-    t.integer "start_time", null: false
-    t.string "status", default: "PENDING", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["restaurant_id"], name: "index_reservations_on_restaurant_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
-  end
-
   create_table "restaurants", force: :cascade do |t|
     t.string "name", null: false
     t.string "location", null: false
@@ -86,6 +73,10 @@ ActiveRecord::Schema.define(version: 2021_04_26_164418) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "phone_number", null: false
+    t.string "city", null: false
+    t.string "state", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

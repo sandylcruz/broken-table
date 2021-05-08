@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import styled from "styled-components";
@@ -58,15 +58,15 @@ const StyledForm = styled.form`
   align-items: center;
 `;
 
-const ReviewForm = () => {
+const ReviewForm = React.memo(() => {
   const [body, setBody] = useState("");
   const [rating, setRating] = useState(0);
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const user_id = currentUser.id;
+  const userId = currentUser.id;
   const queryParams = useParams();
-  const restaurant_id = parseInt(queryParams.id, 10);
+  const restaurantId = parseInt(queryParams.id, 10);
 
   const processForm = useCallback((review) => dispatch(createReview(review)), [
     dispatch,
@@ -80,25 +80,39 @@ const ReviewForm = () => {
     setRating(event);
   }, []);
 
+  const isUnmountedRef = useRef(false);
+
+  useEffect(
+    () => () => {
+      isUnmountedRef.current = true;
+    },
+    []
+  );
+
   const handleSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      const review = { body, rating, user_id, restaurant_id };
+      const review = { body, rating, userId, restaurantId };
 
       processForm(review).then(() => {
+        if (isUnmountedRef.current) return;
+
         setVisible(false);
       });
     },
-    [body, rating, user_id, restaurant_id]
+    [body, rating, userId, restaurantId]
   );
+
+  const handleClick = useCallback(() => setVisible(true), []);
+  const closeModal = useCallback(() => setVisible(false), []);
 
   return (
     <div>
-      <ReviewButton type="button" onClick={() => setVisible(true)}>
+      <ReviewButton type="button" onClick={handleClick}>
         <StyledButtonDiv>☆ Write a Review</StyledButtonDiv>
       </ReviewButton>
       {visible && (
-        <Modal isLarge onClose={() => setVisible(false)}>
+        <Modal isLarge onClose={closeModal}>
           <Body>
             <StyledForm onSubmit={handleSubmit}>
               <h2>Write a review</h2>
@@ -133,6 +147,6 @@ const ReviewForm = () => {
       )}
     </div>
   );
-};
+});
 
 export default ReviewForm;

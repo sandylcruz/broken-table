@@ -1,5 +1,4 @@
 import React from "react";
-
 import ReactStars from "react-rating-stars-component";
 import styled from "styled-components";
 
@@ -56,7 +55,7 @@ const UserTextDiv = styled.div`
   flex-direction: column;
 `;
 
-const Reviews = ({ reviews }) => (
+const Reviews = React.memo(({ reviews }) => (
   <StyledReviewsSection>
     <ReviewForm />
     {reviews.map((review) => (
@@ -84,6 +83,6 @@ const Reviews = ({ reviews }) => (
       </StyledIndividualReview>
     ))}
   </StyledReviewsSection>
-);
+));
 
 export default Reviews;

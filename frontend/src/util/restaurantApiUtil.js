@@ -6,7 +6,14 @@ export const createReview = (review) =>
     ajax({
       method: "POST",
       url: `api/reviews`,
-      data: { review },
+      data: {
+        review: {
+          restaurant_id: review.restaurantId,
+          user_id: review.userId,
+          body: review.body,
+          rating: review.rating,
+        },
+      },
       success: resolve,
       error: reject,
     });

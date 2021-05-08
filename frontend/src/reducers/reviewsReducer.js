@@ -8,7 +8,9 @@ const makeNormalizedReview = (review) => ({
   authorId: review.author.id,
 });
 
-const reviewsReducer = (state = {}, action) => {
+const defaultState = {};
+
+const reviewsReducer = (state = defaultState, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_RESTAURANT: {
