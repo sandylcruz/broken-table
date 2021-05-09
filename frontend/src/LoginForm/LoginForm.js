@@ -1,18 +1,7 @@
 import React, { useState, useCallback } from "react";
-
 import styled from "styled-components";
 
-const Button = styled.button`
-  border-radius: 5px;
-  border: 1px solid #d3d3d3;
-  width: 70%;
-  margin: 10px;
-  padding: 10px;
-  height: 30px;
-  font-weight: bold;
-  background-color: #2a2ae9;
-  color: white;
-`;
+import SubmitButton from "../components/SubmitButton";
 
 const Form = styled.form`
   font-family: helvetica;
@@ -22,6 +11,7 @@ const Form = styled.form`
   justify-content: center;
   margin: 10px;
   box-sizing: border-box;
+  padding-top: 100px;
 `;
 
 const Input = styled.input`
@@ -33,11 +23,6 @@ const Input = styled.input`
   width: 70%;
 `;
 
-const GreetingMessage = styled.p`
-  padding: 10px;
-  margin: 10px;
-`;
-
 const Span = styled.span`
   padding: 10px;
   margin: 10px;
@@ -47,10 +32,9 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-const SignupForm = React.memo(({ processForm }) => {
+const LoginForm = React.memo(({ processForm }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
 
   const handleSubmit = useCallback(
     (event) => {
@@ -58,7 +42,6 @@ const SignupForm = React.memo(({ processForm }) => {
       const user = {
         username,
         password,
-        email,
       };
 
       processForm(user);
@@ -74,18 +57,10 @@ const SignupForm = React.memo(({ processForm }) => {
     setPassword(event.currentTarget.value);
   }, []);
 
-  const updateEmail = useCallback((event) => {
-    setEmail(event.currentTarget.value);
-  }, []);
-
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <h2>Sign up to continue</h2>
-        <GreetingMessage>
-          Create a free account to book and manage your culinary experiences.
-        </GreetingMessage>
-
+        <h2>Log in to continue</h2>
         <Span>
           <Input
             onChange={updateUsername}
@@ -93,26 +68,17 @@ const SignupForm = React.memo(({ processForm }) => {
             value={username}
             placeholder="Username"
           />
-
-          <Input
-            onChange={updateEmail}
-            type="text"
-            value={email}
-            placeholder="Email"
-          />
-
           <Input
             onChange={updatePassword}
             type="password"
             value={password}
             placeholder="Password"
           />
-
-          <Button type="submit">Sign up</Button>
+          <SubmitButton type="submit">Log in</SubmitButton>
         </Span>
       </Form>
     </div>
   );
 });
 
-export default SignupForm;
+export default LoginForm;

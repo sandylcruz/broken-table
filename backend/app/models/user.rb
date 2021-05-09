@@ -20,6 +20,11 @@ class User < ApplicationRecord
            foreign_key: :submitter_id,
            primary_key: :id
 
+  has_many :reviews,
+           class_name: 'Review',
+           foreign_key: :user_id,
+           primary_key: :id
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil unless user

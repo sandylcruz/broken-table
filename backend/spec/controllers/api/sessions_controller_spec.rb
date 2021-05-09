@@ -2,8 +2,12 @@
 
 require 'rails_helper'
 
+# rubocop:disable Layout/LineLength
 RSpec.describe Api::SessionsController, type: :controller do
-  let(:valid_user) { User.new(username: 'calliethecat', password: 'password', email: 'calliethecat@gmail.com') }
+  let(:valid_user) do
+    User.new(username: 'calliethecat', password: 'password', email: 'calliethecat@gmail.com', name: 'Callie', city: 'SF',
+             state: 'CA', phone_number: '555-6782')
+  end
 
   describe 'POST #create' do
     it 'should create a new session if user credentials are valid' do
@@ -51,3 +55,4 @@ RSpec.describe Api::SessionsController, type: :controller do
     end
   end
 end
+# rubocop:enable Layout/LineLength

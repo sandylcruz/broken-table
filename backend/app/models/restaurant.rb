@@ -14,7 +14,16 @@ class Restaurant < ApplicationRecord
              foreign_key: :submitter_id,
              primary_key: :id
 
+  has_many :reviews,
+           class_name: 'Review',
+           foreign_key: :restaurant_id,
+           primary_key: :id
+
   has_one_attached :photo
+
+  def average_rating
+    reviews.average(:rating).to_f.round(2)
+  end
 
   def self.in_bounds(bounds)
     where('latitude < ?', bounds[:northEast][:latitude])

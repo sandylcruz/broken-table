@@ -3,15 +3,20 @@ import * as RestaurantAPIUtil from "../util/restaurantApiUtil";
 export const RECEIVE_RESTAURANTS = "RECEIVE_RESTAURANTS";
 export const RECEIVE_RESTAURANT = "RECEIVE_RESTAURANT";
 
+const receiveRestaurant = (restaurant) => ({
+  type: RECEIVE_RESTAURANT,
+  restaurant,
+});
+
 const receiveRestaurants = (restaurants) => ({
   type: RECEIVE_RESTAURANTS,
   restaurants,
 });
 
-const receiveRestaurant = (restaurant) => ({
-  type: RECEIVE_RESTAURANT,
-  restaurant,
-});
+export const fetchRestaurant = (id) => (dispatch) =>
+  RestaurantAPIUtil.fetchRestaurant(id).then((restaurant) =>
+    dispatch(receiveRestaurant(restaurant))
+  );
 
 export const fetchRestaurants = (filters) => (dispatch) =>
   RestaurantAPIUtil.fetchRestaurants(filters).then((restaurants) =>
@@ -29,8 +34,3 @@ export const createRestaurant = (partialRestaurant) => (dispatch) =>
       dispatch(receiveRestaurant(restaurant));
       return restaurant;
     });
-
-export const fetchRestaurant = (id) => (dispatch) =>
-  RestaurantAPIUtil.fetchRestaurant(id).then((restaurant) =>
-    dispatch(receiveRestaurant(restaurant))
-  );
