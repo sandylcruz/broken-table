@@ -97,7 +97,7 @@ unless File.exist?('api-responses-resy-responses.json')
     response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
     parsed_response = JSON.parse(response.body)
 
-    raise 'did not work' unless response.status == 200
+    raise "Received a #{response.status} response code" unless response.status == 200
 
     sleep(1)
     restaurants_array += parsed_response['results']['venues']
