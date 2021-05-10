@@ -64,7 +64,7 @@ end
 
 # Create users, have each user create 5 reviews
 
-unless File.exist?('api-responses/resy-responses.json')
+unless File.exist?('api-responses-resy-responses.json')
   puts 'Getting resy response'
 
   headers = {
@@ -97,9 +97,6 @@ unless File.exist?('api-responses/resy-responses.json')
     response = Faraday.get('https://resy.p.rapidapi.com/4/find', params, headers)
     parsed_response = JSON.parse(response.body)
 
-    body_string = response.body.to_json
-    File.open('debug.json', 'w') { |file| file.write(body_string) }
-
     raise 'did not work' unless response.status == 200
 
     sleep(1)
@@ -108,10 +105,10 @@ unless File.exist?('api-responses/resy-responses.json')
 
   restaurants_string = restaurants_array.to_json
 
-  File.open('api-responses/resy-responses.json', 'w') { |file| file.write(restaurants_string) }
+  File.open('api-responses-resy-responses.json', 'w') { |file| file.write(restaurants_string) }
 end
 
-resy_string = File.read('api-responses/resy-responses.json')
+resy_string = File.read('api-responses-resy-responses.json')
 restaurants = JSON.parse(resy_string)
 
 puts 'Getting photo urls from photo ids'
@@ -170,7 +167,7 @@ non_unique_mapped_restaurants = restaurants.map do |restaurant|
   }
 end
 
-unless File.exist?('api-responses/tomtom-responses.json')
+unless File.exist?('api-responses-tomtom-responses.json')
   mapped_restaurants = non_unique_mapped_restaurants.uniq { |restaurant| restaurant[:latitude] }
 
   puts 'Generating tomtom responses.json...'
@@ -189,12 +186,12 @@ unless File.exist?('api-responses/tomtom-responses.json')
   end
   restaurant_addresses_string = restaurant_addresses.to_json
 
-  File.open('api-responses/tomtom-responses.json', 'w') { |file| file.write(restaurant_addresses_string) }
+  File.open('api-responses-tomtom-responses.json', 'w') { |file| file.write(restaurant_addresses_string) }
   puts 'Successfully wrote tomtom-responses.json'
 end
 
 puts 'Reading file'
-tomtom_string = File.read('api-responses/tomtom-responses.json')
+tomtom_string = File.read('api-responses-tomtom-responses.json')
 tomtom_array_responses = JSON.parse(tomtom_string)
 
 addresses = tomtom_array_responses.map do |address_response|
