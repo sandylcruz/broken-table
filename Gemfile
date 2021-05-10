@@ -25,6 +25,7 @@ gem 'securerandom'
 gem 'figaro'
 gem 'faraday'
 gem 'addressable'
+gem 'faker'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -62,7 +63,6 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'factory_bot_rails', require: false
-  gem 'faker'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'rspec-rails'
