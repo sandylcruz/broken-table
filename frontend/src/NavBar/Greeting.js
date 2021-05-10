@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -10,6 +10,8 @@ const AvatarImg = styled.img`
   width: 50px;
   border: 3px solid #dddddd;
   border-radius: 50%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+
 
   &:hover {
     box-shadow: #dddddd 0px 0px 0px 2px;
@@ -37,16 +39,16 @@ const AvatarImg = styled.img`
 const Container = styled.div``;
 
 const Dropdown = styled.div`
-  // display: none;
+  display: ${({ isActive }) => (isActive ? "flex" : "none")};
   min-width: 200px;
   position: absolute;
   z-index: 999;
   list-style: none;
   background-color: #f7c1c8; //pink
   right: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 5px;
+  // display: flex;
+  // flex-direction: column;
+  // padding: 5px;
 `;
 
 const Item = styled.li`
@@ -65,15 +67,20 @@ const Link = styled.a`
   display: block;
 `;
 
-const PictureLink = styled.a`
+const MenuTrigger = styled.button`
   display: block;
   padding: 8px 25px;
-  color: #333;
   text-decoration: none;
+  background-color: #afd1ab; //green
+  border: 0;
+  cursor: pointer;
 
   &:hover {
-    color: red;
-    background: #939393;
+    background-color: #b7dbdd; //blue
+  }
+
+  &:active {
+    background-color: #f6ddbb; //tan
   }
 `;
 
@@ -88,14 +95,12 @@ const Ul = styled.ul`
   background-color: #afd1ab; //green
   display: flex;
   flex-direction: column;
-
-  &:hover {
-    color: ;
-  }
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
   const history = useHistory();
+  const [isActive, setIsActive] = useState(false);
+  const onClick = () => setIsActive((previousIsActive) => !previousIsActive);
 
   const handleSignupClick = useCallback(() => {
     history.push("/signup");
@@ -114,12 +119,11 @@ const Greeting = React.memo(({ currentUser, logout }) => {
         </div>
       ) : (
         <Container>
-          <PictureLink href="#">
-            {" "}
+          <MenuTrigger onClick={onClick} type="button">
             <AvatarImg src={currentUser.photoUrl} />
-          </PictureLink>
+          </MenuTrigger>
 
-          <Dropdown>
+          <Dropdown isActive={isActive}>
             <Ul>
               <Item>
                 <Link href="http://google.com">Create Resturant</Link>
