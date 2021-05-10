@@ -121,10 +121,12 @@ const Greeting = React.memo(({ currentUser, logout }) => {
 
               <DropdownUl>
                 <DropdownLi>
-                  <DropdownLiA href="#">Create Resturant</DropdownLiA>
+                  <DropdownLiA href="http://google.com">
+                    Create Resturant
+                  </DropdownLiA>
                 </DropdownLi>
                 <DropdownLi>
-                  <DropdownLiA href="#">Favorites</DropdownLiA>
+                  <DropdownLiA href="http:/google.com">Favorites</DropdownLiA>
                 </DropdownLi>
                 <DropdownLi>
                   <DropdownLiA href={logout}>Log out</DropdownLiA>
