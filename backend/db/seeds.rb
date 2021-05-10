@@ -99,7 +99,7 @@ unless File.exist?('api-responses-resy-responses.json')
 
     raise "Received a #{response.status} response code" unless response.status == 200
 
-    sleep(1)
+    sleep(2)
     restaurants_array += parsed_response['results']['venues']
   end
 
