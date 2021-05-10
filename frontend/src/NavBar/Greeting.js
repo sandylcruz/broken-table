@@ -41,10 +41,6 @@ const Greeting = React.memo(({ currentUser, logout }) => {
     history.push("/login");
   }, [history]);
 
-  // const handleLogoutClick = useCallback(() => {
-  //   history.push("/");
-  // }, []);
-
   return (
     <StyledNav>
       {!currentUser ? (

@@ -113,6 +113,7 @@ const VisibleDiv = styled.div`
     color: purple;
   }
 `;
+const TWO_MEGABYTES = 1000 * 1000 * 2;
 
 const SignupForm = React.memo(({ processForm }) => {
   const [username, setUsername] = useState("");
@@ -127,8 +128,6 @@ const SignupForm = React.memo(({ processForm }) => {
   const handlePhotoSubmit = useCallback((event) => {
     const reader = new FileReader();
     const file = event.currentTarget.files[0];
-
-    const TWO_MEGABYTES = 1000 * 1000 * 2;
 
     const isValidSize = file.size <= TWO_MEGABYTES;
 

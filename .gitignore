@@ -3,9 +3,4 @@ bundle.js
 bundle.js.map
 bundle.js.LICENSE.txt
 .env
-resy-response.json
-resy-responses.json
-resy-responses_part1.json
-tomtom-response.json
-tomtom-responses.json
-tomtom-responses_part1.json
+api-responses
