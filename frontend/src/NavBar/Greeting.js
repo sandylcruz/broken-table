@@ -11,6 +11,7 @@ const AvatarImg = styled.img`
   border: 3px solid #dddddd;
   border-radius: 50%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
 
 
   &:hover {
@@ -41,14 +42,15 @@ const Container = styled.div``;
 const Dropdown = styled.div`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
   min-width: 200px;
+  background-color: white;
   position: absolute;
   z-index: 999;
   list-style: none;
-  background-color: #f7c1c8; //pink
   right: 0;
-  // display: flex;
-  // flex-direction: column;
-  // padding: 5px;
+  padding: 5px;
+  border: 1px solid #c6c6c6;
+  border-radius: 5px;
+  box-shadow: #dddddd 0px 2px 2px 2px;
 `;
 
 const Item = styled.li`
@@ -57,30 +59,43 @@ const Item = styled.li`
   line-height: 21px;
   text-align: left;
   background-color: #b2bde2; //purple
+  border-bottom: 1px solid #dddddd;
 
   &:hover {
     background-color: #afd1ab;
+    font-weight: bold;
   }
 `;
 
 const Link = styled.a`
   display: block;
+  margin: 15px;
+  cursor: pointer;
 `;
 
 const MenuTrigger = styled.button`
-  display: block;
-  padding: 8px 25px;
-  text-decoration: none;
-  background-color: #afd1ab; //green
-  border: 0;
+  background: #ffffff;
+  border-radius: 90px;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border: none;
+  vertical-align: middle;
+  transition: box-shadow 0.4s ease;
+  margin-left: auto;
+  margin-right: 10px;
 
   &:hover {
-    background-color: #b7dbdd; //blue
+    // background-color: #b7dbdd; //blue
+    outline: 0;
   }
 
   &:active {
-    background-color: #f6ddbb; //tan
+    // background-color: #f6ddbb; //tan
+    outline: 0;
   }
 `;
 
@@ -119,7 +134,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
         </div>
       ) : (
         <Container>
-          <MenuTrigger onClick={onClick} type="button">
+          <MenuTrigger type="button" onClick={onClick}>
             <AvatarImg src={currentUser.photoUrl} />
           </MenuTrigger>
 
