@@ -12,5 +12,8 @@ json.reviews @restaurant.reviews do |review|
   json.author do
     json.id review.author.id
     json.username review.author.username
+    json.photoUrl review.author.photo.url
+    json.city review.author.city
+    json.state review.author.state
   end
 end

@@ -23,6 +23,8 @@ gem 'aws-sdk-s3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'securerandom'
 gem 'figaro'
+gem 'faraday'
+gem 'addressable'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

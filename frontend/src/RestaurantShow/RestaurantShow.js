@@ -20,25 +20,33 @@ const RatingsSignatureText = styled.div`
 
 const RatingTextDiv = styled.div`
   display: flex;
-  margin-top: 5px;
   color: red;
 `;
 
 const ResizedImage = styled.img`
+  margin-top: -35px;
   max-height: 400px;
   max-width: 500px;
+`;
+
+const SidebarContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const StyledAboutBlock = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
+  line-height: 1.5;
   margin-top: 10px;
   margin-bottom: 10px;
+  color: #737373;
 `;
 
 const StyledH1 = styled.h1`
   font-size: 50px;
-  margin-top: 50px;
+  margin-top: 10px;
 `;
 
 const StyledH3 = styled.div`
@@ -47,12 +55,21 @@ const StyledH3 = styled.div`
   font-size: 25px;
 `;
 
+const StyledH4 = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
 const StyledHitList = styled.div`
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;
+`;
+
+const StyledLocationSpan = styled.div`
+  color: #737373; ;
 `;
 
 const StyledMapDiv = styled.div`
@@ -74,7 +91,7 @@ const StyledPTag = styled.div`
 `;
 
 const StyledReservationContainer = styled.div`
-  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
   padding-top: 10px;
   height: 70px;
   margin-top: 10px;
@@ -85,6 +102,13 @@ const StyledRestaurantSummary = styled.div`
   border: 1px solid #eaeaea;
   margin: 10px;
   padding: 10px;
+  line-height: 1.5;
+  width: 350px;
+`;
+
+const StyledRestaurantSummaryText = styled.div`
+  margin: 5px;
+  padding: 5px;
 `;
 
 const StyledRestaurantOverview = styled.div`
@@ -96,10 +120,14 @@ const StyledSideBar = styled.div`
   border-left: 0;
   padding: 10px;
   padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   display: none;
   @media (min-width: 600px) {
-    display: block;
+    display: flex;
+    width: 100%;
   }
 `;
 
@@ -157,13 +185,14 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>
             <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
           </StyledHitList>
+
+          <StyledReservationContainer>
+            <StyledH3>Make a reservation</StyledH3>
+          </StyledReservationContainer>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>
             <StyledPTag>{restaurant.description}</StyledPTag>
           </StyledAboutBlock>
-          <StyledReservationContainer>
-            <StyledH3>Make a reservation</StyledH3>
-          </StyledReservationContainer>
           <Reviews reviews={reviews} />
         </StyledRestaurantOverview>
       )}
@@ -172,19 +201,22 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
         {!restaurant ? (
           <div>Loading Sidebar...</div>
         ) : (
-          <div>
+          <SidebarContentDiv>
+            {" "}
             <ResizedImage
               src={restaurant.photoUrl}
-              max-height="200"
-              max-width="200"
+              height="350"
+              width="350"
               alt="food"
             />
             <StyledRestaurantSummary>
               <StyledMapDiv ref={mapNodeRef} />
-              <h3>{restaurant.name}</h3>
-              <span>{restaurant.location}</span>
+              <StyledRestaurantSummaryText>
+                <StyledH4>{restaurant.name}</StyledH4>
+                <StyledLocationSpan>{restaurant.location}</StyledLocationSpan>
+              </StyledRestaurantSummaryText>
             </StyledRestaurantSummary>
-          </div>
+          </SidebarContentDiv>
         )}
       </StyledSideBar>
     </StyledParentContainer>

@@ -28,6 +28,8 @@ const StyledLogo = styled(Logo)`
   padding: 10px;
   margin-top: -20px;
   width: 150px;
+  display: flex;
+  align-items: center;
 `;
 
 const NavBar = React.memo(() => (

@@ -6,10 +6,28 @@ import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
 import LogoutButton from "../components/LogoutButton";
 
+const GreetingAndLogoutDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  margin-right: 20px;
+`;
+
 const GreetingText = styled.p`
   font-size: 15px;
   font-family: helvetica;
-  margin: 10px;
+  margin-top: 5px;
+`;
+
+const StyledAvatar = styled.img`
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+`;
+
+const StyledNav = styled.nav`
+  display: flex;
+  align-items: center;
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
@@ -24,7 +42,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
   }, [history]);
 
   return (
-    <nav>
+    <StyledNav>
       {!currentUser ? (
         <div>
           <PrimaryButton onClick={handleSignupClick}>Sign up</PrimaryButton>
@@ -32,13 +50,16 @@ const Greeting = React.memo(({ currentUser, logout }) => {
         </div>
       ) : (
         <div>
-          <GreetingText>Hi, {currentUser.username}!</GreetingText>
-          <LogoutButton type="submit" onClick={logout}>
-            Log Out
-          </LogoutButton>
+          <GreetingAndLogoutDiv>
+            <StyledAvatar src={currentUser.photoUrl} alt="" />
+            <GreetingText>Hi, {currentUser.username}!</GreetingText>
+            <LogoutButton type="submit" onClick={logout}>
+              Log Out
+            </LogoutButton>
+          </GreetingAndLogoutDiv>
         </div>
       )}
-    </nav>
+    </StyledNav>
   );
 });
 

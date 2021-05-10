@@ -27,7 +27,8 @@ module Api
     end
 
     def index
-      @restaurants = bounds ? Restaurant.in_bounds(bounds) : Restaurant.all
+      targeted_restaurants = bounds ? Restaurant.in_bounds(bounds) : Restaurant.all
+      @restaurants = targeted_restaurants.limit(15)
       render :index
     end
 

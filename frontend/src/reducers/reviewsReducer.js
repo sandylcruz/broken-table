@@ -6,6 +6,8 @@ const makeNormalizedReview = (review) => ({
   body: review.body,
   rating: review.rating,
   authorId: review.author.id,
+  city: review.author.city,
+  state: review.author.state,
 });
 
 const defaultState = {};
