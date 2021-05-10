@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import PrimaryButton from "../components/PrimaryButton";
 import SecondaryButton from "../components/SecondaryButton";
-// import LogoutButton from "../components/LogoutButton";
 
 const AvatarImg = styled.img`
   height: 50px;
@@ -35,37 +34,38 @@ const AvatarImg = styled.img`
   }
 `;
 
-const DropdownLi = styled.li`
-  display: inline-block;
-  position: relative;
-  line-height: 21px;
-  text-align: left;
-`;
+const Container = styled.div``;
 
-const DropdownUl = styled.ul`
+const Dropdown = styled.div`
   // display: none;
   min-width: 200px;
   position: absolute;
   z-index: 999;
   list-style: none;
-  background-color: pink;
+  background-color: #f7c1c8; //pink
   right: 0;
   display: flex;
   flex-direction: column;
-
-  &:hover {
-    background-color: purple;
-  }
+  padding: 5px;
 `;
 
-const Li = styled.li`
+const Item = styled.li`
   display: inline-block;
   position: relative;
   line-height: 21px;
   text-align: left;
+  background-color: #b2bde2; //purple
+
+  &:hover {
+    background-color: #afd1ab;
+  }
 `;
 
-const UlLiA = styled.a`
+const Link = styled.a`
+  display: block;
+`;
+
+const PictureLink = styled.a`
   display: block;
   padding: 8px 25px;
   color: #333;
@@ -85,11 +85,13 @@ const StyledNav = styled.nav`
 const Ul = styled.ul`
   padding: 0;
   list-style: none;
-  background-color: green;
-`;
+  background-color: #afd1ab; //green
+  display: flex;
+  flex-direction: column;
 
-const DropdownLiA = styled.a`
-  display: block;
+  &:hover {
+    color: ;
+  }
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
@@ -111,58 +113,26 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <SecondaryButton onClick={handleLoginClick}>Log In</SecondaryButton>
         </div>
       ) : (
-        <div>
-          <Ul>
-            <Li>
-              <UlLiA href="#">
-                {" "}
-                <AvatarImg src={currentUser.photoUrl} />
-              </UlLiA>
+        <Container>
+          <PictureLink href="#">
+            {" "}
+            <AvatarImg src={currentUser.photoUrl} />
+          </PictureLink>
 
-              <DropdownUl>
-                <DropdownLi>
-                  <DropdownLiA href="http://google.com">
-                    Create Resturant
-                  </DropdownLiA>
-                </DropdownLi>
-                <DropdownLi>
-                  <DropdownLiA href="http:/google.com">Favorites</DropdownLiA>
-                </DropdownLi>
-                <DropdownLi>
-                  <DropdownLiA href={logout}>Log out</DropdownLiA>
-                </DropdownLi>
-              </DropdownUl>
-            </Li>
-          </Ul>
-          {/* <Ul>
-            <UlLi>
-              <UlLiA href="#">Picture ▾</UlLiA>
-              <DropdownUl>
-                <DropdownLi>
-                  <DropdownLiA href="#">Make a restaurant</DropdownLiA>
-                </DropdownLi>
-                <DropdownLi>
-                  <DropdownLiA href="#">Logout</DropdownLiA>
-                </DropdownLi>
-              </DropdownUl>
-            </UlLi>
-          </Ul> */}
-        </div>
-
-        // <div>
-        //   <DropdownDiv>
-        //     <DropdownButton type="submit">
-        //       <AvatarImg src={currentUser.photoUrl} />
-        //     </DropdownButton>
-
-        //     <DropdownContentDiv>
-        //       <DropdownContentA href="#">Create a Restaurant</DropdownContentA>
-        //       <DropdownContentA href="#" onClick={logout}>
-        //         Logout
-        //       </DropdownContentA>
-        //     </DropdownContentDiv>
-        //   </DropdownDiv>
-        // </div>
+          <Dropdown>
+            <Ul>
+              <Item>
+                <Link href="http://google.com">Create Resturant</Link>
+              </Item>
+              <Item>
+                <Link href="http:/google.com">Favorites</Link>
+              </Item>
+              <Item>
+                <Link href={logout}>Log out</Link>
+              </Item>
+            </Ul>
+          </Dropdown>
+        </Container>
       )}
     </StyledNav>
   );
