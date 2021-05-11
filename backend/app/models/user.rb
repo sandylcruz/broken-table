@@ -29,6 +29,11 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            primary_key: :id
 
+  has_many :favorites,
+           class_name: 'Favorites',
+           foreign_key: :user_id,
+           primary_key: :id
+
   has_one_attached :photo
 
   def self.find_by_credentials(username, password)
