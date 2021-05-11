@@ -40,16 +40,18 @@ const Container = styled.div``;
 
 const Dropdown = styled.div`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
-  min-width: 200px;
+  width: 300px;
   background-color: white;
   position: absolute;
   z-index: 999;
   list-style: none;
   right: 0;
   padding: 5px;
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+
   border: 1px solid #c6c6c6;
-  border-radius: 5px;
-  box-shadow: #dddddd 0px 2px 2px 2px;
+  border-radius: 8px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 `;
 
 const Item = styled.li`
@@ -57,7 +59,6 @@ const Item = styled.li`
   position: relative;
   line-height: 21px;
   text-align: left;
-  background-color: #b2bde2; //purple
   border-bottom: 1px solid #dddddd;
 
   &:hover {
@@ -67,8 +68,10 @@ const Item = styled.li`
 `;
 
 const Link = styled.a`
+  text-decoration: none;
+  color: #333333;
+  padding: 15px 20px;
   display: block;
-  margin: 15px;
   cursor: pointer;
 `;
 
@@ -82,7 +85,6 @@ const MenuTrigger = styled.button`
   padding: 4px 6px;
   border: none;
   vertical-align: middle;
-  // transition: box-shadow 0.4s ease;
   margin-left: auto;
   margin-right: 10px;
 
@@ -107,7 +109,6 @@ const StyledNav = styled.nav`
 const Ul = styled.ul`
   padding: 0;
   list-style: none;
-  background-color: #afd1ab; //green
   display: flex;
   flex-direction: column;
 `;
@@ -161,10 +162,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="http://google.com">Create Restaurant</Link>
+                <Link href="/#/restaurants/new">Create Restaurant</Link>
               </Item>
               <Item>
-                <Link href="http:/google.com">Favorites</Link>
+                <Link href="hi">Favorites</Link>
               </Item>
               <Item>
                 <Link href={logout}>Log out</Link>
