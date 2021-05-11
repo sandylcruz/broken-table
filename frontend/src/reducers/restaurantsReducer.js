@@ -43,6 +43,7 @@ const restaurantsReducer = (state = {}, action) => {
 
       return newState;
     }
+
     default:
       return state;
   }
