@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
@@ -114,6 +114,7 @@ const Ul = styled.ul`
 
 const Greeting = React.memo(({ currentUser, logout }) => {
   const history = useHistory();
+  const dropdownMenuRef = useRef();
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive((previousIsActive) => !previousIsActive);
 
@@ -124,6 +125,25 @@ const Greeting = React.memo(({ currentUser, logout }) => {
   const handleLoginClick = useCallback(() => {
     history.push("/login");
   }, [history]);
+
+  useEffect(() => {
+    if (!isActive) {
+      return () => {};
+    }
+
+    const handleClick = (e) => {
+      const { target } = e;
+      if (!dropdownMenuRef.current.contains(target)) {
+        setIsActive(false);
+      }
+    };
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      // on unmount this is called. is cleanup function
+      document.removeEventListener("click", handleClick);
+    };
+  }, [isActive]);
 
   return (
     <StyledNav>
@@ -138,7 +158,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
             <AvatarImg src={currentUser.photoUrl} />
           </MenuTrigger>
 
-          <Dropdown isActive={isActive}>
+          <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
                 <Link href="http://google.com">Create Restaurant</Link>
