@@ -3,10 +3,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
-    resources :users, only: %i[create show destroy]
+    resources :users, only: %i[create show destroy] do
+      resource :favorites, only: %i[create destroy]
+    end
     resource :session, only: %i[create destroy]
-    resources :restaurants, only: %i[index create show]
-    resource :reviews, only: %i[create]
+    resources :restaurants, only: %i[index create show] do
+      resource :reviews, only: %i[create]
+    end
   end
   root 'static_pages#root'
 end

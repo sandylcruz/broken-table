@@ -30,7 +30,7 @@ class User < ApplicationRecord
            primary_key: :id
 
   has_many :favorites,
-           class_name: 'Favorites',
+           class_name: 'Favorite',
            foreign_key: :user_id,
            primary_key: :id
 
