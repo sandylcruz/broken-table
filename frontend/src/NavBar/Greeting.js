@@ -13,26 +13,25 @@ const AvatarImg = styled.img`
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   cursor: pointer;
 
-
-  &:hover {
-    box-shadow: #dddddd 0px 0px 0px 2px;
+    &:hover {
+    // box-shadow: #dddddd 0px 0px 0px 3px;
     transition: border-color 0.35s ease-in-out 0s,
       box-shadow 0.2s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 
   &:active {
-    box-shadow: #c6c6c6 0px 0px 0px 2px;
+    box-shadow: #c6c6c6 0px 0px 0px 3px;
     transition: border-color 0.25s ease-in-out 0s,
-      box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
+      box-shadow 0.2s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 
   &:focus {
     border: 1px solid #adadad
-    box-shadow: #adadad 0px 0px 0px 2px;
+    box-shadow: #adadad 0px 0px 0px 3px;
     transition: border-color 0.25s ease-in-out 0s,
-      box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
+      box-shadow 0.2s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
 `;
@@ -81,21 +80,22 @@ const MenuTrigger = styled.button`
   justify-content: space-between;
   align-items: center;
   padding: 4px 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   border: none;
   vertical-align: middle;
-  transition: box-shadow 0.4s ease;
+  // transition: box-shadow 0.4s ease;
   margin-left: auto;
   margin-right: 10px;
 
   &:hover {
-    // background-color: #b7dbdd; //blue
-    outline: 0;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+
+    // outline: 0;
+    // border: none;
   }
 
   &:active {
-    // background-color: #f6ddbb; //tan
     outline: 0;
+    border: none;
   }
 `;
 
@@ -141,7 +141,7 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive}>
             <Ul>
               <Item>
-                <Link href="http://google.com">Create Resturant</Link>
+                <Link href="http://google.com">Create Restaurant</Link>
               </Item>
               <Item>
                 <Link href="http:/google.com">Favorites</Link>
