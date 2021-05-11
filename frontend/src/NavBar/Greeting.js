@@ -38,6 +38,11 @@ const AvatarImg = styled.img`
 
 const Container = styled.div``;
 
+const Divider = styled.li`
+  border-top: 1px solid #eaeaea;
+  margin: 15px 0;
+`;
+
 const Dropdown = styled.div`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
   width: 250px;
@@ -67,6 +72,7 @@ const Link = styled.a`
   color: #333333;
   padding: 10px 15px;
   font-family: arial narrow;
+  font-size: 15px;
   display: block;
   cursor: pointer;
 
@@ -150,13 +156,20 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
+                <Link href="hi">RESERVATIONS</Link>
+              </Item>
+              <Item>
+                <Link href="hi">MY PROFILE</Link>
               </Item>
               <Item>
                 <Link href="hi">FAVORITES</Link>
               </Item>
               <Item>
-                <Link href={logout}>LOGOUT</Link>
+                <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
+              </Item>
+              <Divider />
+              <Item>
+                <Link href={logout}>SIGN OUT</Link>
               </Item>
             </Ul>
           </Dropdown>
