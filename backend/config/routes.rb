@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resource :favorites, only: %i[create destroy]
       resource :reviews, only: %i[create]
     end
+    resource :reviews, only: %i[create]
   end
   root 'static_pages#root'
 end

@@ -159,8 +159,8 @@ iterate over every single favorite
 
   const handleFavoriteToggle = useCallback(() => {
     const favorite = {
-      restaurantId: restaurant.id,
-      userId: currentUser.id,
+      user_id: currentUser.id,
+      restaurant_id: restaurant.id,
     };
     console.log(favorite);
 
