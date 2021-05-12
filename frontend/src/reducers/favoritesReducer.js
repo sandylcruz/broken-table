@@ -17,15 +17,10 @@ const favoritesReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_FAVORITE: {
       const nextState = { ...state };
-      console.log("In reducer. nextState = ", nextState);
       const { favorite } = action;
-      console.log("In the reducer. Favorite = ", favorite);
 
       nextState[favorite.id] = favorite;
 
-      // nextState[favorite.id] = makeNormalizedFavorite(favorite);
-
-      console.log("Inserted normalized favorite. nextState = ", nextState);
       return nextState;
     }
     default: {

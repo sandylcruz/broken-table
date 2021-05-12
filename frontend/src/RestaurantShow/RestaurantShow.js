@@ -149,7 +149,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   /*
-request is made after clicking button
+request is made after clicking button DONE
 rewrite restaurant selector (selectRestaurant) to return 
 if current user has favorited restaurant
 selectRestaurantById should return name, ..., isFavorited: true/false
@@ -162,7 +162,6 @@ iterate over every single favorite
       user_id: currentUser.id,
       restaurant_id: restaurant.id,
     };
-    console.log("In handleFavoriteToggle. Favorite = ", favorite);
 
     dispatch(createFavorite(favorite));
     setIsFavorite((previousIsFavorite) => !previousIsFavorite);

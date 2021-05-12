@@ -1,3 +1,5 @@
+import RECEIVE_FAVORITE from "../actions/favoriteActions";
+
 import {
   RECEIVE_RESTAURANT,
   RECEIVE_RESTAURANTS,
@@ -43,10 +45,26 @@ const restaurantsReducer = (state = {}, action) => {
 
       return newState;
     }
+    case RECEIVE_FAVORITE: {
+      const { restaurantId } = action.favorite;
+      const restaurant = state[restaurantId];
+      const { favorite } = action;
+      const newState = {
+        ...state,
+        [restaurantId]: {
+          ...restaurant,
+          numFavorites: 1,
+          isFavorited: false,
+          favorite,
+        },
+      };
 
+      // nextState[favorite.id] = favorite;
+
+      return newState;
+    }
     default:
       return state;
   }
 };
-
 export default restaurantsReducer;
