@@ -162,7 +162,7 @@ iterate over every single favorite
       user_id: currentUser.id,
       restaurant_id: restaurant.id,
     };
-    console.log(favorite);
+    console.log("In handleFavoriteToggle. Favorite = ", favorite);
 
     dispatch(createFavorite(favorite));
     setIsFavorite((previousIsFavorite) => !previousIsFavorite);

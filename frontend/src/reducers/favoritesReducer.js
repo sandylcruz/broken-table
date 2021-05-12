@@ -5,11 +5,11 @@
 
 import { RECEIVE_FAVORITE } from "../actions/favoriteActions";
 
-const makeNormalizedFavorite = (favorite) => ({
-  id: favorite.id,
-  userId: favorite.author.id,
-  restaurantId: favorite.restaurant.id,
-});
+// const makeNormalizedFavorite = (favorite) => ({
+//   id: favorite.id,
+//   userId: favorite.author.id,
+//   restaurantId: favorite.restaurant.id,
+// });
 
 const favoritesReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -17,11 +17,15 @@ const favoritesReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_FAVORITE: {
       const nextState = { ...state };
-      const { favorites } = action;
+      console.log("In reducer. nextState = ", nextState);
+      const { favorite } = action;
+      console.log("In the reducer. Favorite = ", favorite);
 
-      favorites.forEach((favorite) => {
-        nextState[favorite.id] = makeNormalizedFavorite(favorite);
-      });
+      nextState[favorite.id] = favorite;
+
+      // nextState[favorite.id] = makeNormalizedFavorite(favorite);
+
+      console.log("Inserted normalized favorite. nextState = ", nextState);
       return nextState;
     }
     default: {
