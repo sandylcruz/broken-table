@@ -14,6 +14,7 @@ const restaurantsReducer = (state = {}, action) => {
     case RECEIVE_RESTAURANT: {
       const restaurantId = action.restaurant.id;
       const { restaurant } = action;
+      console.log(action);
 
       return {
         ...state,
@@ -27,6 +28,8 @@ const restaurantsReducer = (state = {}, action) => {
           description: restaurant.description,
           photoUrl: restaurant.photoUrl,
           reviewIds: restaurant.reviews.map((review) => review.id),
+          numFavorites: restaurant.numFavorites,
+          isFavorited: restaurant.isFavorited,
         },
       };
     }
@@ -53,8 +56,8 @@ const restaurantsReducer = (state = {}, action) => {
         ...state,
         [restaurantId]: {
           ...restaurant,
-          numFavorites: 1,
-          isFavorited: false,
+          numFavorites: action.restaurant.numFavorites,
+          isFavorited: action.restaurant.isFavorited,
           favorite,
         },
       };
