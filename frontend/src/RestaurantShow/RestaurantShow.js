@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import MarkerManager from "../util/MarkerManager";
 import Reviews from "./Reviews";
 import Star from "./svgs/Star.svg";
-import HitListButton from "../components/HitListButton";
+import FavoriteButton from "../components/FavoriteButton";
 
 const RatingDiv = styled.div`
   display: flex;
@@ -60,7 +60,7 @@ const StyledH4 = styled.div`
   font-weight: bold;
 `;
 
-const StyledHitList = styled.div`
+const StyledFavoriteDiv = styled.div`
   border-top: 1px solid #eaeaea;
   border-bottom: 1px solid #eaeaea;
   display: block;
@@ -141,6 +141,20 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  /*
+request is made after clicking button
+rewrite restaurant selector (selectRestaurant) to return 
+if current user has favorited restaurant
+selectRestaurantById should return name, ..., isFavorited: true/false
+selector computes if it is favorited by looking at redux
+iterate over every single favorite
+  */
+
+  const handleFavoriteToggle = useCallback(() => {
+    setIsFavorite((previousIsFavorite) => !previousIsFavorite);
+  }, []);
 
   useEffect(() => {
     if (restaurant) {
@@ -180,11 +194,17 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
               <RatingsSignatureText>&nbsp;- BrokenTable</RatingsSignatureText>
             </RatingTextDiv>
           </RatingDiv>
-          <StyledHitList>
+          <StyledFavoriteDiv>
             <h2>Now Open.</h2>
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>
-            <HitListButton>❤ &nbsp; Add to Hit List</HitListButton>
-          </StyledHitList>
+            <FavoriteButton
+              type="button"
+              onClick={handleFavoriteToggle}
+              isFavorite={isFavorite}
+            >
+              ❤ &nbsp; Add to Favorites
+            </FavoriteButton>
+          </StyledFavoriteDiv>
 
           <StyledReservationContainer>
             <StyledH3>Make a reservation</StyledH3>
