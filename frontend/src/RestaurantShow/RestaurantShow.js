@@ -162,7 +162,7 @@ iterate over every single favorite
       restaurantId: restaurant.id,
       userId: currentUser.id,
     };
-    // console.log(favorite);
+    console.log(favorite);
 
     dispatch(createFavorite(favorite));
     setIsFavorite((previousIsFavorite) => !previousIsFavorite);

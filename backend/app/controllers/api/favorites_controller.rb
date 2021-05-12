@@ -3,8 +3,10 @@
 module Api
   # Favorites Controller class
   class FavoritesController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def create
-      @favorite = Favorite.new(favorite_params)
+      @favorite = Favorite.new(favorites_params)
 
       if @favorite.save
         render :show

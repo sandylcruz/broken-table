@@ -1,14 +1,15 @@
 import { ajax } from "jquery";
+import { selectCurrentUser } from "../reducers/selectors";
 
-export const createFavorite = (favorite) =>
+export const createFavorite = (id) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "POST",
-      url: `api/restaurants/:id/favorite`,
+      url: `api/restaurants/${id}/favorites`,
       data: {
         favorite: {
-          restaurant_id: favorite.restaurantId,
-          user_id: favorite.userId,
+          restaurant_id: id,
+          user_id: selectCurrentUser.id,
         },
       },
       success: resolve,
