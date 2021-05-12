@@ -1,8 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import { createFavorite } from "../actions/favoriteActions";
 import MarkerManager from "../util/MarkerManager";
 import Reviews from "./Reviews";
+import { selectCurrentUser } from "../reducers/selectors";
 import Star from "./svgs/Star.svg";
 import FavoriteButton from "../components/FavoriteButton";
 
@@ -138,6 +141,8 @@ const StyledStar = styled(Star)`
 `;
 
 const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
@@ -153,6 +158,13 @@ iterate over every single favorite
   */
 
   const handleFavoriteToggle = useCallback(() => {
+    const favorite = {
+      restaurantId: restaurant.id,
+      userId: currentUser.id,
+    };
+    // console.log(favorite);
+
+    dispatch(createFavorite(favorite));
     setIsFavorite((previousIsFavorite) => !previousIsFavorite);
   }, []);
 

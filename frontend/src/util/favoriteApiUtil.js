@@ -4,7 +4,7 @@ export const createFavorite = (favorite) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "POST",
-      url: `api/favorites`,
+      url: `api/restaurants/:id/favorite`,
       data: {
         favorite: {
           restaurant_id: favorite.restaurantId,
