@@ -27,7 +27,7 @@ const restaurantsReducer = (state = {}, action) => {
           description: restaurant.description,
           photoUrl: restaurant.photoUrl,
           reviewIds: restaurant.reviews.map((review) => review.id),
-          numFavorites: restaurant.numFavorites,
+          numberOfFavorites: restaurant.numberOfFavorites,
           isFavorited: restaurant.isFavorited,
         },
       };
@@ -55,7 +55,7 @@ const restaurantsReducer = (state = {}, action) => {
         ...state,
         [restaurantId]: {
           ...restaurant,
-          numFavorites: action.restaurant.numFavorites,
+          numberOfFavorites: action.restaurant.numberOfFavorites,
           isFavorited: action.restaurant.isFavorited,
           favorite,
         },
