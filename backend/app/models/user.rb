@@ -60,6 +60,10 @@ class User < ApplicationRecord
     session_token
   end
 
+  def favorite_ids
+    favorite_restaurants.pluck(:id)
+  end
+
   private
 
   def ensure_session_token

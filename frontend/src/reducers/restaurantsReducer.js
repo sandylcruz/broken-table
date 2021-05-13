@@ -14,7 +14,6 @@ const restaurantsReducer = (state = {}, action) => {
     case RECEIVE_RESTAURANT: {
       const restaurantId = action.restaurant.id;
       const { restaurant } = action;
-
       return {
         ...state,
         [restaurantId]: {
@@ -60,9 +59,6 @@ const restaurantsReducer = (state = {}, action) => {
           favorite,
         },
       };
-
-      // nextState[favorite.id] = favorite;
-
       return newState;
     }
     default:

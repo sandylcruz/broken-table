@@ -4,7 +4,6 @@ import { RECEIVE_RESTAURANT } from "../actions/restaurantActions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
-  console.log(action);
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER: {
@@ -20,6 +19,11 @@ const usersReducer = (state = {}, action) => {
       const nextState = { ...state };
       const { favorite } = action;
 
+      // nextState[favoriteRestaurants] = {
+      //   id: favorite.id,
+      //   userId: favorite.userId,
+      //   restaurantId: favorite.restaurantId,
+      // };
       nextState[favorite.id] = {
         id: favorite.id,
         userId: favorite.userId,
