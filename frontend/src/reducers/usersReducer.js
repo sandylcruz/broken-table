@@ -4,12 +4,16 @@ import { RECEIVE_RESTAURANT } from "../actions/restaurantActions";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
+  console.log(action);
 
   switch (action.type) {
     case RECEIVE_CURRENT_USER: {
       return {
         ...state,
-        [action.currentUser.id]: { ...action.currentUser, isCurrentUser: true },
+        [action.currentUser.id]: {
+          ...action.currentUser,
+          isCurrentUser: true,
+        },
       };
     }
     case RECEIVE_FAVORITE: {

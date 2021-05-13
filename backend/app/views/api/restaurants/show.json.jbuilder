@@ -18,5 +18,5 @@ json.reviews @restaurant.reviews do |review|
   end
 end
 
-json.isFavorited @restaurant.favorites
-json.numFavorites @restaurant.favorites.count
+json.isFavorited @restaurant.is_favorited?(current_user)
+json.numberOfFavorites @restaurant.favorites.count

@@ -26,6 +26,12 @@ class Restaurant < ApplicationRecord
 
   has_one_attached :photo
 
+  def is_favorited?(user)
+    return false if user.nil?
+
+    Favorite.exists?(user_id: user.id, restaurant_id: id)
+  end
+
   def average_rating
     reviews.average(:rating).to_f.round(1)
   end

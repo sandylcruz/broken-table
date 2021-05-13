@@ -39,7 +39,11 @@ module Api
     end
 
     def bounds
-      params[:filters][:bounds]
+      if params[:filters].nil?
+        nil
+      else
+        params[:filters][:bounds]
+      end
     end
   end
 end

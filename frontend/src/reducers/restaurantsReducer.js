@@ -14,7 +14,6 @@ const restaurantsReducer = (state = {}, action) => {
     case RECEIVE_RESTAURANT: {
       const restaurantId = action.restaurant.id;
       const { restaurant } = action;
-      console.log(action);
 
       return {
         ...state,
