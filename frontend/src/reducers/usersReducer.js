@@ -12,22 +12,19 @@ const usersReducer = (state = {}, action) => {
         [action.currentUser.id]: {
           ...action.currentUser,
           isCurrentUser: true,
+          favoriteIds: [],
         },
       };
     }
     case RECEIVE_FAVORITE: {
       const nextState = { ...state };
       const { favorite } = action;
+      const existingUser = state[favorite.userId];
+      const previousFavorites = existingUser.favoriteIds;
 
-      // nextState[favoriteRestaurants] = {
-      //   id: favorite.id,
-      //   userId: favorite.userId,
-      //   restaurantId: favorite.restaurantId,
-      // };
-      nextState[favorite.id] = {
-        id: favorite.id,
-        userId: favorite.userId,
-        restaurantId: favorite.restaurantId,
+      nextState[favorite.userId] = {
+        ...existingUser,
+        favoriteIds: [...previousFavorites, favorite.restaurantId],
       };
 
       return nextState;

@@ -28,9 +28,16 @@ export const selectAllRestaurants = createSelector(
   (restaurants) => Object.keys(restaurants).map((key) => restaurants[key])
 );
 
+// const currentUser = state.entities.users[state.session.id];
+
 export const selectRestaurantsInBounds = createSelector(
   (state) => state.entities.restaurants,
   (state) => state.ui.filters.bounds,
+  // (state) =>
+  //   currentUser
+  //     ? state.entities.users[state.session.id].favoriteIds
+  //     : undefined,
+
   (restaurants, bounds) =>
     Object.keys(restaurants).reduce((accumulator, key) => {
       const restaurant = restaurants[key];
