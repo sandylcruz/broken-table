@@ -60,12 +60,12 @@ const Dropdown = styled.div`
   transition-delay: 2s;
 `;
 
-// const Item = styled.li`
-//   display: inline-block;
-//   position: relative;
-//   text-align: left;
-//   width: 300px;
-// `;
+const Item = styled.li`
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  width: 300px;
+`;
 
 // const Link = styled.a`
 //   text-decoration: none;
@@ -95,6 +95,22 @@ const MenuTrigger = styled.button`
   margin-right: 10px;
 `;
 
+const SignOutButton = styled.button`
+  text-decoration: none;
+  color: #333333;
+  padding: 10px 15px;
+  font-family: arial narrow;
+  font-size: 15px;
+  display: block;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+`;
+
 const StyledNav = styled.nav`
   display: flex;
   align-items: center;
@@ -108,8 +124,6 @@ const Ul = styled.ul`
 `;
 
 const Greeting = React.memo(({ currentUser, logout }) => {
-  const placeholder = logout;
-  console.log(placeholder);
   const history = useHistory();
   const dropdownMenuRef = useRef();
   const [isActive, setIsActive] = useState(false);
@@ -169,10 +183,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
               <Item>
                 <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
-              <Divider />
+              <Divider /> */}
               <Item>
-                <Link href={logout}>SIGN OUT</Link>
-              </Item> */}
+                <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
+              </Item>
             </Ul>
           </Dropdown>
         </Container>
