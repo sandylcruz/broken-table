@@ -34,11 +34,6 @@ const FavoriteButton = styled.button`
       box-shadow 0.1s ease-in-out 0s, background-color 0.25s ease-in-out 0s,
       color 0.25s ease-in-out 0s;
   }
-
-  &:after {
-    background-color: red;
-    content: "Favorited";
-  }
 `;
 
 export default FavoriteButton;

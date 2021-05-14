@@ -9,6 +9,11 @@ import { selectCurrentUser } from "../reducers/selectors";
 import Star from "./svgs/Star.svg";
 import FavoriteButton from "../components/FavoriteButton";
 
+const StyledFavoriteButton = styled(FavoriteButton)`
+  background-color: ${({ isFavorite }) => (isFavorite ? "red" : "#336dde")};
+  content: ${({ isFavorite }) =>
+    isFavorite ? "Favorited!" : "Add to Favorites"};
+`;
 const RatingDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -153,7 +158,12 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
       user_id: currentUser.id,
       restaurant_id: restaurant.id,
     };
-    dispatch(createFavorite(favorite));
+
+    if (isFavorite) {
+      dispatch(createFavorite(favorite));
+    } else {
+      // dispatch(removeFavorite(favorite)); // pass restaurant id
+    }
     setIsFavorite((previousIsFavorite) => !previousIsFavorite);
   }, []);
 
@@ -198,13 +208,13 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           <StyledFavoriteDiv>
             <h2>Now Open.</h2>
             <StyledPTag>Add to your hit list to get updated.</StyledPTag>
-            <FavoriteButton
+            <StyledFavoriteButton
               type="button"
               onClick={handleFavoriteToggle}
               isFavorite={isFavorite}
             >
               ❤ &nbsp; Add to Favorites
-            </FavoriteButton>
+            </StyledFavoriteButton>
           </StyledFavoriteDiv>
 
           <StyledReservationContainer>
