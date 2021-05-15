@@ -1,5 +1,8 @@
 import { RECEIVE_CURRENT_USER } from "../actions/sessionActions";
-import { RECEIVE_FAVORITE } from "../actions/favoriteActions";
+import {
+  RECEIVE_FAVORITE,
+  UNRECEIVE_FAVORITE,
+} from "../actions/favoriteActions";
 import { RECEIVE_RESTAURANT } from "../actions/restaurantActions";
 
 const usersReducer = (state = {}, action) => {
@@ -29,6 +32,21 @@ const usersReducer = (state = {}, action) => {
 
       return nextState;
     }
+
+    case UNRECEIVE_FAVORITE: {
+      const { restaurantId, userId } = action;
+
+      return {
+        ...state,
+        [userId]: {
+          ...state[userId],
+          favoriteIds: state[userId].favoriteIds.filter(
+            (id) => id !== restaurantId
+          ),
+        },
+      };
+    }
+
     case RECEIVE_RESTAURANT: {
       const nextState = { ...state };
       const { restaurant } = action;

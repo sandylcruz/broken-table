@@ -1,12 +1,23 @@
 import { ajax } from "jquery";
-// import { selectCurrentUser } from "../reducers/selectors";
 
-export const createFavorite = (favorite) =>
+export const CREATE_FAVORITE = "CREATE_FAVORITE";
+export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+
+export const createFavorite = (restaurantId) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "POST",
-      url: `api/restaurants/${favorite.restaurantId}/favorites`,
-      data: { favorite },
+      url: `api/restaurants/${restaurantId}/favorites`,
+      success: resolve,
+      error: reject,
+    });
+  });
+
+export const removeFavorite = (restaurantId) =>
+  new Promise((resolve, reject) => {
+    ajax({
+      method: "DELETE",
+      url: `api/restaurants/${restaurantId}/favorites`,
       success: resolve,
       error: reject,
     });

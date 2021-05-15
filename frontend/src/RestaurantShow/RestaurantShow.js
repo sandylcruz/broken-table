@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useCallback, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { createFavorite } from "../actions/favoriteActions";
+import { createFavorite, removeFavorite } from "../actions/favoriteActions";
 import MarkerManager from "../util/MarkerManager";
 import Reviews from "./Reviews";
-import { selectCurrentUser } from "../reducers/selectors";
 import Star from "./svgs/Star.svg";
 import FavoriteButton from "../components/FavoriteButton";
 
@@ -146,26 +145,20 @@ const StyledStar = styled(Star)`
 `;
 
 const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
-  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
   const mapNodeRef = useRef();
   const mapRef = useRef();
   const markerManagerRef = useRef();
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  const isFavorited = Boolean(restaurant && restaurant.isFavorited);
 
   const handleFavoriteToggle = useCallback(() => {
-    const favorite = {
-      user_id: currentUser.id,
-      restaurant_id: restaurant.id,
-    };
-
-    if (isFavorite) {
-      dispatch(createFavorite(favorite));
+    if (!isFavorited) {
+      dispatch(createFavorite(restaurant.id));
     } else {
-      // dispatch(removeFavorite(favorite)); // pass restaurant id
+      dispatch(removeFavorite(restaurant.id));
     }
-    setIsFavorite((previousIsFavorite) => !previousIsFavorite);
-  }, []);
+  }, [isFavorited, restaurant]);
 
   useEffect(() => {
     if (restaurant) {
@@ -204,16 +197,17 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
               {restaurant.averageRating || "No reviews yet"}
               <RatingsSignatureText>&nbsp;- BrokenTable</RatingsSignatureText>
             </RatingTextDiv>
+            <div>{restaurant.numberOfFavorites}</div>
           </RatingDiv>
           <StyledFavoriteDiv>
             <h2>Now Open.</h2>
-            <StyledPTag>Add to your hit list to get updated.</StyledPTag>
+            <StyledPTag>Add to your favorite list to get updated.</StyledPTag>
             <StyledFavoriteButton
               type="button"
               onClick={handleFavoriteToggle}
-              isFavorite={isFavorite}
+              isFavorite={isFavorited}
             >
-              ❤ &nbsp; Add to Favorites
+              {isFavorited ? "❤ Favorited!" : "❤ Add to Favorites"}
             </StyledFavoriteButton>
           </StyledFavoriteDiv>
 

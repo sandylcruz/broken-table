@@ -114,6 +114,7 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
 
             <RightDiv>
               <StyledH3>{restaurant.name}</StyledH3>
+              <p>{restaurant.numberOfFavorites}</p>
               <RatingDiv>
                 <StyledStar />
                 <RatingTextDiv>

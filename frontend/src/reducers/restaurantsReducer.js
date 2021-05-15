@@ -1,4 +1,7 @@
-import RECEIVE_FAVORITE from "../actions/favoriteActions";
+import {
+  RECEIVE_FAVORITE,
+  UNRECEIVE_FAVORITE,
+} from "../actions/favoriteActions";
 
 import {
   RECEIVE_RESTAURANT,
@@ -49,18 +52,28 @@ const restaurantsReducer = (state = {}, action) => {
     case RECEIVE_FAVORITE: {
       const { restaurantId } = action.favorite;
       const restaurant = state[restaurantId];
-      const { favorite } = action;
       const newState = {
         ...state,
         [restaurantId]: {
           ...restaurant,
-          numberOfFavorites: action.restaurant.numberOfFavorites,
-          isFavorited: action.restaurant.isFavorited,
-          favorite,
+          numberOfFavorites: restaurant.numberOfFavorites + 1,
+          isFavorited: true,
         },
       };
       return newState;
     }
+    case UNRECEIVE_FAVORITE: {
+      const { restaurantId } = action;
+      return {
+        ...state,
+        [restaurantId]: {
+          ...state[restaurantId],
+          isFavorited: false,
+          numberOfFavorites: state[restaurantId].numberOfFavorites - 1,
+        },
+      };
+    }
+
     default:
       return state;
   }

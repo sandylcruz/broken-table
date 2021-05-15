@@ -4,9 +4,10 @@ module Api
   # Favorites Controller class
   class FavoritesController < ApplicationController
     skip_before_action :verify_authenticity_token
+    before_action :require_logged_in
 
     def create
-      @favorite = Favorite.new(favorites_params)
+      @favorite = Favorite.new(user_id: current_user.id, restaurant_id: params[:restaurant_id])
 
       if @favorite.save
         render :show
@@ -15,12 +16,14 @@ module Api
       end
     end
 
-    def destroy; end
+    def destroy
+      @favorite = Favorite.find_by(user_id: current_user.id, restaurant_id: params[:restaurant_id])
 
-    private
-
-    def favorites_params
-      params.require(:favorite).permit(:user_id, :restaurant_id)
+      if @favorite
+        @favorite.destroy
+      else
+        render json: ['Cannot find favorite'], status: :not_found
+      end
     end
   end
 end

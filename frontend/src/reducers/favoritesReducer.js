@@ -3,7 +3,10 @@
 // de-normalize favorites to be its own table
 // when you select a current user, it will also put in favorite restaurants
 
-import { RECEIVE_FAVORITE } from "../actions/favoriteActions";
+import {
+  RECEIVE_FAVORITE,
+  UNRECEIVE_FAVORITE,
+} from "../actions/favoriteActions";
 
 // const makeNormalizedFavorite = (favorite) => ({
 //   id: favorite.id,
@@ -21,6 +24,13 @@ const favoritesReducer = (state = {}, action) => {
 
       nextState[favorite.id] = favorite;
 
+      return nextState;
+    }
+    case UNRECEIVE_FAVORITE: {
+      const nextState = { ...state };
+      const { favorite } = action;
+
+      delete nextState[favorite.id];
       return nextState;
     }
     default: {
