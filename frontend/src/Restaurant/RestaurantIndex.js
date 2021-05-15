@@ -2,8 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
+import FavoriteHeart from "./FavoriteHeart.svg";
 import MapMarker from "../RestaurantShow/svgs/MapMarker.svg";
 import Star from "../RestaurantShow/svgs/Star.svg";
+
+const FavoriteTriggerButton = styled.button`
+  background-color: white;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border: none;
+`;
 
 const LeftDiv = styled.div`
   display: flex;
@@ -66,6 +75,11 @@ const RestaurantInfoDiv = styled.div`
   flex-direction: row;
 `;
 
+const StyledFavoriteHeart = styled(FavoriteHeart)`
+  fill: #737373;
+  margin-left: -5px;
+`;
+
 const StyledH3 = styled.div`
   padding-left: 5px;
   font-weight: bold;
@@ -102,6 +116,14 @@ const StyledStar = styled(Star)`
   fill: red;
 `;
 
+const FirstLineDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+// const handleFavoriteToggle = () => {};
+
 const RestaurantIndex = React.memo(({ restaurants }) => (
   <RestaurantContainer>
     {restaurants.map((restaurant) => (
@@ -113,21 +135,28 @@ const RestaurantIndex = React.memo(({ restaurants }) => (
             </LeftDiv>
 
             <RightDiv>
-              <StyledH3>{restaurant.name}</StyledH3>
-              <p>{restaurant.numberOfFavorites}</p>
+              <FirstLineDiv>
+                <StyledH3>{restaurant.name}</StyledH3>
+                <FavoriteTriggerButton>
+                  <StyledFavoriteHeart />
+                </FavoriteTriggerButton>
+              </FirstLineDiv>
+
               <RatingDiv>
                 <StyledStar />
                 <RatingTextDiv>
                   {restaurant.averageRating || "No reviews yet"}
                 </RatingTextDiv>
               </RatingDiv>
+              <RatingTextDiv>
+                {/* Number of favorites: {restaurant.numberOfFavorites} */}
+              </RatingTextDiv>
               <StyledLocationDiv>
                 <StyledMapMarker />
                 <StyledRestaurantLocationText>
                   {restaurant.location}
                 </StyledRestaurantLocationText>
               </StyledLocationDiv>
-
               <RestaurantShortBody>
                 {restaurant.description}
               </RestaurantShortBody>

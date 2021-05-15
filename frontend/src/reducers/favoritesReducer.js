@@ -8,12 +8,6 @@ import {
   UNRECEIVE_FAVORITE,
 } from "../actions/favoriteActions";
 
-// const makeNormalizedFavorite = (favorite) => ({
-//   id: favorite.id,
-//   userId: favorite.author.id,
-//   restaurantId: favorite.restaurant.id,
-// });
-
 const favoritesReducer = (state = {}, action) => {
   Object.freeze(state);
 
