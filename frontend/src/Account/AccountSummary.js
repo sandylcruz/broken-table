@@ -10,10 +10,20 @@ const AccountContainer = styled.div`
 `;
 
 const Item = styled.li`
-  display: inline-block;
-  position: relative;
-  text-align: left;
-  width: 300px;
+  text-decoration: none;
+  color: #333333;
+  padding: 10px 15px;
+  font-family: arial narrow;
+  font-size: 15px;
+  display: block;
+  border-bottom: 1px solid grey;
+  background-color: white;
+  cursor: pointer;
+  margin: 10px;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 const LeftDiv = styled.div`
@@ -55,6 +65,10 @@ const AccountSummary = () => {
     <AccountContainer>
       <LeftDiv>
         <h1>In Left Div</h1>
+        <Item>
+          {" "}
+          <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
+        </Item>
         <Item>
           {" "}
           <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
