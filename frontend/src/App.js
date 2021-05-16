@@ -2,6 +2,7 @@ import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
+import AccountSummary from "./Account/AccountSummary";
 import { AuthRoute, ProtectedRoute } from "./util/routeUtil";
 import GlobalStyle from "./GlobalStyle";
 import LoginForm from "./LoginForm";
@@ -29,6 +30,7 @@ const App = React.memo(({ store }) => (
           path="/restaurants/new"
           component={RestaurantForm}
         />
+        <ProtectedRoute exact path="/account" component={AccountSummary} />
       </div>
     </HashRouter>
   </Provider>
