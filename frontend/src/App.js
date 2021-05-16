@@ -2,7 +2,7 @@ import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
-import AccountSummary from "./Account/AccountSummary";
+import AccountContainer from "./Account/AccountContainer";
 import { AuthRoute, ProtectedRoute } from "./util/routeUtil";
 import GlobalStyle from "./GlobalStyle";
 import LoginForm from "./LoginForm";
@@ -11,6 +11,8 @@ import RestaurantForm from "./RestaurantForm";
 import RestaurantShow from "./RestaurantShow";
 import SignupForm from "./SignupForm";
 import Search from "./Search";
+import UserFavorites from "./Account/UserFavorites";
+import UserReservations from "./Account/UserReservations";
 
 const App = React.memo(({ store }) => (
   <Provider store={store}>
@@ -30,7 +32,17 @@ const App = React.memo(({ store }) => (
           path="/restaurants/new"
           component={RestaurantForm}
         />
-        <ProtectedRoute exact path="/account" component={AccountSummary} />
+        <ProtectedRoute exact path="/account/" component={AccountContainer} />
+        <ProtectedRoute
+          exact
+          path="/account/favorites"
+          component={UserFavorites}
+        />
+        <ProtectedRoute
+          exact
+          path="/account/reservations"
+          component={UserReservations}
+        />
       </div>
     </HashRouter>
   </Provider>

@@ -3,6 +3,7 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { logout as logoutAction } from "../actions/sessionActions";
+import UserReservations from "./UserReservations";
 
 const AccountContainer = styled.div`
   display: flex;
@@ -63,6 +64,7 @@ const StyledH1 = styled.h1`
   font-size: 40px;
   margin-top: 60px;
 `;
+
 const AccountSummary = () => {
   const dispatch = useDispatch();
   const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
@@ -70,13 +72,10 @@ const AccountSummary = () => {
   return (
     <AccountContainer>
       <LeftDiv>
+        <Item> {/* <Button onClick={UserFavorites}>FAVORITES</Button> */}</Item>
         <Item>
           {" "}
-          <Button onClick={logout}>FAVORITES</Button>
-        </Item>
-        <Item>
-          {" "}
-          <Button onClick={logout}>RESERVATIONS</Button>
+          <Button onClick={UserReservations}>RESERVATIONS</Button>
         </Item>
         <Item>
           {" "}

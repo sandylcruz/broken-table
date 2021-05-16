@@ -36,12 +36,28 @@ const AvatarImg = styled.img`
   }
 `;
 
+const Button = styled.button`
+  text-decoration: none;
+  color: #333333;
+  padding: 10px 15px;
+  font-family: arial narrow;
+  font-size: 15px;
+  display: block;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+`;
+
 const Container = styled.div``;
 
-// const Divider = styled.li`
-//   border-top: 1px solid #eaeaea;
-//   margin: 15px 0;
-// `;
+const Divider = styled.li`
+  border-top: 1px solid #eaeaea;
+  margin: 15px 0;
+`;
 
 const Dropdown = styled.div`
   display: ${({ isActive }) => (isActive ? "flex" : "none")};
@@ -67,19 +83,19 @@ const Item = styled.li`
   width: 300px;
 `;
 
-// const Link = styled.a`
-//   text-decoration: none;
-//   color: #333333;
-//   padding: 10px 15px;
-//   font-family: arial narrow;
-//   font-size: 15px;
-//   display: block;
-//   cursor: pointer;
+const Link = styled.a`
+  text-decoration: none;
+  color: #333333;
+  padding: 10px 15px;
+  font-family: arial narrow;
+  font-size: 15px;
+  display: block;
+  cursor: pointer;
 
-//   &:hover {
-//     color: red;
-//   }
-// `;
+  &:hover {
+    color: red;
+  }
+`;
 
 const MenuTrigger = styled.button`
   background: #ffffff;
@@ -93,22 +109,6 @@ const MenuTrigger = styled.button`
   vertical-align: middle;
   margin-left: auto;
   margin-right: 10px;
-`;
-
-const SignOutButton = styled.button`
-  text-decoration: none;
-  color: #333333;
-  padding: 10px 15px;
-  font-family: arial narrow;
-  font-size: 15px;
-  display: block;
-  border: 0;
-  background-color: white;
-  cursor: pointer;
-
-  &:hover {
-    color: red;
-  }
 `;
 
 const StyledNav = styled.nav`
@@ -171,21 +171,24 @@ const Greeting = React.memo(({ currentUser, logout }) => {
 
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
-              {/* <Item>
-                <Link href="hi">RESERVATIONS</Link>
-              </Item>
               <Item>
-                <Link href="hi">MY PROFILE</Link>
-              </Item>
-              <Item>
-                <Link href="hi">FAVORITES</Link>
+                <Link href="/#/account">ACCOUNT</Link>
               </Item>
               <Item>
                 <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
-              <Divider /> */}
               <Item>
-                <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
+                <Link href="/#/account/reservations">RESERVATIONS</Link>
+              </Item>
+              <Item>
+                <Link href="/#/account/favorites">FAVORITES</Link>
+              </Item>
+              <Item>
+                <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
+              </Item>
+              <Divider />
+              <Item>
+                <Button onClick={logout}>SIGN OUT</Button>
               </Item>
             </Ul>
           </Dropdown>
