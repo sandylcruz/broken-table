@@ -72,12 +72,10 @@ const RestaurantInfoDiv = styled.div`
 
 const StyledFavoriteHeart = styled(FavoriteHeart)`
   fill: red;
-  // fill: ${({ $isFavorited }) => ($isFavorited ? "red" : "#d3d3d3")};
-  // // fill-rule: nonzero;
 `;
 
 const StyledHeartOutline = styled(HeartOutline)`
-  fill: #d3d3de;
+  fill: #d3d3d3;
 `;
 
 const StyledH3 = styled.div`
