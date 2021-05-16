@@ -15,9 +15,9 @@ const AccountContainer = styled.div`
 
 const Divider = styled.li`
   border-top: 1px solid #eaeaea;
-  margin: 15px 0;
-  padding: 10px;
+  // padding: 10px;
   list-style: none;
+  width: 50%;
 `;
 
 const InnerAccountContainer = styled.div`
@@ -30,13 +30,12 @@ const Item = styled.li`
   text-decoration: none;
   color: #2a2a2a;
   padding: 20px 0;
-  margin-top: 50px;
   font-family: arial narrow;
   font-size: 14px;
   display: block;
   background-color: white;
   cursor: pointer;
-  margin: 15px;
+  // margin: 15px;
   align-items: left;
   padding:
 
@@ -46,9 +45,8 @@ const Item = styled.li`
 `;
 
 const Sidebar = styled.div`
-  margin-top: 110px;
   margin-left: 30px;
-  min-width: 33%;
+  min-width: 25%;
   border-right: 1px solid #eaeaea;
 `;
 

@@ -172,9 +172,6 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="/#/account">ACCOUNT</Link>
-              </Item>
-              <Item>
                 <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
               <Item>

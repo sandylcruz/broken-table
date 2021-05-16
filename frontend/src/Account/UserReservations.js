@@ -10,7 +10,6 @@ const ReservationsDiv = styled.div`
 
 const StyledH1 = styled.h1`
   font-size: 30px;
-  margin-top: 130px;
 `;
 
 const UserReservations = () => {
