@@ -9,9 +9,8 @@ import Star from "../RestaurantShow/svgs/Star.svg";
 const FavoriteTriggerButton = styled.button`
   background-color: white;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
   border: none;
+  box-shadow: none;
 `;
 
 const LeftDiv = styled.div`
@@ -71,8 +70,8 @@ const RestaurantInfoDiv = styled.div`
 `;
 
 const StyledFavoriteHeart = styled(FavoriteHeart)`
-  fill: ${({ $isFavorited }) => ($isFavorited ? "red" : "purple")};
-  margin-left: -5px;
+  fill: ${({ $isFavorited }) => ($isFavorited ? "red" : "grey")};
+  // fill-rule: nonzero;
 `;
 
 const StyledH3 = styled.div`
