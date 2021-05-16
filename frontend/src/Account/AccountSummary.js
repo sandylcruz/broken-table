@@ -7,19 +7,23 @@ import { logout as logoutAction } from "../actions/sessionActions";
 const AccountContainer = styled.div`
   display: flex;
   flex-direction: row;
+  height: 100%;
 `;
 
 const Item = styled.li`
   text-decoration: none;
-  color: #333333;
-  padding: 10px 15px;
+  color: #2a2a2a;
+  padding: 20px 0;
+  margin-top: 50px;
   font-family: arial narrow;
-  font-size: 15px;
+  font-size: 14px;
   display: block;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid #eaeaea;
   background-color: white;
   cursor: pointer;
-  margin: 10px;
+  margin: 15px;
+  align-items: left;
+  padding:
 
   &:hover {
     color: red;
@@ -27,18 +31,19 @@ const Item = styled.li`
 `;
 
 const LeftDiv = styled.div`
-  margin-top: 85px;
-  border: 1px solid pink;
-  width: 33%;
+  margin-top: 110px;
+  margin-left: 30px;
+  min-width: 33%;
+  border-right: 1px solid #eaeaea;
 `;
 
 const RightDiv = styled.div`
-  margin-top: 85px;
-  border: 1px solid green;
+  margin-top: 70px;
+  background-color: #fafafa;
   width: 66%;
 `;
 
-const SignOutButton = styled.button`
+const Button = styled.button`
   text-decoration: none;
   color: #333333;
   padding: 10px 15px;
@@ -50,12 +55,13 @@ const SignOutButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: red;
+    color: #ff462d;
   }
 `;
 
 const StyledH1 = styled.h1`
-  font-size: 40;
+  font-size: 40px;
+  margin-top: 60px;
 `;
 const AccountSummary = () => {
   const dispatch = useDispatch();
@@ -64,18 +70,21 @@ const AccountSummary = () => {
   return (
     <AccountContainer>
       <LeftDiv>
-        <h1>In Left Div</h1>
         <Item>
           {" "}
-          <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
+          <Button onClick={logout}>FAVORITES</Button>
         </Item>
         <Item>
           {" "}
-          <SignOutButton onClick={logout}>SIGN OUT</SignOutButton>
+          <Button onClick={logout}>RESERVATIONS</Button>
+        </Item>
+        <Item>
+          {" "}
+          <Button onClick={logout}>SIGN OUT</Button>
         </Item>
       </LeftDiv>
       <RightDiv>
-        <StyledH1>In Right Div</StyledH1>
+        <StyledH1>My Favorites</StyledH1>
       </RightDiv>
     </AccountContainer>
   );
