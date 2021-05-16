@@ -1,15 +1,29 @@
-import React, { useCallback } from "react";
+import React from "react";
+import { Link, Route, Switch } from "react-router-dom";
 
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { logout as logoutAction } from "../actions/sessionActions";
+import NotFound from "../NotFound";
+import { ProtectedRoute } from "../util/routeUtil";
 import UserFavorites from "./UserFavorites";
 import UserReservations from "./UserReservations";
 
 const AccountContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100%;
+  min-height: 100vh;
+`;
+
+const Divider = styled.li`
+  border-top: 1px solid #eaeaea;
+  margin: 15px 0;
+  padding: 10px;
+  list-style: none;
+`;
+
+const InnerAccountContainer = styled.div`
+  display: flex;
+  flex: 1;
+  margin-top: 77px;
 `;
 
 const Item = styled.li`
@@ -20,7 +34,6 @@ const Item = styled.li`
   font-family: arial narrow;
   font-size: 14px;
   display: block;
-  border-bottom: 1px solid #eaeaea;
   background-color: white;
   cursor: pointer;
   margin: 15px;
@@ -32,64 +45,57 @@ const Item = styled.li`
   }
 `;
 
-const LeftDiv = styled.div`
+const Sidebar = styled.div`
   margin-top: 110px;
   margin-left: 30px;
   min-width: 33%;
   border-right: 1px solid #eaeaea;
 `;
 
-const RightDiv = styled.div`
-  margin-top: 70px;
-  background-color: #fafafa;
-  width: 66%;
-`;
-
-const Button = styled.button`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333333;
   padding: 10px 15px;
   font-family: arial narrow;
-  font-size: 15px;
+  font-size: 14px;
   display: block;
-  border: 0;
-  background-color: white;
   cursor: pointer;
 
   &:hover {
-    color: #ff462d;
+    color: red;
   }
 `;
 
-const StyledH1 = styled.h1`
-  font-size: 40px;
-  margin-top: 60px;
-`;
-const AccountSummary = () => {
-  const dispatch = useDispatch();
-  const logout = useCallback(() => dispatch(logoutAction()), [dispatch]);
-
-  return (
-    <AccountContainer>
-      <LeftDiv>
+const AccountSummary = () => (
+  <AccountContainer>
+    <InnerAccountContainer>
+      <Sidebar>
         <Item>
-          {" "}
-          <Button onClick={UserFavorites}>FAVORITES</Button>
+          <StyledLink to="/restaurants/new">CREATE RESTAURANT</StyledLink>
+        </Item>
+        <Divider />
+        <Item>
+          <StyledLink to="/account/favorites">FAVORITES</StyledLink>
         </Item>
         <Item>
-          {" "}
-          <Button onClick={UserReservations}>RESERVATIONS</Button>
+          <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
         </Item>
-        <Item>
-          {" "}
-          <Button onClick={logout}>SIGN OUT</Button>
-        </Item>
-      </LeftDiv>
-      <RightDiv>
-        <StyledH1>My Favorites</StyledH1>
-      </RightDiv>
-    </AccountContainer>
-  );
-};
+      </Sidebar>
+      <Switch>
+        <ProtectedRoute
+          exact
+          path="/account/favorites"
+          component={UserFavorites}
+        />
+        <ProtectedRoute
+          exact
+          path="/account/reservations"
+          component={UserReservations}
+        />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </InnerAccountContainer>
+  </AccountContainer>
+);
 
 export default AccountSummary;
