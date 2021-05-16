@@ -42,7 +42,7 @@ export const selectRestaurantsInBounds = createSelector(
     return Object.keys(restaurants).reduce((accumulator, key) => {
       const restaurant = restaurants[key];
       const isFavorited =
-        !favoriteRestaurantIds && favoriteRestaurantIdsSet.has(restaurant.id);
+        favoriteRestaurantIds && favoriteRestaurantIdsSet.has(restaurant.id);
 
       const isLatitudeValid =
         restaurant.latitude <= bounds.northEast.latitude &&
