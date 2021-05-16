@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import HeartOutline from "./HeartOutline.svg";
 import FavoriteHeart from "./FavoriteHeart.svg";
 import MapMarker from "../RestaurantShow/svgs/MapMarker.svg";
 import Star from "../RestaurantShow/svgs/Star.svg";
@@ -70,8 +71,13 @@ const RestaurantInfoDiv = styled.div`
 `;
 
 const StyledFavoriteHeart = styled(FavoriteHeart)`
-  fill: ${({ $isFavorited }) => ($isFavorited ? "red" : "grey")};
-  // fill-rule: nonzero;
+  fill: red;
+  // fill: ${({ $isFavorited }) => ($isFavorited ? "red" : "#d3d3d3")};
+  // // fill-rule: nonzero;
+`;
+
+const StyledHeartOutline = styled(HeartOutline)`
+  fill: #d3d3de;
 `;
 
 const StyledH3 = styled.div`
@@ -137,7 +143,11 @@ const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {
             <FirstLineDiv>
               <StyledH3>{restaurant.name}</StyledH3>
               <FavoriteTriggerButton onClick={handleFavoriteToggle}>
-                <StyledFavoriteHeart $isFavorited={restaurant.isFavorited} />
+                {restaurant.isFavorited ? (
+                  <StyledFavoriteHeart />
+                ) : (
+                  <StyledHeartOutline />
+                )}
               </FavoriteTriggerButton>
             </FirstLineDiv>
 
