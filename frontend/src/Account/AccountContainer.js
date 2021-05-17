@@ -4,6 +4,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import NotFound from "../NotFound";
 import { ProtectedRoute } from "../util/routeUtil";
+import RestaurantForm from "../RestaurantForm/RestaurantForm";
 import UserFavorites from "./UserFavorites";
 import UserReservations from "./UserReservations";
 
@@ -15,7 +16,7 @@ const AccountContainer = styled.div`
 
 const Divider = styled.li`
   border-top: 1px solid #eaeaea;
-  // padding: 10px;
+  padding: 10px;
   list-style: none;
   width: 50%;
 `;
@@ -35,7 +36,6 @@ const Item = styled.li`
   display: block;
   background-color: white;
   cursor: pointer;
-  // margin: 15px;
   align-items: left;
   padding:
 
@@ -45,7 +45,8 @@ const Item = styled.li`
 `;
 
 const Sidebar = styled.div`
-  margin-left: 30px;
+  // margin-top: 20px;
+  margin-left: 40px;
   min-width: 25%;
   border-right: 1px solid #eaeaea;
 `;
@@ -75,9 +76,12 @@ const AccountSummary = () => (
         <Item>
           <StyledLink to="/account/favorites">FAVORITES</StyledLink>
         </Item>
+        <Divider />
+
         <Item>
           <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
         </Item>
+        <Divider />
       </Sidebar>
       <Switch>
         <ProtectedRoute
@@ -89,6 +93,11 @@ const AccountSummary = () => (
           exact
           path="/account/reservations"
           component={UserReservations}
+        />
+        <ProtectedRoute
+          exact
+          path="/restaurants/new"
+          component={RestaurantForm}
         />
         <Route path="*" component={NotFound} />
       </Switch>

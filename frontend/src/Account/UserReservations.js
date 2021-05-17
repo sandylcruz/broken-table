@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
+const InnerReservationsDiv = styled.div`
+  margin: 27px;
+`;
+
 const ReservationsDiv = styled.div`
   background-color: #eaeaea;
   height: 100%;
@@ -13,12 +17,14 @@ const StyledH1 = styled.h1`
 `;
 
 const UserReservations = () => {
-  let reservations;
-  console.log(reservations);
-
+  // const selectUsersReservations = () => {}
+  const cats = "hi";
+  console.log(cats);
   return (
     <ReservationsDiv>
-      <StyledH1>Upcoming Reservations</StyledH1>
+      <InnerReservationsDiv>
+        <StyledH1>Upcoming Reservations</StyledH1>
+      </InnerReservationsDiv>
     </ReservationsDiv>
   );
 };

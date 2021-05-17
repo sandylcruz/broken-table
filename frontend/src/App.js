@@ -8,10 +8,10 @@ import GlobalStyle from "./GlobalStyle";
 import LoginForm from "./LoginForm";
 import NavBar from "./NavBar";
 import NotFound from "./NotFound";
-import RestaurantForm from "./RestaurantForm";
 import RestaurantShow from "./RestaurantShow";
 import SignupForm from "./SignupForm";
 import Search from "./Search";
+import RestaurantForm from "./RestaurantForm/RestaurantForm";
 
 const App = React.memo(({ store }) => (
   <Provider store={store}>
@@ -25,12 +25,13 @@ const App = React.memo(({ store }) => (
           <AuthRoute path="/login" component={LoginForm} />
           <AuthRoute path="/signup" component={SignupForm} />
           <Route exact path="/" component={Search} />
-          <Route exact path="/restaurants/:id" component={RestaurantShow} />
           <ProtectedRoute
             exact
             path="/restaurants/new"
             component={RestaurantForm}
           />
+          <Route exact path="/restaurants/:id" component={RestaurantShow} />
+
           <ProtectedRoute path="/account/" component={AccountContainer} />
           <Route path="*" component={NotFound} />
         </Switch>

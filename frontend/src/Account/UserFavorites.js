@@ -1,64 +1,51 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import styled from "styled-components";
+import RestaurantIndexItem from "../Restaurant/RestaurantIndexItem";
+import { selectCurrentUserFavoriteRestaurants } from "../reducers/selectors";
 
-// const Item = styled.li`
-//   text-decoration: none;
-//   color: #2a2a2a;
-//   padding: 20px 0;
-//   margin-top: 50px;
-//   font-family: arial narrow;
-//   font-size: 14px;
-//   display: block;
-//   border-bottom: 1px solid #eaeaea;
-//   background-color: white;
-//   cursor: pointer;
-//   margin: 15px;
-//   align-items: left;
-//   padding:
-
-//   &:hover {
-//     color: red;
-//   }
-// `;
-
-// const Button = styled.button`
-//   text-decoration: none;
-//   color: #333333;
-//   padding: 10px 15px;
-//   font-family: arial narrow;
-//   font-size: 15px;
-//   display: block;
-//   border: 0;
-//   background-color: white;
-//   cursor: pointer;
-
-//   &:hover {
-//     color: #ff462d;
-//   }
-// `;
-
-const StyledH1 = styled.h1`
-  font-size: 40px;
+const FavoritesDiv = styled.div`
+  background-color: #eaeaea;
+  height: 100%;
+  width: 100%;
+  display: flex;
 `;
 
-const UserFavorites = () => (
-  <StyledH1>Favorites</StyledH1>
-  // <AccountContainer>
-  //   <LeftDiv>
-  //     <Item> {/* <Button onClick={UserFavorites}>FAVORITES</Button> */}</Item>
-  //     <Item>
-  //       {" "}
-  //       <Button onClick={UserReservations}>RESERVATIONS</Button>
-  //     </Item>
-  //     <Item>
-  //       {" "}
-  //       <Button onClick={logout}>SIGN OUT</Button>
-  //     </Item>
-  //   </LeftDiv>
-  //   <RightDiv>
-  //     <StyledH1>My Favorites</StyledH1>
-  //   </RightDiv>
-  // </AccountContainer>
-);
+const FavoriteItemContainer = styled.div`
+  border: 1px solid pink;
+`;
+
+const InnerFavoritesDiv = styled.div`
+  margin: 27px;
+`;
+
+const StyledH1 = styled.h1`
+  font-size: 30px;
+`;
+
+const UserFavorites = React.memo(() => {
+  const favoriteRestaurants = useSelector(selectCurrentUserFavoriteRestaurants);
+  // const currentUser = useSelector(selectCurrentUser);
+  // const currentUsersFavoriteIds = currentUser.favoriteIds;
+
+  // console.log("Fav_ids =", currentUsersFavoriteIds);
+  // const restaurants = useSelector(selectAllRestaurants);
+
+  // console.log("Restaurants =", restaurants);
+
+  return (
+    <FavoritesDiv>
+      <InnerFavoritesDiv>
+        <StyledH1>My Favorites</StyledH1>
+        <FavoriteItemContainer>
+          {favoriteRestaurants.map((restaurant) => (
+            <RestaurantIndexItem key={restaurant.id} restaurant={restaurant} />
+          ))}
+        </FavoriteItemContainer>
+      </InnerFavoritesDiv>
+    </FavoritesDiv>
+  );
+});
+
 export default UserFavorites;

@@ -13,6 +13,26 @@ export const selectCurrentUser = createSelector(
   (currentUser) => currentUser
 );
 
+export const selectCurrentUserFavoriteRestaurants = createSelector(
+  (state) => {
+    const currentUser = selectCurrentUser(state);
+
+    if (!currentUser) {
+      return null;
+    }
+
+    return currentUser.favoriteIds;
+  },
+  (state) => state.entities.restaurants,
+  (favoriteIds, restaurants) => {
+    if (!favoriteIds) {
+      return [];
+    }
+
+    return favoriteIds.map((id) => restaurants[id]);
+  }
+);
+
 export const selectErrors = createSelector(
   (state) => state.errors,
   (errors) => errors

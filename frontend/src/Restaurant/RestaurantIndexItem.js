@@ -130,7 +130,7 @@ const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {
   );
 
   return (
-    <Link to={`restaurants/${restaurant.id}`}>
+    <Link to={`/restaurants/${restaurant.id}`}>
       <RestaurantItem key={restaurant.id}>
         <RestaurantInfoDiv>
           <LeftDiv>
@@ -140,7 +140,14 @@ const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {
           <RightDiv>
             <FirstLineDiv>
               <StyledH3>{restaurant.name}</StyledH3>
-              <FavoriteTriggerButton onClick={handleFavoriteToggle}>
+              <FavoriteTriggerButton
+                onClick={handleFavoriteToggle}
+                aria-label={
+                  restaurant.isFavorited
+                    ? `Unfavorite ${restaurant.name}`
+                    : `Favorite ${restaurant.name}`
+                }
+              >
                 {restaurant.isFavorited ? (
                   <StyledFavoriteHeart />
                 ) : (
