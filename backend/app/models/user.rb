@@ -19,16 +19,6 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-  has_many :submitted_restaurants,
-           class_name: 'Restaurant',
-           foreign_key: :submitter_id,
-           primary_key: :id
-
-  has_many :reviews,
-           class_name: 'Review',
-           foreign_key: :user_id,
-           primary_key: :id
-
   has_many :favorites,
            class_name: 'Favorite',
            foreign_key: :user_id,
@@ -39,16 +29,23 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            primary_key: :id
 
-  has_many :reserved_restaurants, through: :reservations, source: :restaurant
+  has_many :reviews,
+           class_name: 'Review',
+           foreign_key: :user_id,
+           primary_key: :id
+
+  has_many :submitted_restaurants,
+           class_name: 'Restaurant',
+           foreign_key: :submitter_id,
+           primary_key: :id
+
   has_many :favorite_restaurants, through: :favorites, source: :restaurant
+  has_many :reserved_restaurants, through: :reservations, source: :restaurant
 
   has_one_attached :photo
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
-    return nil unless user
-
-    user.is_password?(password) ? user : nil
+  def favorite_ids
+    favorite_restaurants.pluck(:id)
   end
 
   def is_password?(password)
@@ -66,8 +63,11 @@ class User < ApplicationRecord
     session_token
   end
 
-  def favorite_ids
-    favorite_restaurants.pluck(:id)
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
+    return nil unless user
+
+    user.is_password?(password) ? user : nil
   end
 
   private

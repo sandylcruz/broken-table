@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Review < ApplicationRecord
-  validates :rating, presence: true, inclusion: { in: 1..5 }
   validates :body, presence: true
+  validates :rating, presence: true, inclusion: { in: 1..5 }
 
   belongs_to :author,
              class_name: 'User',
