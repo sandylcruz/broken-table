@@ -24,6 +24,11 @@ class Restaurant < ApplicationRecord
            foreign_key: :restaurant_id,
            primary_key: :id
 
+  has_many :reservations,
+           class_name: 'Reservation',
+           foreign_key: :restaurant_id,
+           primary_key: :id
+
   has_one_attached :photo
 
   def is_favorited?(user)

@@ -34,6 +34,12 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            primary_key: :id
 
+  has_many :reservations,
+           class_name: 'Reservation',
+           foreign_key: :user_id,
+           primary_key: :id
+
+  has_many :reserved_restaurants, through: :reservations, source: :restaurant
   has_many :favorite_restaurants, through: :favorites, source: :restaurant
 
   has_one_attached :photo
