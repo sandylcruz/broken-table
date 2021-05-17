@@ -6,14 +6,17 @@ import RestaurantIndexItem from "../Restaurant/RestaurantIndexItem";
 import { selectCurrentUserFavoriteRestaurants } from "../reducers/selectors";
 
 const FavoritesDiv = styled.div`
-  background-color: #eaeaea;
   height: 100%;
   width: 100%;
   display: flex;
+  background-color: #fafafa;
 `;
 
 const FavoriteItemContainer = styled.div`
-  border: 1px solid pink;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  margin: 5px;
+  background-color: transparent;
 `;
 
 const InnerFavoritesDiv = styled.div`
@@ -22,6 +25,11 @@ const InnerFavoritesDiv = styled.div`
 
 const StyledH1 = styled.h1`
   font-size: 30px;
+`;
+
+const StyledRestaurantIndexItem = styled(RestaurantIndexItem)`
+  border: 1px solid pink;
+  // background-color: purple;
 `;
 
 const UserFavorites = React.memo(() => {
@@ -33,7 +41,10 @@ const UserFavorites = React.memo(() => {
         <StyledH1>My Favorites</StyledH1>
         <FavoriteItemContainer>
           {favoriteRestaurants.map((restaurant) => (
-            <RestaurantIndexItem key={restaurant.id} restaurant={restaurant} />
+            <StyledRestaurantIndexItem
+              key={restaurant.id}
+              restaurant={restaurant}
+            />
           ))}
         </FavoriteItemContainer>
       </InnerFavoritesDiv>
