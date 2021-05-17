@@ -1,7 +1,8 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from "styled-components";
+import { createFavorite, removeFavorite } from "../actions/favoriteActions";
 import RestaurantIndexItem from "../Restaurant/RestaurantIndexItem";
 import { selectCurrentUserFavoriteRestaurants } from "../reducers/selectors";
 
@@ -9,7 +10,7 @@ const FavoritesDiv = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: #fafafa;
+  background-color: white;
 `;
 
 const FavoriteItemContainer = styled.div`
@@ -34,6 +35,15 @@ const StyledRestaurantIndexItem = styled(RestaurantIndexItem)`
 
 const UserFavorites = React.memo(() => {
   const favoriteRestaurants = useSelector(selectCurrentUserFavoriteRestaurants);
+  const dispatch = useDispatch();
+
+  const handleFavoriteToggle = useCallback((restaurant) => {
+    if (!restaurant.isFavorited) {
+      dispatch(createFavorite(restaurant.id));
+    } else {
+      dispatch(removeFavorite(restaurant.id));
+    }
+  }, []);
 
   return (
     <FavoritesDiv>
@@ -44,6 +54,7 @@ const UserFavorites = React.memo(() => {
             <StyledRestaurantIndexItem
               key={restaurant.id}
               restaurant={restaurant}
+              onFavoriteToggle={handleFavoriteToggle}
             />
           ))}
         </FavoriteItemContainer>
