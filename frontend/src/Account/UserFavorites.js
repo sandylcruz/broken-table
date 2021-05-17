@@ -26,13 +26,6 @@ const StyledH1 = styled.h1`
 
 const UserFavorites = React.memo(() => {
   const favoriteRestaurants = useSelector(selectCurrentUserFavoriteRestaurants);
-  // const currentUser = useSelector(selectCurrentUser);
-  // const currentUsersFavoriteIds = currentUser.favoriteIds;
-
-  // console.log("Fav_ids =", currentUsersFavoriteIds);
-  // const restaurants = useSelector(selectAllRestaurants);
-
-  // console.log("Restaurants =", restaurants);
 
   return (
     <FavoritesDiv>
