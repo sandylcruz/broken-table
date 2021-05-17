@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resource :session, only: %i[create destroy]
     resources :restaurants, only: %i[index create show] do
       resource :favorite, only: %i[create destroy]
+      resource :reservations, only: %i[create destroy]
     end
     resource :reviews, only: %i[create]
   end
