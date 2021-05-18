@@ -8,6 +8,9 @@ class Restaurant < ApplicationRecord
   validates :longitude, presence: true
   validates :name, presence: true
   validates :photo, presence: true
+  validates :breakfast_capacity, presence: true
+  validates :lunch_capacity, presence: true
+  validates :dinner_capacity, presence: true
 
   has_many :favorites,
            class_name: 'Favorite',

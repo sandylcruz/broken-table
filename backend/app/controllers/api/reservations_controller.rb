@@ -2,15 +2,15 @@
 
 module Api
   # Reservations Controller class
+  # rubocop:disable Layout/LineLength
   class ReservationsController < ApplicationController
     def create
-      @reservation = Reservation.new(requester: current_user, restaurant_id: params[:restaurant_id],
-                                     date: params[:date], time_slot: params[:timeslot], party_size: params[:party_size])
-
-      if @reservation.save
+      @reservation = Reservation.new(requester: current_user, restaurant_id: reservation_params[:restaurant_id],
+                                     date: reservation_params[:date], time_slot: reservation_params[:time_slot], party_size: reservation_params[:party_size])
+      if @reservation.save!
         render :show
       else
-        render json: @reservation.errors.full_messages, status: :unprocessable_entity
+        render json: ['Reservation not saved'], status: 422
       end
     end
 
@@ -26,8 +26,9 @@ module Api
 
     private
 
-    def reservations_params
-      params.require(:reservations).permit(:restaurant_id, :date, :time_slot, :party_size)
+    def reservation_params
+      params.require(:reservation).permit(:restaurant_id, :date, :time_slot, :party_size)
     end
   end
 end
+# rubocop:enable Layout/LineLength

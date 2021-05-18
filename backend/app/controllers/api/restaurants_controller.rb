@@ -35,7 +35,8 @@ module Api
     private
 
     def restaurant_params
-      params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude, :photo)
+      params.require(:restaurant).permit(:name, :description, :location, :latitude, :longitude, :photo,
+                                         :breakfast_capacity, :lunch_capacity, :dinner_capacity)
     end
 
     def bounds
