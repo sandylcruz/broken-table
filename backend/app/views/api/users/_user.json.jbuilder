@@ -23,6 +23,7 @@ json.reservations user.reservations do |reservation|
   json.id reservation.id
   json.requesterId reservation.user_id
   json.restaurant reservation.restaurant
+  json.restaurantPhotoUrl reservation.restaurant.photo.url
   json.timeSlot reservation.time_slot
   json.partySize reservation.party_size
   json.date reservation.date

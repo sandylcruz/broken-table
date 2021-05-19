@@ -36,7 +36,7 @@ export const selectCurrentUserFavoriteRestaurants = createSelector(
 export const selectCurrentUserReservations = createSelector(
   (state) => {
     const currentUser = selectCurrentUser(state);
-    console.log("State:", state);
+    console.log("State:", state.entities.users[currentUser.id]);
 
     if (!currentUser) {
       return null;
@@ -46,18 +46,13 @@ export const selectCurrentUserReservations = createSelector(
   },
   (state) => state.entities.restaurants,
 
-  // console.log(state.entities),
-
   (reservations, restaurants) => {
     if (!reservations) {
       return [];
     }
 
     console.log("Restaurant:", restaurants);
-    // return reservations.map((id) => restaurants[id]);
-    return reservations;
-
-    // add restaurant.photoUrl and restaurant.name to reservations
+    return Object.keys(reservations).map((key) => reservations[key]);
   }
 );
 
