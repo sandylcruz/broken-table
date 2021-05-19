@@ -10,14 +10,13 @@ const FavoritesDiv = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
-  background-color: white;
+  background-color: #fafafa;
 `;
 
-const FavoriteItemContainer = styled.div`
-  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
+const FavoriteItem = styled.div`
+  background-color: white;
   border-radius: 15px;
-  margin: 5px;
-  background-color: transparent;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.1);
 `;
 
 const InnerFavoritesDiv = styled.div`
@@ -29,8 +28,10 @@ const StyledH1 = styled.h1`
 `;
 
 const StyledRestaurantIndexItem = styled(RestaurantIndexItem)`
-  border: 1px solid pink;
-  // background-color: purple;
+  width: 560px;
+  height: 130px;
+  background-color: white;
+  border-radius: 15px;
 `;
 
 const UserFavorites = React.memo(() => {
@@ -49,15 +50,17 @@ const UserFavorites = React.memo(() => {
     <FavoritesDiv>
       <InnerFavoritesDiv>
         <StyledH1>My Favorites</StyledH1>
-        <FavoriteItemContainer>
+        <ul>
           {favoriteRestaurants.map((restaurant) => (
-            <StyledRestaurantIndexItem
-              key={restaurant.id}
-              restaurant={restaurant}
-              onFavoriteToggle={handleFavoriteToggle}
-            />
+            <FavoriteItem>
+              <StyledRestaurantIndexItem
+                key={restaurant.id}
+                restaurant={restaurant}
+                onFavoriteToggle={handleFavoriteToggle}
+              />
+            </FavoriteItem>
           ))}
-        </FavoriteItemContainer>
+        </ul>
       </InnerFavoritesDiv>
     </FavoritesDiv>
   );
