@@ -33,6 +33,16 @@ export const selectCurrentUserFavoriteRestaurants = createSelector(
   }
 );
 
+export const selectCurrentUserReservations = createSelector((state) => {
+  const currentUser = selectCurrentUser(state);
+
+  if (!currentUser) {
+    return null;
+  }
+
+  return currentUser.reservations;
+});
+
 export const selectErrors = createSelector(
   (state) => state.errors,
   (errors) => errors

@@ -3,6 +3,8 @@ import {
   UNRECEIVE_FAVORITE,
 } from "../actions/favoriteActions";
 
+import { RECEIVE_RESERVATION } from "../actions/reservationActions";
+
 import {
   RECEIVE_RESTAURANT,
   RECEIVE_RESTAURANTS,
@@ -31,11 +33,13 @@ const restaurantsReducer = (state = {}, action) => {
           reviewIds: restaurant.reviews.map((review) => review.id),
           numberOfFavorites: restaurant.numberOfFavorites,
           isFavorited: restaurant.isFavorited,
+          reservations: restaurant.reservations,
         },
       };
     }
     case RECEIVE_RESTAURANTS:
       return { ...state, ...action.restaurants };
+
     case RECEIVE_REVIEW: {
       const { restaurantId } = action.review;
       const restaurant = state[restaurantId];
@@ -72,6 +76,19 @@ const restaurantsReducer = (state = {}, action) => {
           numberOfFavorites: state[restaurantId].numberOfFavorites - 1,
         },
       };
+    }
+
+    case RECEIVE_RESERVATION: {
+      const { restaurantId } = action.favorite;
+      const restaurant = state[restaurantId];
+      const newState = {
+        ...state,
+        [restaurantId]: {
+          ...restaurant,
+          reservations: restaurant.reservations,
+        },
+      };
+      return newState;
     }
 
     default:

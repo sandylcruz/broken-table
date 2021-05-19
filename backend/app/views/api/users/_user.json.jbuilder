@@ -18,3 +18,12 @@ json.favoriteRestaurants user.favorite_restaurants do |restaurant|
   json.isFavorited restaurant.is_favorited?(current_user)
   json.numberOfFavorites restaurant.favorites.count
 end
+
+json.reservations user.reservations do |reservation|
+  json.id reservation.id
+  json.requesterId reservation.user_id
+  json.restaurantId reservation.restaurant_id
+  json.timeSlot reservation.time_slot
+  json.partySize reservation.party_size
+  json.date reservation.date
+end
