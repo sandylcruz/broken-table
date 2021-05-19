@@ -92,7 +92,6 @@ const StyledParty = styled(Party)`
 
 const UserReservations = () => {
   const reservationsArray = useSelector(selectCurrentUserReservations);
-  console.log("ReservationsArray from selector:", reservationsArray);
 
   return (
     <ReservationsDiv>
@@ -101,7 +100,6 @@ const UserReservations = () => {
         {reservationsArray.map((reservation) => (
           <ReservationItem key={reservation.id}>
             <Left>
-              {/* {console.log(reservation)} */}
               <StyledImg src={reservation.restaurant.photoUrl} />
             </Left>
             <Right>
