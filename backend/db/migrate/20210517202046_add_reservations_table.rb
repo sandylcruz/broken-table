@@ -7,7 +7,7 @@ class AddReservationsTable < ActiveRecord::Migration[6.1]
       t.integer :user_id, null: false
       t.integer :restaurant_id, null: false
       t.integer :party_size, null: false
-      t.datetime :date, null: false
+      t.date :date, null: false
       t.string :time_slot, null: false
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false
