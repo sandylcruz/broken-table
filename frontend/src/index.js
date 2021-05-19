@@ -21,8 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
       {}
     );
 
-    console.log(usersReservations);
-
     const restaurants = favoriteRestaurants.reduce(
       (accumulator, restaurant) => {
         accumulator[restaurant.id] = restaurant;
@@ -44,8 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       session: { id: window.currentUser.id },
     };
-
-    console.log(preloadedState);
 
     store = configureStore(preloadedState);
     delete window.currentUser;
