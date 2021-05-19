@@ -21,7 +21,7 @@ export const createReservation = (reservation) => (dispatch) =>
   );
 
 export const cancelReservation = (reservation) => (dispatch) => {
-  ReservationApiUtil.removeReservation(reservation).then(() =>
+  ReservationApiUtil.cancelReservation(reservation).then(() =>
     dispatch(unreceiveReservation(reservation))
   );
 };

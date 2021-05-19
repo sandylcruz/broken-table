@@ -34,6 +34,9 @@ const restaurantsReducer = (state = {}, action) => {
           numberOfFavorites: restaurant.numberOfFavorites,
           isFavorited: restaurant.isFavorited,
           reservations: restaurant.reservations,
+          breakfastCapacity: restaurant.breakfastCapacity,
+          lunchCapacity: restaurant.lunchCapacity,
+          dinnerCapacity: restaurant.dinnerCapacity,
         },
       };
     }

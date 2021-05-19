@@ -92,37 +92,35 @@ const StyledParty = styled(Party)`
 
 const UserReservations = () => {
   const reservationsArray = useSelector(selectCurrentUserReservations);
-  console.log(reservationsArray);
+  console.log("ReservationsArray from selector:", reservationsArray);
 
   return (
     <ReservationsDiv>
       <InnerReservationsDiv>
         <StyledH1>Upcoming Reservations</StyledH1>
-        <ul>
-          {reservationsArray.map((reservation) => (
-            <ReservationItem key={reservation.id}>
-              <Left>
-                <StyledImg src={reservation.restaurantPhotoUrl} />
-              </Left>
-              <Right>
-                <li>
-                  <H1>{reservation.restaurantName}</H1>
-                </li>
-                <li>
-                  <DateLine>
-                    <StyledEvent /> {reservation.date} for{" "}
-                    {reservation.timeSlot}
-                  </DateLine>
-                </li>
-                <li>
-                  <PartyLine>
-                    <StyledParty /> Party of {reservation.partySize}
-                  </PartyLine>
-                </li>
-              </Right>
-            </ReservationItem>
-          ))}
-        </ul>
+        {reservationsArray.map((reservation) => (
+          <ReservationItem key={reservation.id}>
+            <Left>
+              {/* {console.log(reservation)} */}
+              <StyledImg src={reservation.restaurant.photoUrl} />
+            </Left>
+            <Right>
+              <li>
+                <H1>{reservation.restaurant.name}</H1>
+              </li>
+              <li>
+                <DateLine>
+                  <StyledEvent /> {reservation.date} for {reservation.timeSlot}
+                </DateLine>
+              </li>
+              <li>
+                <PartyLine>
+                  <StyledParty /> Party of {reservation.partySize}
+                </PartyLine>
+              </li>
+            </Right>
+          </ReservationItem>
+        ))}
       </InnerReservationsDiv>
     </ReservationsDiv>
   );
