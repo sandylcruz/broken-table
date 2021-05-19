@@ -1,17 +1,33 @@
 import React from "react";
 import { useSelector } from "react-redux";
-
 import styled from "styled-components";
+
+import Event from "./Event.svg";
+import Party from "./Party.svg";
 import { selectCurrentUserReservations } from "../reducers/selectors";
+
+const DateLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 const H1 = styled.h1`
   font-size: 20px;
+  margin: 5px;
 `;
+
 const InnerReservationsDiv = styled.div`
   margin: 27px;
 `;
 
 const Left = styled.div``;
+
+const PartyLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
 
 const ReservationsDiv = styled.div`
   background-color: #fafafa;
@@ -33,7 +49,8 @@ const ReservationItem = styled.div`
   flex-direction: row;
   width: 560px;
   height: 130px;
-  margin-left: 0px;
+  margin-left: -1px;
+  cursor: pointer;
 
 
   &:hover {
@@ -47,7 +64,16 @@ const ReservationItem = styled.div`
   .20s ease-out,color .25s ease-out,opacity .25s ease-out,box-shadow .15s ease-out
 `;
 
-const Right = styled.div``;
+const Right = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  justify-content: space-around;
+`;
+
+const StyledEvent = styled(Event)`
+  margin: 5px;
+`;
 
 const StyledH1 = styled.h1`
   font-size: 30px;
@@ -58,6 +84,10 @@ const StyledImg = styled.img`
   height: 120px;
   margin: 5px;
   border-radius: 5px;
+`;
+
+const StyledParty = styled(Party)`
+  margin: 5px;
 `;
 
 const UserReservations = () => {
@@ -78,9 +108,16 @@ const UserReservations = () => {
                   <H1>{reservation.restaurant.name}</H1>
                 </li>
                 <li>
-                  {reservation.date} for {reservation.timeSlot}
+                  <DateLine>
+                    <StyledEvent /> {reservation.date} for{" "}
+                    {reservation.timeSlot}
+                  </DateLine>
                 </li>
-                <li>Party of {reservation.partySize}</li>
+                <li>
+                  <PartyLine>
+                    <StyledParty /> Party of {reservation.partySize}
+                  </PartyLine>
+                </li>
               </Right>
             </ReservationItem>
           ))}
