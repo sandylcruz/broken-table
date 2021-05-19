@@ -36,7 +36,7 @@ export const selectCurrentUserFavoriteRestaurants = createSelector(
 export const selectCurrentUserReservations = createSelector(
   (state) => {
     const currentUser = selectCurrentUser(state);
-    console.log("State:", state.entities.users[currentUser.id]);
+    // console.log("State:", state.entities.users[currentUser.id]);
 
     if (!currentUser) {
       return null;
@@ -51,8 +51,17 @@ export const selectCurrentUserReservations = createSelector(
       return [];
     }
 
-    console.log("Restaurant:", restaurants);
-    return Object.keys(reservations).map((key) => reservations[key]);
+    // console.log("Restaurant:", restaurants);
+    return Object.keys(reservations).map((key) => {
+      const rawReservation = reservations[key];
+      const restaurant = restaurants[rawReservation.restaurantId];
+
+      return {
+        ...rawReservation,
+        restaurantName: restaurant.name,
+        restaurantPhotoUrl: restaurant.photoUrl,
+      };
+    });
   }
 );
 

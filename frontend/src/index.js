@@ -11,11 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // eslint-disable-next-line prettier/prettier
     const { favoriteRestaurants, ...currentUser } = window.currentUser;
     const { reservations } = window.currentUser;
+    // const reservationIds = reservations.map(
+    //   (reservation) => reservation.restaurant.id
+    // );
     const favoriteIds = favoriteRestaurants.map((restaurant) => restaurant.id);
 
     const usersReservations = reservations.reduce(
       (accumulator, reservation) => {
-        accumulator[reservation.id] = reservation;
+        const reservationObject = {
+          ...reservation,
+          restaurantId: reservation.restaurant.id,
+        };
+        delete reservationObject.restaurant;
+        accumulator[reservation.id] = reservationObject;
         return accumulator;
       },
       {}
@@ -28,6 +36,12 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {}
     );
+
+    reservations.forEach((reservation) => {
+      if (!restaurants[reservation.restaurant.id]) {
+        restaurants[reservation.restaurant.id] = reservation.restaurant;
+      }
+    });
 
     const preloadedState = {
       entities: {

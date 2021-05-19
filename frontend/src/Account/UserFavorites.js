@@ -52,7 +52,7 @@ const UserFavorites = React.memo(() => {
         <StyledH1>My Favorites</StyledH1>
         <ul>
           {favoriteRestaurants.map((restaurant) => (
-            <FavoriteItem>
+            <FavoriteItem key={restaurant.id}>
               <StyledRestaurantIndexItem
                 key={restaurant.id}
                 restaurant={restaurant}

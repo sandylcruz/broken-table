@@ -92,6 +92,7 @@ const StyledParty = styled(Party)`
 
 const UserReservations = () => {
   const reservationsArray = useSelector(selectCurrentUserReservations);
+  console.log(reservationsArray);
 
   return (
     <ReservationsDiv>
@@ -105,7 +106,7 @@ const UserReservations = () => {
               </Left>
               <Right>
                 <li>
-                  <H1>{reservation.restaurant.name}</H1>
+                  <H1>{reservation.restaurantName}</H1>
                 </li>
                 <li>
                   <DateLine>
