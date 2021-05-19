@@ -22,7 +22,7 @@ end
 json.reservations user.reservations do |reservation|
   json.id reservation.id
   json.requesterId reservation.user_id
-  json.restaurantId reservation.restaurant_id
+  json.restaurant reservation.restaurant
   json.timeSlot reservation.time_slot
   json.partySize reservation.party_size
   json.date reservation.date

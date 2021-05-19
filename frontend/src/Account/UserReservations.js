@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import styled from "styled-components";
+import { selectCurrentUserReservations } from "../reducers/selectors";
 
 const InnerReservationsDiv = styled.div`
   margin: 27px;
