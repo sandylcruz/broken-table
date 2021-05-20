@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+import Cancel from "./Cancel.svg";
+import { cancelReservation } from "../actions/reservationActions";
 import Event from "./Event.svg";
 import Party from "./Party.svg";
 import { selectCurrentUserReservations } from "../reducers/selectors";
+
+const CancelButton = styled.button`
+  background-color: pink;
+`;
 
 const DateLine = styled.div`
   display: flex;
@@ -13,6 +19,11 @@ const DateLine = styled.div`
   align-items: center;
 `;
 
+const FirstLine = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 const H1 = styled.h1`
   font-size: 20px;
   margin: 5px;
@@ -73,6 +84,8 @@ const Right = styled.div`
   justify-content: space-around;
 `;
 
+const StyledCancelX = styled(Cancel)``;
+
 const StyledEvent = styled(Event)`
   margin: 5px;
 `;
@@ -93,7 +106,12 @@ const StyledParty = styled(Party)`
 `;
 
 const UserReservations = () => {
+  const dispatch = useDispatch();
   const reservationsArray = useSelector(selectCurrentUserReservations);
+
+  const handleReservationClick = useCallback((reservation) => {
+    dispatch(cancelReservation(reservation.id));
+  }, []);
 
   return (
     <ReservationsDiv>
@@ -110,21 +128,26 @@ const UserReservations = () => {
                 <Left>
                   <StyledImg src={reservation.restaurant.photoUrl} />
                 </Left>
+
                 <Right>
-                  <li>
+                  <FirstLine>
                     <H1>{reservation.restaurant.name}</H1>
-                  </li>
-                  <li>
-                    <DateLine>
-                      <StyledEvent /> {reservation.date} for{" "}
-                      {reservation.timeSlot}
-                    </DateLine>
-                  </li>
-                  <li>
-                    <PartyLine>
-                      <StyledParty /> Party of {reservation.partySize}
-                    </PartyLine>
-                  </li>
+                    <CancelButton
+                      type="button"
+                      onClick={handleReservationClick}
+                    >
+                      <StyledCancelX />
+                    </CancelButton>
+                  </FirstLine>
+
+                  <DateLine>
+                    <StyledEvent /> {reservation.date} for{" "}
+                    {reservation.timeSlot}
+                  </DateLine>
+
+                  <PartyLine>
+                    <StyledParty /> Party of {reservation.partySize}
+                  </PartyLine>
                 </Right>
               </ReservationItem>
             </Link>

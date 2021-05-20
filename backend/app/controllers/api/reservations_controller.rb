@@ -4,6 +4,8 @@ module Api
   # Reservations Controller class
   # rubocop:disable Layout/LineLength
   class ReservationsController < ApplicationController
+    skip_before_action :verify_authenticity_token
+
     def create
       @reservation = Reservation.new(requester: current_user, restaurant_id: reservation_params[:restaurant_id],
                                      date: reservation_params[:date], time_slot: reservation_params[:time_slot], party_size: reservation_params[:party_size])

@@ -14,6 +14,12 @@ const FavoriteTriggerButton = styled.button`
   box-shadow: none;
 `;
 
+const FirstLineDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const LeftDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -112,12 +118,6 @@ const StyledRestaurantLocationText = styled.div`
 const StyledStar = styled(Star)`
   transform: scale(0.75);
   fill: red;
-`;
-
-const FirstLineDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {
