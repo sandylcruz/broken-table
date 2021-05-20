@@ -50,8 +50,9 @@ const UserFavorites = React.memo(() => {
     <FavoritesDiv>
       <InnerFavoritesDiv>
         <StyledH1>My Favorites</StyledH1>
-        <ul>
-          {favoriteRestaurants.map((restaurant) => (
+
+        {favoriteRestaurants.map((restaurant) => (
+          <ul key={restaurant.id}>
             <FavoriteItem key={restaurant.id}>
               <StyledRestaurantIndexItem
                 key={restaurant.id}
@@ -59,8 +60,8 @@ const UserFavorites = React.memo(() => {
                 onFavoriteToggle={handleFavoriteToggle}
               />
             </FavoriteItem>
-          ))}
-        </ul>
+          </ul>
+        ))}
       </InnerFavoritesDiv>
     </FavoritesDiv>
   );

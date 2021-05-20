@@ -178,12 +178,11 @@ const Greeting = React.memo(({ currentUser, logout }) => {
                 <Link href="/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
               <Item>
-                <Link href="/account/reservations">RESERVATIONS</Link>
-              </Item>
-              <Item>
                 <Link href="/account/favorites">FAVORITES</Link>
               </Item>
-
+              <Item>
+                <Link href="/account/reservations">RESERVATIONS</Link>
+              </Item>
               <Divider />
               <Item>
                 <Button onClick={logout}>SIGN OUT</Button>

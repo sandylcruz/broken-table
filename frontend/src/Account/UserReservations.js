@@ -101,32 +101,34 @@ const UserReservations = () => {
         <StyledH1>Upcoming Reservations</StyledH1>
 
         {reservationsArray.map((reservation) => (
-          <Link
-            to={`/restaurants/${reservation.restaurant.id}`}
-            key={reservation.restaurant.id}
-          >
-            <ReservationItem key={reservation.id}>
-              <Left>
-                <StyledImg src={reservation.restaurant.photoUrl} />
-              </Left>
-              <Right>
-                <li>
-                  <H1>{reservation.restaurant.name}</H1>
-                </li>
-                <li>
-                  <DateLine>
-                    <StyledEvent /> {reservation.date} for{" "}
-                    {reservation.timeSlot}
-                  </DateLine>
-                </li>
-                <li>
-                  <PartyLine>
-                    <StyledParty /> Party of {reservation.partySize}
-                  </PartyLine>
-                </li>
-              </Right>
-            </ReservationItem>
-          </Link>
+          <ul key={reservation.restaurant.id}>
+            <Link
+              to={`/restaurants/${reservation.restaurant.id}`}
+              key={reservation.restaurant.id}
+            >
+              <ReservationItem key={reservation.id}>
+                <Left>
+                  <StyledImg src={reservation.restaurant.photoUrl} />
+                </Left>
+                <Right>
+                  <li>
+                    <H1>{reservation.restaurant.name}</H1>
+                  </li>
+                  <li>
+                    <DateLine>
+                      <StyledEvent /> {reservation.date} for{" "}
+                      {reservation.timeSlot}
+                    </DateLine>
+                  </li>
+                  <li>
+                    <PartyLine>
+                      <StyledParty /> Party of {reservation.partySize}
+                    </PartyLine>
+                  </li>
+                </Right>
+              </ReservationItem>
+            </Link>
+          </ul>
         ))}
       </InnerReservationsDiv>
     </ReservationsDiv>
