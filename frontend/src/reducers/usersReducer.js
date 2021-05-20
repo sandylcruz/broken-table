@@ -68,15 +68,20 @@ const usersReducer = (state = {}, action) => {
     }
 
     case UNRECEIVE_RESERVATION: {
-      const { restaurantId, userId } = action;
+      const { reservationId, userId } = action;
+      const currentUser = state[userId];
+
+      const newReservations = {
+        ...currentUser.reservations,
+      };
+
+      delete newReservations[reservationId];
 
       return {
         ...state,
         [userId]: {
           ...state[userId],
-          reservationIds: state[userId].reservationIds.filter(
-            (id) => id !== restaurantId
-          ),
+          reservations: newReservations,
         },
       };
     }

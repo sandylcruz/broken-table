@@ -14,12 +14,11 @@ export const createReservation = (reservation) =>
     });
   });
 
-export const cancelReservation = (reservation) =>
+export const cancelReservation = (reservationId) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "DELETE",
-      url: "/api/reservations",
-      data: { reservation },
+      url: `/api/reservations/${reservationId}`,
       success: resolve,
       error: reject,
     });

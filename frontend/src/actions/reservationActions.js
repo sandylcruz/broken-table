@@ -8,9 +8,10 @@ export const receiveReservation = (reservation) => ({
   reservation,
 });
 
-export const unreceiveReservation = (reservation) => ({
+export const unreceiveReservation = (reservationId, userId) => ({
   type: UNRECEIVE_RESERVATION,
-  reservation,
+  reservationId,
+  userId,
 });
 
 export const createReservation = (reservation) => (dispatch) =>
@@ -20,8 +21,8 @@ export const createReservation = (reservation) => (dispatch) =>
     dispatch(receiveReservation(reservationFromServer))
   );
 
-export const cancelReservation = (reservation) => (dispatch) => {
-  ReservationApiUtil.cancelReservation(reservation).then(() =>
-    dispatch(unreceiveReservation(reservation))
+export const cancelReservation = (reservationId) => (dispatch, getState) => {
+  ReservationApiUtil.cancelReservation(reservationId).then(() =>
+    dispatch(unreceiveReservation(reservationId, getState().session.id))
   );
 };
