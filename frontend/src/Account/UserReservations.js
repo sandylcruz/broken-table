@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -37,6 +38,7 @@ const ReservationsDiv = styled.div`
 `;
 
 const ReservationItem = styled.div`
+  background-color: purple;
   border: 1px solid #eaeaea;
   list-style: none;
   margin: 5px;
@@ -97,27 +99,34 @@ const UserReservations = () => {
     <ReservationsDiv>
       <InnerReservationsDiv>
         <StyledH1>Upcoming Reservations</StyledH1>
+
         {reservationsArray.map((reservation) => (
-          <ReservationItem key={reservation.id}>
-            <Left>
-              <StyledImg src={reservation.restaurant.photoUrl} />
-            </Left>
-            <Right>
-              <li>
-                <H1>{reservation.restaurant.name}</H1>
-              </li>
-              <li>
-                <DateLine>
-                  <StyledEvent /> {reservation.date} for {reservation.timeSlot}
-                </DateLine>
-              </li>
-              <li>
-                <PartyLine>
-                  <StyledParty /> Party of {reservation.partySize}
-                </PartyLine>
-              </li>
-            </Right>
-          </ReservationItem>
+          <Link
+            to={`/restaurants/${reservation.restaurant.id}`}
+            key={reservation.restaurant.id}
+          >
+            <ReservationItem key={reservation.id}>
+              <Left>
+                <StyledImg src={reservation.restaurant.photoUrl} />
+              </Left>
+              <Right>
+                <li>
+                  <H1>{reservation.restaurant.name}</H1>
+                </li>
+                <li>
+                  <DateLine>
+                    <StyledEvent /> {reservation.date} for{" "}
+                    {reservation.timeSlot}
+                  </DateLine>
+                </li>
+                <li>
+                  <PartyLine>
+                    <StyledParty /> Party of {reservation.partySize}
+                  </PartyLine>
+                </li>
+              </Right>
+            </ReservationItem>
+          </Link>
         ))}
       </InnerReservationsDiv>
     </ReservationsDiv>
