@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { Datepicker } from "@zendeskgarden/react-datepickers";
@@ -67,6 +68,7 @@ const ReservationDetail = ({ restaurantId }) => {
   const [partySize, setPartySize] = useState("Party size");
   const [timeslot, setTimeslot] = useState("Timeslot");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const createReservation = useCallback(
     (reservation) => dispatch(createReservationAction(reservation)),
@@ -94,7 +96,9 @@ const ReservationDetail = ({ restaurantId }) => {
         party_size: parseInt(partySize, 10),
         restaurant_id: restaurantId,
       };
-      createReservation(reservation);
+      createReservation(reservation).then(() => {
+        history.push("/account/reservations");
+      });
     },
     [createReservation, date, timeslot, partySize, restaurantId]
   );
