@@ -68,7 +68,7 @@ const StyledField = styled(Field)`
   margin-bottom: 5px;
 `;
 
-const ReservationDetail = () => {
+const ReservationDetail = ({ restaurantId }) => {
   const [date, setDate] = useState(new Date());
   const [partySize, setPartySize] = useState("Party size");
   const [timeslot, setTimeslot] = useState("Timeslot");
@@ -80,9 +80,9 @@ const ReservationDetail = () => {
     [dispatch]
   );
 
-  const dateFormatter = new Intl.DateTimeFormat("en-US", {
-    month: "2-digit",
+  const dateFormatter = new Intl.DateTimeFormat("en-GB", {
     day: "2-digit",
+    month: "2-digit",
     year: "numeric",
   });
 
@@ -94,16 +94,18 @@ const ReservationDetail = () => {
     (event) => {
       event.preventDefault();
       const parsedDate = dateFormatter.format(date);
+
       const reservation = {
-        parsedDate,
-        timeslot,
-        partySize,
+        date: parsedDate,
+        time_slot: timeslot.toLowerCase(),
+        party_size: parseInt(partySize, 10),
+        restaurant_id: restaurantId,
       };
       createReservation(reservation).then((createdReservation) => {
         history.push(`/reservations/${createdReservation.id}`);
       });
     },
-    [createReservation, date, timeslot, partySize]
+    [createReservation, date, timeslot, partySize, restaurantId]
   );
 
   const handleTimeslotSelect = useCallback((newTimeslot) => {

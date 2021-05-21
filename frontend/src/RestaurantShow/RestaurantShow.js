@@ -213,7 +213,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
 
           <StyledReservationContainer>
             <StyledH3>Make a reservation</StyledH3>
-            <ReservationDetail />
+            <ReservationDetail restaurantId={restaurant.id} />
           </StyledReservationContainer>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>

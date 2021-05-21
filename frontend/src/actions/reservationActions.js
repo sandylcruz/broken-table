@@ -17,7 +17,7 @@ export const unreceiveReservation = (reservationId, userId) => ({
 export const createReservation = (reservation) => (dispatch) => {
   console.log(reservation);
 
-  ReservationApiUtil.createReservation(
+  return ReservationApiUtil.createReservation(
     reservation
   ).then((reservationFromServer) =>
     dispatch(receiveReservation(reservationFromServer))
