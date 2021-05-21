@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resources :users, only: %i[create show destroy]
     resource :session, only: %i[create destroy]
-    resources :restaurants, only: %i[index create show]
+    resources :restaurants, only: %i[index create show] do
+      resource :favorite, only: %i[create destroy]
+    end
     resource :reviews, only: %i[create]
   end
   root 'static_pages#root'

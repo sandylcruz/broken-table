@@ -4,3 +4,5 @@ json.extract! restaurant, :name, :location, :description, :id, :latitude, :longi
 
 json.photoUrl restaurant.photo.url
 json.averageRating restaurant.average_rating
+json.isFavorited restaurant.is_favorited?(current_user)
+json.numberOfFavorites restaurant.favorites.count

@@ -14,6 +14,7 @@ import { updateBounds as updateBoundsAction } from "../actions/filterActions";
 const SearchContainer = React.memo((props) => {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const restaurants = useSelector(selectRestaurantsInBounds);
 
   const updateBounds = useMemo(

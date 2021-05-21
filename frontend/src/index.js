@@ -8,9 +8,26 @@ document.addEventListener("DOMContentLoaded", () => {
   let store = configureStore();
 
   if (window.currentUser) {
+    const { favoriteRestaurants, ...currentUser } = window.currentUser;
+    const favoriteIds = favoriteRestaurants.map((restaurant) => restaurant.id);
+
+    const restaurants = favoriteRestaurants.reduce(
+      (accumulator, restaurant) => {
+        accumulator[restaurant.id] = restaurant;
+        return accumulator;
+      },
+      {}
+    );
+
     const preloadedState = {
       entities: {
-        users: { [window.currentUser.id]: window.currentUser },
+        users: {
+          [window.currentUser.id]: {
+            ...currentUser,
+            favoriteIds,
+          },
+        },
+        restaurants,
       },
       session: { id: window.currentUser.id },
     };

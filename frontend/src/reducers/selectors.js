@@ -13,6 +13,26 @@ export const selectCurrentUser = createSelector(
   (currentUser) => currentUser
 );
 
+export const selectCurrentUserFavoriteRestaurants = createSelector(
+  (state) => {
+    const currentUser = selectCurrentUser(state);
+
+    if (!currentUser) {
+      return null;
+    }
+
+    return currentUser.favoriteIds;
+  },
+  (state) => state.entities.restaurants,
+  (favoriteIds, restaurants) => {
+    if (!favoriteIds) {
+      return [];
+    }
+
+    return favoriteIds.map((id) => restaurants[id]);
+  }
+);
+
 export const selectErrors = createSelector(
   (state) => state.errors,
   (errors) => errors
@@ -31,9 +51,19 @@ export const selectAllRestaurants = createSelector(
 export const selectRestaurantsInBounds = createSelector(
   (state) => state.entities.restaurants,
   (state) => state.ui.filters.bounds,
-  (restaurants, bounds) =>
-    Object.keys(restaurants).reduce((accumulator, key) => {
+  (state) =>
+    state.entities.users[state.session.id]
+      ? state.entities.users[state.session.id].favoriteIds
+      : undefined,
+
+  (restaurants, bounds, favoriteRestaurantIds) => {
+    const favoriteRestaurantIdsSet = new Set(favoriteRestaurantIds);
+
+    return Object.keys(restaurants).reduce((accumulator, key) => {
       const restaurant = restaurants[key];
+      const isFavorited =
+        favoriteRestaurantIds && favoriteRestaurantIdsSet.has(restaurant.id);
+
       const isLatitudeValid =
         restaurant.latitude <= bounds.northEast.latitude &&
         restaurant.latitude >= bounds.southWest.latitude;
@@ -42,11 +72,12 @@ export const selectRestaurantsInBounds = createSelector(
         restaurant.longitude >= bounds.southWest.longitude;
 
       if (isLatitudeValid && isLongitudeValid) {
-        accumulator.push(restaurant);
+        accumulator.push({ ...restaurant, isFavorited });
       }
 
       return accumulator;
-    }, [])
+    }, []);
+  }
 );
 
 export const selectRestaurantById = createSelector(

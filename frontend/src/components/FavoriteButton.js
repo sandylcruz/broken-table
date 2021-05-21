@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const HitListButton = styled.button`
+const FavoriteButton = styled.button`
   border-radius: 5px;
   border: 1px solid #d3d3d3;
   width: 200px;
@@ -36,4 +36,4 @@ const HitListButton = styled.button`
   }
 `;
 
-export default HitListButton;
+export default FavoriteButton;

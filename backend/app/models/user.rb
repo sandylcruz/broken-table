@@ -29,6 +29,13 @@ class User < ApplicationRecord
            foreign_key: :user_id,
            primary_key: :id
 
+  has_many :favorites,
+           class_name: 'Favorite',
+           foreign_key: :user_id,
+           primary_key: :id
+
+  has_many :favorite_restaurants, through: :favorites, source: :restaurant
+
   has_one_attached :photo
 
   def self.find_by_credentials(username, password)
@@ -51,6 +58,10 @@ class User < ApplicationRecord
     self.session_token = SecureRandom.urlsafe_base64
     save!
     session_token
+  end
+
+  def favorite_ids
+    favorite_restaurants.pluck(:id)
   end
 
   private

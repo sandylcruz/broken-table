@@ -4,10 +4,9 @@ import styled from "styled-components";
 import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
-  width: 500px;
+  width: 100%;
   height: 700px;
   padding-top: 70px;
-
   position: fixed;
 `;
 
@@ -26,8 +25,8 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
     // in the future, find a better way of doing this.
     // map uses center + zoom. state only has bounds
     const mapOptions = {
-      center: { lat: 37.773136, lng: -122.423959 },
-      zoom: 14,
+      center: { lat: 37.791724, lng: -122.398252 },
+      zoom: 15,
     };
 
     const map = new google.maps.Map(mapNodeRef.current, mapOptions);

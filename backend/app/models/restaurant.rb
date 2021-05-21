@@ -19,7 +19,18 @@ class Restaurant < ApplicationRecord
            foreign_key: :restaurant_id,
            primary_key: :id
 
+  has_many :favorites,
+           class_name: 'Favorite',
+           foreign_key: :restaurant_id,
+           primary_key: :id
+
   has_one_attached :photo
+
+  def is_favorited?(user)
+    return false if user.nil?
+
+    Favorite.exists?(user_id: user.id, restaurant_id: id)
+  end
 
   def average_rating
     reviews.average(:rating).to_f.round(1)

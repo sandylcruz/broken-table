@@ -36,6 +36,22 @@ const AvatarImg = styled.img`
   }
 `;
 
+const Button = styled.button`
+  text-decoration: none;
+  color: #333333;
+  padding: 10px 15px;
+  font-family: arial narrow;
+  font-size: 15px;
+  display: block;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
+`;
+
 const Container = styled.div``;
 
 const Divider = styled.li`
@@ -111,7 +127,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
   const history = useHistory();
   const dropdownMenuRef = useRef();
   const [isActive, setIsActive] = useState(false);
-  const onClick = () => setIsActive((previousIsActive) => !previousIsActive);
+  const onClick = useCallback(
+    () => setIsActive((previousIsActive) => !previousIsActive),
+    []
+  );
 
   const handleSignupClick = useCallback(() => {
     history.push("/signup");
@@ -156,20 +175,18 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="hi">RESERVATIONS</Link>
+                <Link href="/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
               <Item>
-                <Link href="hi">MY PROFILE</Link>
+                <Link href="/account/reservations">RESERVATIONS</Link>
               </Item>
               <Item>
-                <Link href="hi">FAVORITES</Link>
+                <Link href="/account/favorites">FAVORITES</Link>
               </Item>
-              <Item>
-                <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
-              </Item>
+
               <Divider />
               <Item>
-                <Link href={logout}>SIGN OUT</Link>
+                <Button onClick={logout}>SIGN OUT</Button>
               </Item>
             </Ul>
           </Dropdown>

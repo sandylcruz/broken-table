@@ -17,3 +17,6 @@ json.reviews @restaurant.reviews do |review|
     json.state review.author.state
   end
 end
+
+json.isFavorited @restaurant.is_favorited?(current_user)
+json.numberOfFavorites @restaurant.favorites.count

@@ -1,4 +1,9 @@
 import {
+  RECEIVE_FAVORITE,
+  UNRECEIVE_FAVORITE,
+} from "../actions/favoriteActions";
+
+import {
   RECEIVE_RESTAURANT,
   RECEIVE_RESTAURANTS,
 } from "../actions/restaurantActions";
@@ -12,7 +17,6 @@ const restaurantsReducer = (state = {}, action) => {
     case RECEIVE_RESTAURANT: {
       const restaurantId = action.restaurant.id;
       const { restaurant } = action;
-
       return {
         ...state,
         [restaurantId]: {
@@ -25,6 +29,8 @@ const restaurantsReducer = (state = {}, action) => {
           description: restaurant.description,
           photoUrl: restaurant.photoUrl,
           reviewIds: restaurant.reviews.map((review) => review.id),
+          numberOfFavorites: restaurant.numberOfFavorites,
+          isFavorited: restaurant.isFavorited,
         },
       };
     }
@@ -43,9 +49,33 @@ const restaurantsReducer = (state = {}, action) => {
 
       return newState;
     }
+    case RECEIVE_FAVORITE: {
+      const { restaurantId } = action.favorite;
+      const restaurant = state[restaurantId];
+      const newState = {
+        ...state,
+        [restaurantId]: {
+          ...restaurant,
+          numberOfFavorites: restaurant.numberOfFavorites + 1,
+          isFavorited: true,
+        },
+      };
+      return newState;
+    }
+    case UNRECEIVE_FAVORITE: {
+      const { restaurantId } = action;
+      return {
+        ...state,
+        [restaurantId]: {
+          ...state[restaurantId],
+          isFavorited: false,
+          numberOfFavorites: state[restaurantId].numberOfFavorites - 1,
+        },
+      };
+    }
+
     default:
       return state;
   }
 };
-
 export default restaurantsReducer;
