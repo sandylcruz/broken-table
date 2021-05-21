@@ -1,5 +1,5 @@
-import React from "react";
-import { HashRouter, Route, Switch } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider, DEFAULT_THEME } from "@zendeskgarden/react-theming";
 
@@ -14,9 +14,21 @@ import SignupForm from "./SignupForm";
 import Search from "./Search";
 import RestaurantForm from "./RestaurantForm/RestaurantForm";
 
-const App = React.memo(({ store }) => (
-  <Provider store={store}>
-    <HashRouter>
+const App = React.memo(({ store }) => {
+  const history = useHistory();
+
+  useEffect(() => {
+    const unListen = history.listen(() => {
+      window.scrollTo(0, 0);
+    });
+
+    return () => {
+      unListen();
+    };
+  }, [history]);
+
+  return (
+    <Provider store={store}>
       <ThemeProvider theme={DEFAULT_THEME}>
         <div>
           <GlobalStyle />
@@ -39,8 +51,8 @@ const App = React.memo(({ store }) => (
           </Switch>
         </div>
       </ThemeProvider>
-    </HashRouter>
-  </Provider>
-));
+    </Provider>
+  );
+});
 
 export default App;

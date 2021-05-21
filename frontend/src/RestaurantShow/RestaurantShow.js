@@ -197,7 +197,6 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
               {restaurant.averageRating || "No reviews yet"}
               <RatingsSignatureText>&nbsp;- BrokenTable</RatingsSignatureText>
             </RatingTextDiv>
-            <div>{restaurant.numberOfFavorites}</div>
           </RatingDiv>
           <StyledFavoriteDiv>
             <h2>Now Open.</h2>

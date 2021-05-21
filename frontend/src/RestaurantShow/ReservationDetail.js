@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import { Datepicker } from "@zendeskgarden/react-datepickers";
@@ -8,16 +7,11 @@ import {
   Dropdown,
   Field,
   Item,
-  // Label,
   Menu,
   Select,
 } from "@zendeskgarden/react-dropdowns";
 
-import {
-  Field as FormField,
-  Input,
-  // Label as FormLabel,
-} from "@zendeskgarden/react-forms";
+import { Field as FormField, Input } from "@zendeskgarden/react-forms";
 
 import { createReservation as createReservationAction } from "../actions/reservationActions";
 
@@ -72,7 +66,6 @@ const ReservationDetail = ({ restaurantId }) => {
   const [date, setDate] = useState(new Date());
   const [partySize, setPartySize] = useState("Party size");
   const [timeslot, setTimeslot] = useState("Timeslot");
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const createReservation = useCallback(
@@ -101,9 +94,7 @@ const ReservationDetail = ({ restaurantId }) => {
         party_size: parseInt(partySize, 10),
         restaurant_id: restaurantId,
       };
-      createReservation(reservation).then((createdReservation) => {
-        history.push(`/reservations/${createdReservation.id}`);
-      });
+      createReservation(reservation);
     },
     [createReservation, date, timeslot, partySize, restaurantId]
   );
@@ -117,7 +108,6 @@ const ReservationDetail = ({ restaurantId }) => {
       <Form onSubmit={handleSubmit}>
         <Dropdown selectedItem={partySize} onSelect={handlePartySizeSelect}>
           <StyledField>
-            {/* <Label>Party size</Label> */}
             <Select>{partySize}</Select>
           </StyledField>
           <Menu>
@@ -130,7 +120,6 @@ const ReservationDetail = ({ restaurantId }) => {
         </Dropdown>
         <Dropdown selectedItem={timeslot} onSelect={handleTimeslotSelect}>
           <StyledField>
-            {/* <Label>Timeslot</Label> */}
             <Select>{timeslot}</Select>
           </StyledField>
           <Menu>
@@ -142,7 +131,6 @@ const ReservationDetail = ({ restaurantId }) => {
           </Menu>
         </Dropdown>
         <FormField>
-          {/* <FormLabel>Select a date</FormLabel> */}
           <StyledDatepicker value={date} onChange={setDate}>
             <Input />
           </StyledDatepicker>
