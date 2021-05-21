@@ -2,12 +2,14 @@ import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+import { format, parseISO } from "date-fns";
 import Cancel from "./Cancel.svg";
 import Event from "./Event.svg";
 import Party from "./Party.svg";
 
 const CancelButton = styled.button`
-  background-color: pink;
+  background-color: transparent;
+  border: none;
 `;
 
 const DateLine = styled.div`
@@ -21,6 +23,7 @@ const FirstLine = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
+
 const H1 = styled.h1`
   font-size: 20px;
   margin: 5px;
@@ -34,7 +37,7 @@ const PartyLine = styled.div`
   align-items: center;
 `;
 
-const RItem = styled.div`
+const ReservationItem = styled.div`
   background-color: purple;
   border: 1px solid #eaeaea;
   list-style: none;
@@ -68,9 +71,12 @@ const Right = styled.div`
   flex-direction: column;
   margin: 5px;
   justify-content: space-around;
+  width: 100%;
 `;
 
-const StyledCancelX = styled(Cancel)``;
+const StyledCancelX = styled(Cancel)`
+  cursor: pointer;
+`;
 
 const StyledEvent = styled(Event)`
   margin: 5px;
@@ -88,6 +94,8 @@ const StyledParty = styled(Party)`
 `;
 
 const ReservationShow = ({ onCancel, reservation }) => {
+  const formattedDate = format(parseISO(reservation.date), "MMMM dd, yyyy");
+
   const handleCancellation = useCallback(
     (event) => {
       event.preventDefault();
@@ -102,7 +110,7 @@ const ReservationShow = ({ onCancel, reservation }) => {
       to={`/restaurants/${reservation.restaurant.id}`}
       key={reservation.restaurant.id}
     >
-      <RItem key={reservation.id}>
+      <ReservationItem key={reservation.id}>
         <Left>
           <StyledImg src={reservation.restaurant.photoUrl} />
         </Left>
@@ -116,14 +124,14 @@ const ReservationShow = ({ onCancel, reservation }) => {
           </FirstLine>
 
           <DateLine>
-            <StyledEvent /> {reservation.date} for {reservation.timeSlot}
+            <StyledEvent /> {formattedDate} for {reservation.timeSlot}
           </DateLine>
 
           <PartyLine>
             <StyledParty /> Party of {reservation.partySize}
           </PartyLine>
         </Right>
-      </RItem>
+      </ReservationItem>
     </Link>
   );
 };

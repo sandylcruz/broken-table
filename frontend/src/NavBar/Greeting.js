@@ -140,6 +140,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
     history.push("/login");
   }, [history]);
 
+  const closeMenu = useCallback(() => {
+    setIsActive(false);
+  }, []);
+
   useEffect(() => {
     if (!isActive) {
       return () => {};
@@ -174,17 +178,17 @@ const Greeting = React.memo(({ currentUser, logout }) => {
 
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
-              <Item>
+              <Item onClick={closeMenu}>
                 <StyledLink to="/restaurants/new">CREATE RESTAURANT</StyledLink>
               </Item>
-              <Item>
+              <Item onClick={closeMenu}>
                 <StyledLink to="/account/favorites">FAVORITES</StyledLink>
               </Item>
-              <Item>
+              <Item onClick={closeMenu}>
                 <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
               </Item>
               <Divider />
-              <Item>
+              <Item onClick={closeMenu}>
                 <Button onClick={logout}>SIGN OUT</Button>
               </Item>
             </Ul>

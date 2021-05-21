@@ -168,8 +168,8 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           lng: restaurant.longitude,
         },
         zoom: 15,
-        disableDefaultUI: true,
-        draggable: false,
+        disableDefaultUI: false,
+        draggable: true,
       };
 
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);

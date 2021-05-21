@@ -17,6 +17,8 @@ const ReservationsDiv = styled.div`
   display: flex;
 `;
 
+const ReservationItem = styled.div``;
+
 const StyledH1 = styled.h1`
   font-size: 30px;
 `;
@@ -35,11 +37,15 @@ const UserReservations = React.memo(() => {
         <StyledH1>Upcoming Reservations</StyledH1>
 
         {reservationsArray.map((reservation) => (
-          <ReservationShow
-            key={reservation.id}
-            reservation={reservation}
-            onCancel={handleCancel}
-          />
+          <ul key={reservation.id}>
+            <ReservationItem>
+              <ReservationShow
+                key={reservation.id}
+                reservation={reservation}
+                onCancel={handleCancel}
+              />
+            </ReservationItem>
+          </ul>
         ))}
       </InnerReservationsDiv>
     </ReservationsDiv>
