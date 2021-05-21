@@ -121,6 +121,7 @@ const StyledRestaurantSummaryText = styled.div`
 const StyledRestaurantOverview = styled.div`
   width: 80%;
   padding: 10px;
+  padding-left: 90px;
 `;
 
 const StyledSideBar = styled.div`
@@ -132,7 +133,7 @@ const StyledSideBar = styled.div`
   align-items: center;
 
   display: none;
-  @media (min-width: 600px) {
+  @media (min-width: 740px) {
     display: flex;
     width: 100%;
   }

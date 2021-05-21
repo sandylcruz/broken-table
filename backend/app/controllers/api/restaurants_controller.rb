@@ -3,8 +3,6 @@
 module Api
   # Restaurants Controller
   class RestaurantsController < ApplicationController
-    skip_before_action :verify_authenticity_token
-
     def create
       @restaurant = Restaurant.new(restaurant_params)
       @restaurant.submitter_id = current_user.id

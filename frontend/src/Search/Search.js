@@ -15,7 +15,7 @@ const LeftDiv = styled.div``;
 
 const RightDiv = styled.div`
   position: fixed;
-  left: 670px;
+  left: 635px;
   width: 100%;
 `;
 

@@ -38,6 +38,15 @@ class Restaurant < ApplicationRecord
     reviews.average(:rating).to_f.round(1)
   end
 
+  def get_maximum_capacity(time_slot)
+    specific_time_slot = "#{time_slot}_capacity"
+    send(specific_time_slot)
+  end
+
+  def current_capacity(time_slot, date)
+    # select SUM reservations WHERE date = ?, time_slot = ?, restaurant_id ?,
+  end
+
   def is_favorited?(user)
     return false if user.nil?
 
