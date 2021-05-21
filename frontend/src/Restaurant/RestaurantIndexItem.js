@@ -51,6 +51,14 @@ const RestaurantItem = styled.div`
       background-color 0.25s ease-in-out 0s, color 0.15s ease-in-out 0s;
   }
 
+   &:active {
+    box-shadow: 1px 1px 1px 1px #a1a1a1;
+
+    border: 1px solid #a1a1a1;
+    transition: border-color 0.3s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s,
+      background-color 0.25s ease-in-out 0s, color 0.15s ease-in-out 0s;
+  }
+
   .20s ease-out,color .25s ease-out,opacity .25s ease-out,box-shadow .15s ease-out
 `;
 

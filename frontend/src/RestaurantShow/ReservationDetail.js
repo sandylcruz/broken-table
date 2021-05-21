@@ -103,7 +103,7 @@ const ReservationDetail = ({ restaurantId }) => {
         restaurant_id: restaurantId,
       };
       createReservation(reservation).then(() => {
-        history.push("/account/reservations");
+        history.push("/");
       });
     },
     [createReservation, date, timeslot, partySize, restaurantId]
