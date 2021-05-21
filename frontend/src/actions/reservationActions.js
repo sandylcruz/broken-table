@@ -14,15 +14,12 @@ export const unreceiveReservation = (reservationId, userId) => ({
   userId,
 });
 
-export const createReservation = (reservation) => (dispatch) => {
-  console.log(reservation);
-
-  return ReservationApiUtil.createReservation(
+export const createReservation = (reservation) => (dispatch) =>
+  ReservationApiUtil.createReservation(
     reservation
   ).then((reservationFromServer) =>
     dispatch(receiveReservation(reservationFromServer))
   );
-};
 
 export const cancelReservation = (reservationId) => (dispatch, getState) => {
   ReservationApiUtil.cancelReservation(reservationId).then(() =>

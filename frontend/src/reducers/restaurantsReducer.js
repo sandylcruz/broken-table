@@ -82,7 +82,7 @@ const restaurantsReducer = (state = {}, action) => {
     }
 
     case RECEIVE_RESERVATION: {
-      const { restaurantId } = action.favorite;
+      const { restaurantId } = action.reservation;
       const restaurant = state[restaurantId];
       const newState = {
         ...state,
