@@ -87,7 +87,7 @@ const StyledParty = styled(Party)`
   margin: 5px;
 `;
 
-const ReservationItem = ({ onCancel, reservation }) => {
+const ReservationShow = ({ onCancel, reservation }) => {
   const handleCancellation = useCallback(
     (event) => {
       event.preventDefault();
@@ -127,4 +127,4 @@ const ReservationItem = ({ onCancel, reservation }) => {
     </Link>
   );
 };
-export default ReservationItem;
+export default ReservationShow;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { createFavorite, removeFavorite } from "../actions/favoriteActions";
 import MarkerManager from "../util/MarkerManager";
+import ReservationDetail from "./ReservationDetail";
 import Reviews from "./Reviews";
 import Star from "./svgs/Star.svg";
 import FavoriteButton from "../components/FavoriteButton";
@@ -100,7 +101,6 @@ const StyledPTag = styled.div`
 const StyledReservationContainer = styled.div`
   border-bottom: 1px solid #eaeaea;
   padding-top: 10px;
-  height: 70px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
@@ -213,6 +213,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
 
           <StyledReservationContainer>
             <StyledH3>Make a reservation</StyledH3>
+            <ReservationDetail />
           </StyledReservationContainer>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>

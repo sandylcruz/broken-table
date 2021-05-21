@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { cancelReservation } from "../actions/reservationActions";
-import ReservationItem from "./ReservationItem";
+import ReservationShow from "./ReservationShow";
 import { selectCurrentUserReservations } from "../reducers/selectors";
 
 const InnerReservationsDiv = styled.div`
@@ -35,7 +35,7 @@ const UserReservations = () => {
         <StyledH1>Upcoming Reservations</StyledH1>
 
         {reservationsArray.map((reservation) => (
-          <ReservationItem
+          <ReservationShow
             key={reservation.id}
             reservation={reservation}
             onCancel={handleCancel}
