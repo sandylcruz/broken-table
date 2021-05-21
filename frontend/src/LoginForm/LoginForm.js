@@ -21,6 +21,7 @@ const Input = styled.input`
   border: 1px solid #d3d3d3;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   width: 70%;
+  max-width: 400px;
 `;
 
 const Span = styled.span`

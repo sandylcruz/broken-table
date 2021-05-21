@@ -21,7 +21,7 @@ const StyledH1 = styled.h1`
   font-size: 30px;
 `;
 
-const UserReservations = () => {
+const UserReservations = React.memo(() => {
   const dispatch = useDispatch();
   const reservationsArray = useSelector(selectCurrentUserReservations);
 
@@ -44,6 +44,6 @@ const UserReservations = () => {
       </InnerReservationsDiv>
     </ReservationsDiv>
   );
-};
+});
 
 export default UserReservations;

@@ -23,6 +23,11 @@ const Form = styled.form`
 
 const StyledDatepicker = styled(Datepicker)`
   color: purple;
+  max-width: 400px;
+`;
+
+const StyledSelect = styled(Select)`
+  max-width: 400px;
 `;
 
 const SubmitButton = styled.button`
@@ -36,6 +41,7 @@ const SubmitButton = styled.button`
   height: 40px;
   outline: none;
   box-shadow: none;
+  max-width: 300px;
 
   &:hover {
     background-color: #2525c7;
@@ -112,7 +118,7 @@ const ReservationDetail = ({ restaurantId }) => {
       <Form onSubmit={handleSubmit}>
         <Dropdown selectedItem={partySize} onSelect={handlePartySizeSelect}>
           <StyledField>
-            <Select>{partySize}</Select>
+            <StyledSelect>{partySize}</StyledSelect>
           </StyledField>
           <Menu>
             {[1, 2, 3, 4, 5].map((option) => (
@@ -124,7 +130,7 @@ const ReservationDetail = ({ restaurantId }) => {
         </Dropdown>
         <Dropdown selectedItem={timeslot} onSelect={handleTimeslotSelect}>
           <StyledField>
-            <Select>{timeslot}</Select>
+            <StyledSelect>{timeslot}</StyledSelect>
           </StyledField>
           <Menu>
             {["Breakfast", "Lunch", "Dinner"].map((timeOption) => (

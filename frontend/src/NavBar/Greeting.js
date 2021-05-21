@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import PrimaryButton from "../components/PrimaryButton";
@@ -83,7 +83,7 @@ const Item = styled.li`
   width: 300px;
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333333;
   padding: 10px 15px;
@@ -175,13 +175,13 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="/restaurants/new">CREATE RESTAURANT</Link>
+                <StyledLink to="/restaurants/new">CREATE RESTAURANT</StyledLink>
               </Item>
               <Item>
-                <Link href="/account/favorites">FAVORITES</Link>
+                <StyledLink to="/account/favorites">FAVORITES</StyledLink>
               </Item>
               <Item>
-                <Link href="/account/reservations">RESERVATIONS</Link>
+                <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
               </Item>
               <Divider />
               <Item>
