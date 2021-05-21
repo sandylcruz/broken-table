@@ -57,11 +57,13 @@ const usersReducer = (state = {}, action) => {
       const nextState = { ...state };
       const { reservation } = action;
       const existingUser = state[reservation.userId];
-      const previousReservations = existingUser.favoriteIds;
 
       nextState[reservation.userId] = {
         ...existingUser,
-        reservationIds: [...previousReservations, reservation.restaurantId],
+        reservations: {
+          ...existingUser.reservations,
+          [reservation.id]: reservation,
+        },
       };
 
       return nextState;

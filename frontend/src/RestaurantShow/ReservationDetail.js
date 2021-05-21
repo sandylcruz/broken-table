@@ -11,9 +11,7 @@ import {
   Menu,
   Select,
 } from "@zendeskgarden/react-dropdowns";
-
 import { Field as FormField, Input } from "@zendeskgarden/react-forms";
-
 import { createReservation as createReservationAction } from "../actions/reservationActions";
 
 const Form = styled.form`
@@ -22,7 +20,10 @@ const Form = styled.form`
 `;
 
 const StyledDatepicker = styled(Datepicker)`
-  color: purple;
+  max-width: 400px;
+`;
+
+const StyledInput = styled(Input)`
   max-width: 400px;
 `;
 
@@ -142,7 +143,7 @@ const ReservationDetail = ({ restaurantId }) => {
         </Dropdown>
         <FormField>
           <StyledDatepicker value={date} onChange={setDate}>
-            <Input />
+            <StyledInput />
           </StyledDatepicker>
         </FormField>
         <SubmitButton type="submit">Submit</SubmitButton>

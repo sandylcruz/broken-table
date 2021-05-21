@@ -160,7 +160,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={name}
           onChange={updateName}
-          placeholder="Restaurant Name"
+          placeholder="Restaurant Name *"
         />
       </Span>
 
@@ -169,7 +169,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={location}
           onChange={updateLocation}
-          placeholder="Address"
+          placeholder="Address *"
         />
       </Span>
 
@@ -178,7 +178,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={description}
           onChange={updateDescription}
-          placeholder="Describe here...."
+          placeholder="Describe here.... *"
         />
       </Span>
 

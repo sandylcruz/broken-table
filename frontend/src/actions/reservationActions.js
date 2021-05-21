@@ -15,10 +15,12 @@ export const unreceiveReservation = (reservationId, userId) => ({
 });
 
 export const createReservation = (reservation) => (dispatch) =>
-  ReservationApiUtil.createReservation(
-    reservation
-  ).then((reservationFromServer) =>
-    dispatch(receiveReservation(reservationFromServer))
+  ReservationApiUtil.createReservation(reservation).then(
+    (reservationFromServer) => {
+      // eslint-disable-next-line no-alert
+      window.alert("Reservation created successfully");
+      return dispatch(receiveReservation(reservationFromServer));
+    }
   );
 
 export const cancelReservation = (reservationId) => (dispatch, getState) => {

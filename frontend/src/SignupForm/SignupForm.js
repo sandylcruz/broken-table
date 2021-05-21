@@ -203,49 +203,49 @@ const SignupForm = React.memo(({ processForm }) => {
             onChange={updateName}
             type="text"
             value={name}
-            placeholder="Name"
+            placeholder="Name *"
           />
 
           <Input
             onChange={updateUsername}
             type="text"
             value={username}
-            placeholder="Username"
+            placeholder="Username *"
           />
 
           <Input
             onChange={updateEmail}
             type="text"
             value={email}
-            placeholder="Email"
+            placeholder="Email *"
           />
 
           <Input
             onChange={updatePhoneNumber}
             type="tel"
             value={phoneNumber}
-            placeholder="Phone Number"
+            placeholder="Phone Number *"
           />
 
           <Input
             onChange={updateCity}
             type="text"
             value={city}
-            placeholder="City"
+            placeholder="City *"
           />
 
           <Input
             onChange={updateState}
             type="text"
             value={state}
-            placeholder="State"
+            placeholder="State *"
           />
 
           <Input
             onChange={updatePassword}
             type="password"
             value={password}
-            placeholder="Password"
+            placeholder="Password *"
           />
 
           <Span>
