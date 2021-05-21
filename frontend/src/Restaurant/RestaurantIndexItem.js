@@ -162,9 +162,6 @@ const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {
                 {restaurant.averageRating || "No reviews yet"}
               </RatingTextDiv>
             </RatingDiv>
-            <RatingTextDiv>
-              {/* Number of favorites: {restaurant.numberOfFavorites} */}
-            </RatingTextDiv>
             <StyledLocationDiv>
               <StyledMapMarker />
               <StyledRestaurantLocationText>

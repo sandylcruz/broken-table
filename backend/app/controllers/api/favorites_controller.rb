@@ -20,7 +20,7 @@ module Api
       @favorite = Favorite.find_by(user_id: current_user.id, restaurant_id: params[:restaurant_id])
 
       if @favorite
-        @favorite.destroy
+        @favorite.destroy!
       else
         render json: ['Cannot find favorite'], status: :not_found
       end

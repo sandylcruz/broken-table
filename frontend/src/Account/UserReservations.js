@@ -16,17 +16,12 @@ const StyledH1 = styled.h1`
   font-size: 30px;
 `;
 
-const UserReservations = () => {
-  // const selectUsersReservations = () => {}
-  const cats = "hi";
-  console.log(cats);
-  return (
-    <ReservationsDiv>
-      <InnerReservationsDiv>
-        <StyledH1>Upcoming Reservations</StyledH1>
-      </InnerReservationsDiv>
-    </ReservationsDiv>
-  );
-};
+const UserReservations = React.memo(() => (
+  <ReservationsDiv>
+    <InnerReservationsDiv>
+      <StyledH1>Upcoming Reservations</StyledH1>
+    </InnerReservationsDiv>
+  </ReservationsDiv>
+));
 
 export default UserReservations;

@@ -59,27 +59,28 @@ const StyledLink = styled(Link)`
   font-size: 14px;
   display: block;
   cursor: pointer;
+  text-transform: uppercase;
 
   &:hover {
     color: red;
   }
 `;
 
-const AccountSummary = () => (
+const AccountSummary = React.memo(() => (
   <AccountContainer>
     <InnerAccountContainer>
       <Sidebar>
         <Item>
-          <StyledLink to="/restaurants/new">CREATE RESTAURANT</StyledLink>
+          <StyledLink to="/restaurants/new">Create Restaurant</StyledLink>
         </Item>
         <Divider />
         <Item>
-          <StyledLink to="/account/favorites">FAVORITES</StyledLink>
+          <StyledLink to="/account/favorites">Favorites</StyledLink>
         </Item>
         <Divider />
 
         <Item>
-          <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
+          <StyledLink to="/account/reservations">Reservations</StyledLink>
         </Item>
         <Divider />
       </Sidebar>
@@ -103,6 +104,6 @@ const AccountSummary = () => (
       </Switch>
     </InnerAccountContainer>
   </AccountContainer>
-);
+));
 
 export default AccountSummary;

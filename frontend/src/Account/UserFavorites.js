@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import styled from "styled-components";
+
 import { createFavorite, removeFavorite } from "../actions/favoriteActions";
 import RestaurantIndexItem from "../Restaurant/RestaurantIndexItem";
 import { selectCurrentUserFavoriteRestaurants } from "../reducers/selectors";

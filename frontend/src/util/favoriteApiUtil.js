@@ -7,7 +7,7 @@ export const createFavorite = (restaurantId) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "POST",
-      url: `api/restaurants/${restaurantId}/favorites`,
+      url: `api/restaurants/${restaurantId}/favorite`,
       success: resolve,
       error: reject,
     });
@@ -17,7 +17,7 @@ export const removeFavorite = (restaurantId) =>
   new Promise((resolve, reject) => {
     ajax({
       method: "DELETE",
-      url: `api/restaurants/${restaurantId}/favorites`,
+      url: `api/restaurants/${restaurantId}/favorite`,
       success: resolve,
       error: reject,
     });

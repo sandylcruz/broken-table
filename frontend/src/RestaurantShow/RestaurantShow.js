@@ -249,12 +249,3 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
 });
 
 export default RestaurantDetail;
-
-/*
-request is made after clicking button DONE
-rewrite restaurant selector (selectRestaurant) to return 
-if current user has favorited restaurant
-selectRestaurantById should return name, ..., isFavorited: true/false
-selector computes if it is favorited by looking at redux
-iterate over every single favorite
-  */

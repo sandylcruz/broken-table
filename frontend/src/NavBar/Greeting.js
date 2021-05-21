@@ -127,7 +127,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
   const history = useHistory();
   const dropdownMenuRef = useRef();
   const [isActive, setIsActive] = useState(false);
-  const onClick = () => setIsActive((previousIsActive) => !previousIsActive);
+  const onClick = useCallback(
+    () => setIsActive((previousIsActive) => !previousIsActive),
+    []
+  );
 
   const handleSignupClick = useCallback(() => {
     history.push("/signup");
@@ -172,13 +175,13 @@ const Greeting = React.memo(({ currentUser, logout }) => {
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
               <Item>
-                <Link href="/#/restaurants/new">CREATE RESTAURANT</Link>
+                <Link href="/restaurants/new">CREATE RESTAURANT</Link>
               </Item>
               <Item>
-                <Link href="/#/account/reservations">RESERVATIONS</Link>
+                <Link href="/account/reservations">RESERVATIONS</Link>
               </Item>
               <Item>
-                <Link href="/#/account/favorites">FAVORITES</Link>
+                <Link href="/account/favorites">FAVORITES</Link>
               </Item>
 
               <Divider />
