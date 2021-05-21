@@ -35,15 +35,20 @@ const StyledDatepicker = styled(Datepicker)`
 const ReservationDetail = () => {
   const [date, setDate] = useState(new Date());
   const [partySize, setPartySize] = useState(2);
+  const [timeslot, setTimeslot] = useState("");
 
-  const handleSelect = useCallback((newPartySize) => {
+  const handlePartySizeSelect = useCallback((newPartySize) => {
     setPartySize(newPartySize);
+  }, []);
+
+  const handleTimeslotSelect = useCallback((newTimeslot) => {
+    setTimeslot(newTimeslot);
   }, []);
 
   return (
     <div>
       <Form>
-        <Dropdown selectedItem={partySize} onSelect={handleSelect}>
+        <Dropdown selectedItem={partySize} onSelect={handlePartySizeSelect}>
           <Field>
             <Label>Party size</Label>
             <Select>{partySize}</Select>
@@ -52,6 +57,20 @@ const ReservationDetail = () => {
             {[1, 2, 3, 4, 5].map((option) => (
               <Item key={option} value={option}>
                 {option}
+              </Item>
+            ))}
+          </Menu>
+        </Dropdown>
+
+        <Dropdown selectedItem={timeslot} onSelect={handleTimeslotSelect}>
+          <Field>
+            <Label>Timeslot</Label>
+            <Select>{timeslot}</Select>
+          </Field>
+          <Menu>
+            {["Breakfast", "Lunch", "Dinner"].map((timeOption) => (
+              <Item key={timeOption} value={timeOption}>
+                {timeOption}
               </Item>
             ))}
           </Menu>
