@@ -64,7 +64,7 @@ const ReviewForm = React.memo(() => {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const userId = currentUser.id;
+  const userId = currentUser && currentUser.id;
   const queryParams = useParams();
   const restaurantId = parseInt(queryParams.id, 10);
 
