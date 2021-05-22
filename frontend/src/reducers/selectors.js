@@ -33,6 +33,34 @@ export const selectCurrentUserFavoriteRestaurants = createSelector(
   }
 );
 
+export const selectCurrentUserReservations = createSelector(
+  (state) => {
+    const currentUser = selectCurrentUser(state);
+
+    if (!currentUser) {
+      return null;
+    }
+
+    return currentUser.reservations;
+  },
+  (state) => state.entities.restaurants,
+
+  (reservations, restaurants) => {
+    if (!reservations) {
+      return [];
+    }
+
+    return Object.keys(reservations).map((key) => {
+      const rawReservation = reservations[key];
+      const restaurant = restaurants[rawReservation.restaurantId];
+      return {
+        ...rawReservation,
+        restaurant,
+      };
+    });
+  }
+);
+
 export const selectErrors = createSelector(
   (state) => state.errors,
   (errors) => errors

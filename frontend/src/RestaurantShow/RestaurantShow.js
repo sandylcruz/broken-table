@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { createFavorite, removeFavorite } from "../actions/favoriteActions";
 import MarkerManager from "../util/MarkerManager";
+import ReservationDetail from "./ReservationDetail";
 import Reviews from "./Reviews";
 import Star from "./svgs/Star.svg";
 import FavoriteButton from "../components/FavoriteButton";
@@ -100,7 +101,6 @@ const StyledPTag = styled.div`
 const StyledReservationContainer = styled.div`
   border-bottom: 1px solid #eaeaea;
   padding-top: 10px;
-  height: 70px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
@@ -121,6 +121,7 @@ const StyledRestaurantSummaryText = styled.div`
 const StyledRestaurantOverview = styled.div`
   width: 80%;
   padding: 10px;
+  padding-left: 90px;
 `;
 
 const StyledSideBar = styled.div`
@@ -132,7 +133,7 @@ const StyledSideBar = styled.div`
   align-items: center;
 
   display: none;
-  @media (min-width: 600px) {
+  @media (min-width: 740px) {
     display: flex;
     width: 100%;
   }
@@ -168,8 +169,8 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
           lng: restaurant.longitude,
         },
         zoom: 15,
-        disableDefaultUI: true,
-        draggable: false,
+        disableDefaultUI: false,
+        draggable: true,
       };
 
       const map = new google.maps.Map(mapNodeRef.current, mapLocation);
@@ -197,7 +198,6 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
               {restaurant.averageRating || "No reviews yet"}
               <RatingsSignatureText>&nbsp;- BrokenTable</RatingsSignatureText>
             </RatingTextDiv>
-            <div>{restaurant.numberOfFavorites}</div>
           </RatingDiv>
           <StyledFavoriteDiv>
             <h2>Now Open.</h2>
@@ -213,6 +213,7 @@ const RestaurantDetail = React.memo(({ restaurant, reviews }) => {
 
           <StyledReservationContainer>
             <StyledH3>Make a reservation</StyledH3>
+            <ReservationDetail restaurantId={restaurant.id} />
           </StyledReservationContainer>
           <StyledAboutBlock>
             <StyledH3>About {restaurant.name}</StyledH3>

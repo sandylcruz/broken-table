@@ -44,6 +44,7 @@ const Input = styled.input`
   border: 1px solid #d3d3d3;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   width: 70%;
+  max-width: 500px;
 `;
 
 const Label = styled.label`
@@ -159,7 +160,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={name}
           onChange={updateName}
-          placeholder="Restaurant Name"
+          placeholder="Restaurant Name *"
         />
       </Span>
 
@@ -168,7 +169,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={location}
           onChange={updateLocation}
-          placeholder="Address"
+          placeholder="Address *"
         />
       </Span>
 
@@ -177,7 +178,7 @@ const RestaurantForm = React.memo(({ createRestaurant }) => {
           type="text"
           value={description}
           onChange={updateDescription}
-          placeholder="Describe here...."
+          placeholder="Describe here.... *"
         />
       </Span>
 

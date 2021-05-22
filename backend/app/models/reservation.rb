@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class Review < ApplicationRecord
-  validates :body, presence: true
-  validates :rating, presence: true, inclusion: { in: 1..5 }
+class Reservation < ApplicationRecord
+  validates :date, presence: true
+  validates :party_size, presence: true
+  validates :time_slot, inclusion: { in: %w[breakfast lunch dinner], message: '%<value> is not a valid time-slot' }
 
-  belongs_to :author,
+  belongs_to :requester,
              class_name: 'User',
              foreign_key: :user_id,
              primary_key: :id

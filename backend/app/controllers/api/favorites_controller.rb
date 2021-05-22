@@ -3,7 +3,6 @@
 module Api
   # Favorites Controller class
   class FavoritesController < ApplicationController
-    skip_before_action :verify_authenticity_token
     before_action :require_logged_in
 
     def create

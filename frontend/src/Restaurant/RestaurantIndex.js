@@ -33,6 +33,5 @@ const RestaurantIndex = React.memo(({ restaurants }) => {
     </RestaurantContainer>
   );
 });
-// });
 
 export default RestaurantIndex;

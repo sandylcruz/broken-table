@@ -27,6 +27,8 @@ const RestaurantMap = React.memo(({ restaurants, updateBounds }) => {
     const mapOptions = {
       center: { lat: 37.791724, lng: -122.398252 },
       zoom: 15,
+      disableDefaultUI: false,
+      draggable: true,
     };
 
     const map = new google.maps.Map(mapNodeRef.current, mapOptions);

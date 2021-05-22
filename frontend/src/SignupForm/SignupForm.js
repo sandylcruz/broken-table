@@ -13,6 +13,7 @@ const Button = styled.button`
   font-weight: bold;
   background-color: #2a2ae9;
   color: white;
+  max-width: 400px;
 `;
 
 const ButtonContentDiv = styled.div`
@@ -60,6 +61,7 @@ const Input = styled.input`
   border: 1px solid #d3d3d3;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
   width: 70%;
+  max-width: 400px;
 `;
 
 const Label = styled.label`
@@ -201,49 +203,49 @@ const SignupForm = React.memo(({ processForm }) => {
             onChange={updateName}
             type="text"
             value={name}
-            placeholder="Name"
+            placeholder="Name *"
           />
 
           <Input
             onChange={updateUsername}
             type="text"
             value={username}
-            placeholder="Username"
+            placeholder="Username *"
           />
 
           <Input
             onChange={updateEmail}
             type="text"
             value={email}
-            placeholder="Email"
+            placeholder="Email *"
           />
 
           <Input
             onChange={updatePhoneNumber}
             type="tel"
             value={phoneNumber}
-            placeholder="Phone Number"
+            placeholder="Phone Number *"
           />
 
           <Input
             onChange={updateCity}
             type="text"
             value={city}
-            placeholder="City"
+            placeholder="City *"
           />
 
           <Input
             onChange={updateState}
             type="text"
             value={state}
-            placeholder="State"
+            placeholder="State *"
           />
 
           <Input
             onChange={updatePassword}
             type="password"
             value={password}
-            placeholder="Password"
+            placeholder="Password *"
           />
 
           <Span>

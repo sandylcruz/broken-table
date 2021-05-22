@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import PrimaryButton from "../components/PrimaryButton";
@@ -83,7 +83,7 @@ const Item = styled.li`
   width: 300px;
 `;
 
-const Link = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: #333333;
   padding: 10px 15px;
@@ -140,6 +140,10 @@ const Greeting = React.memo(({ currentUser, logout }) => {
     history.push("/login");
   }, [history]);
 
+  const closeMenu = useCallback(() => {
+    setIsActive(false);
+  }, []);
+
   useEffect(() => {
     if (!isActive) {
       return () => {};
@@ -174,18 +178,17 @@ const Greeting = React.memo(({ currentUser, logout }) => {
 
           <Dropdown isActive={isActive} ref={dropdownMenuRef}>
             <Ul>
-              <Item>
-                <Link href="/restaurants/new">CREATE RESTAURANT</Link>
+              <Item onClick={closeMenu}>
+                <StyledLink to="/restaurants/new">CREATE RESTAURANT</StyledLink>
               </Item>
-              <Item>
-                <Link href="/account/reservations">RESERVATIONS</Link>
+              <Item onClick={closeMenu}>
+                <StyledLink to="/account/favorites">FAVORITES</StyledLink>
               </Item>
-              <Item>
-                <Link href="/account/favorites">FAVORITES</Link>
+              <Item onClick={closeMenu}>
+                <StyledLink to="/account/reservations">RESERVATIONS</StyledLink>
               </Item>
-
               <Divider />
-              <Item>
+              <Item onClick={closeMenu}>
                 <Button onClick={logout}>SIGN OUT</Button>
               </Item>
             </Ul>

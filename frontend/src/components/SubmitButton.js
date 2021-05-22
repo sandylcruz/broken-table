@@ -12,6 +12,7 @@ const SubmitButton = styled.button`
   height: 40px;
   outline: none;
   box-shadow: none;
+  max-width: 300px;
 
   &:hover {
     background-color: #2525c7;

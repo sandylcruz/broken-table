@@ -1,27 +1,55 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { cancelReservation } from "../actions/reservationActions";
+import ReservationShow from "./ReservationShow";
+import { selectCurrentUserReservations } from "../reducers/selectors";
 
 const InnerReservationsDiv = styled.div`
   margin: 27px;
 `;
 
 const ReservationsDiv = styled.div`
-  background-color: #eaeaea;
+  background-color: #fafafa;
   height: 100%;
   width: 100%;
   display: flex;
 `;
 
+const ReservationItem = styled.div``;
+
 const StyledH1 = styled.h1`
   font-size: 30px;
 `;
 
-const UserReservations = React.memo(() => (
-  <ReservationsDiv>
-    <InnerReservationsDiv>
-      <StyledH1>Upcoming Reservations</StyledH1>
-    </InnerReservationsDiv>
-  </ReservationsDiv>
-));
+const UserReservations = React.memo(() => {
+  const dispatch = useDispatch();
+  const reservationsArray = useSelector(selectCurrentUserReservations);
+
+  const handleCancel = useCallback((reservation) => {
+    dispatch(cancelReservation(reservation.id));
+  }, []);
+
+  return (
+    <ReservationsDiv>
+      <InnerReservationsDiv>
+        <StyledH1>Upcoming Reservations</StyledH1>
+
+        {reservationsArray.map((reservation) => (
+          <ul key={reservation.id}>
+            <ReservationItem>
+              <ReservationShow
+                key={reservation.id}
+                reservation={reservation}
+                onCancel={handleCancel}
+              />
+            </ReservationItem>
+          </ul>
+        ))}
+      </InnerReservationsDiv>
+    </ReservationsDiv>
+  );
+});
 
 export default UserReservations;

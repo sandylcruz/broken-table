@@ -6,7 +6,8 @@ require 'rails_helper'
 RSpec.describe Api::UsersController, type: :controller do
   describe 'POST #create' do
     it 'should instantiate a new user given valid params' do
-      post :create, params: { user: { username: 'calliecat2', password: 'password', email: 'cat@gmail.com', phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C' } },
+      post :create, params: { user: { username: 'calpal', password: 'password', email: 'callie@gmail.com',
+                                      phone_number: '555-6792', city: 'San Francisco', state: 'CA', name: 'Callie C' } },
                     format: :json
       expect(response).to have_http_status(200)
       expect(response).to render_template(:show)

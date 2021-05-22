@@ -14,6 +14,12 @@ const FavoriteTriggerButton = styled.button`
   box-shadow: none;
 `;
 
+const FirstLineDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const LeftDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,6 +47,14 @@ const RestaurantItem = styled.div`
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.04);
 
     border: 1px solid #bababa;
+    transition: border-color 0.3s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s,
+      background-color 0.25s ease-in-out 0s, color 0.15s ease-in-out 0s;
+  }
+
+   &:active {
+    box-shadow: 1px 1px 1px 1px #a1a1a1;
+
+    border: 1px solid #a1a1a1;
     transition: border-color 0.3s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s,
       background-color 0.25s ease-in-out 0s, color 0.15s ease-in-out 0s;
   }
@@ -112,12 +126,6 @@ const StyledRestaurantLocationText = styled.div`
 const StyledStar = styled(Star)`
   transform: scale(0.75);
   fill: red;
-`;
-
-const FirstLineDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 `;
 
 const RestaurantIndexItem = React.memo(({ onFavoriteToggle, restaurant }) => {

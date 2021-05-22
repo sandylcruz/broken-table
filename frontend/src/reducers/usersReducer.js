@@ -3,6 +3,12 @@ import {
   RECEIVE_FAVORITE,
   UNRECEIVE_FAVORITE,
 } from "../actions/favoriteActions";
+
+import {
+  RECEIVE_RESERVATION,
+  UNRECEIVE_RESERVATION,
+} from "../actions/reservationActions";
+
 import { RECEIVE_RESTAURANT } from "../actions/restaurantActions";
 
 const usersReducer = (state = {}, action) => {
@@ -43,6 +49,41 @@ const usersReducer = (state = {}, action) => {
           favoriteIds: state[userId].favoriteIds.filter(
             (id) => id !== restaurantId
           ),
+        },
+      };
+    }
+
+    case RECEIVE_RESERVATION: {
+      const nextState = { ...state };
+      const { reservation } = action;
+      const existingUser = state[reservation.userId];
+
+      nextState[reservation.userId] = {
+        ...existingUser,
+        reservations: {
+          ...existingUser.reservations,
+          [reservation.id]: reservation,
+        },
+      };
+
+      return nextState;
+    }
+
+    case UNRECEIVE_RESERVATION: {
+      const { reservationId, userId } = action;
+      const currentUser = state[userId];
+
+      const newReservations = {
+        ...currentUser.reservations,
+      };
+
+      delete newReservations[reservationId];
+
+      return {
+        ...state,
+        [userId]: {
+          ...state[userId],
+          reservations: newReservations,
         },
       };
     }
