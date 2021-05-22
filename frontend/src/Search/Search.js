@@ -11,12 +11,19 @@ const StyledDiv = styled.div`
   width: 100%;
 `;
 
-const LeftDiv = styled.div``;
+const LeftDiv = styled.div`
+  width: 100%;
+`;
 
 const RightDiv = styled.div`
   position: fixed;
   left: 635px;
   width: 100%;
+  display: none;
+  @media (min-width: 110px) {
+    display: flex;
+    width: 100%;
+  }
 `;
 
 const Search = React.memo(({ history, restaurants, updateBounds }) => {
