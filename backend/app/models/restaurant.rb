@@ -49,16 +49,12 @@ class Restaurant < ApplicationRecord
       .where('date = ?', Date.parse(date))
       .where('restaurant_id = ?', id)
       .sum(:party_size)
-    # SELECT SUM(party_Size)
-    # FROM reservations
-    # WHERE date = date AND time_slot = time_slot AND restaurant_id = restaurant_id
   end
 
-  def is_space_available?(_date, time_slot, party_size)
+  def is_space_available?(date, time_slot, party_size)
     restaurant_maximum_capacity = get_maximum_capacity(time_slot)
-    current_bookings = current_bookings(time_slot, party_size, id)
+    current_bookings = current_bookings(time_slot, date)
     new_capacity = current_bookings + party_size
-
     new_capacity <= restaurant_maximum_capacity
   end
 
