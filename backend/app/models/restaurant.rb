@@ -54,7 +54,8 @@ class Restaurant < ApplicationRecord
   def is_space_available?(date, time_slot, party_size)
     restaurant_maximum_capacity = get_maximum_capacity(time_slot)
     current_bookings = current_bookings(time_slot, date)
-    new_capacity = current_bookings + party_size
+
+    new_capacity = current_bookings.to_i + party_size.to_i
     new_capacity <= restaurant_maximum_capacity
   end
 

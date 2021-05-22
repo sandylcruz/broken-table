@@ -10,7 +10,7 @@ module Api
       restaurant = Restaurant.find_by(id: res_params[:restaurant_id])
       render json: ['No restaurant found'], status: :unprocessable_entity unless restaurant
 
-      current_capacity_available = restaurant.is_space_available?(res_params[:time_slot], res_params[:date], res_params[:party_size])
+      current_capacity_available = restaurant.is_space_available?(res_params[:date], res_params[:time_slot], res_params[:party_size])
 
       unless current_capacity_available
         render json: ['Reservation not created. Capacity exhausted.'], status: :unprocessable_entity
@@ -19,8 +19,6 @@ module Api
       @reservation = Reservation.new(restaurant_id: res_params[:restaurant_id],
                                      date: Date.parse(res_params[:date]), time_slot: res_params[:time_slot],
                                      party_size: res_params[:party_size], user_id: current_user.id)
-      # @reservation.user_id = current_user.id
-      # @reservation.date = Date.parse(res_params[:date])
 
       if @reservation.save
         render :show
