@@ -102,7 +102,7 @@ const StyledParty = styled(Party)`
   margin: 5px;
 `;
 
-const ReservationShow = ({ onCancel, reservation }) => {
+const ReservationShow = React.memo(({ onCancel, reservation }) => {
   const formattedDate = format(parseISO(reservation.date), "MMMM dd, yyyy");
 
   const handleCancellation = useCallback(
@@ -143,5 +143,5 @@ const ReservationShow = ({ onCancel, reservation }) => {
       </ReservationItem>
     </Link>
   );
-};
+});
 export default ReservationShow;

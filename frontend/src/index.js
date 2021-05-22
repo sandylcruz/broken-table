@@ -12,9 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // eslint-disable-next-line prettier/prettier
     const { favoriteRestaurants, ...currentUser } = window.currentUser;
     const { reservations } = window.currentUser;
-    // const reservationIds = reservations.map(
-    //   (reservation) => reservation.restaurant.id
-    // );
     const favoriteIds = favoriteRestaurants.map((restaurant) => restaurant.id);
 
     const usersReservations = reservations.reduce(

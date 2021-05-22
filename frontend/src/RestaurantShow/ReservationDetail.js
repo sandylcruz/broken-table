@@ -70,7 +70,7 @@ const StyledField = styled(Field)`
   margin-bottom: 5px;
 `;
 
-const ReservationDetail = ({ restaurantId }) => {
+const ReservationDetail = React.memo(({ restaurantId }) => {
   const [date, setDate] = useState(new Date());
   const [partySize, setPartySize] = useState("Party size");
   const [timeslot, setTimeslot] = useState("Timeslot");
@@ -150,6 +150,6 @@ const ReservationDetail = ({ restaurantId }) => {
       </Form>
     </div>
   );
-};
+});
 
 export default ReservationDetail;
