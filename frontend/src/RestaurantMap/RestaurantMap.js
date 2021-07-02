@@ -5,7 +5,7 @@ import MarkerManager from "../util/MarkerManager";
 
 const StyledMapDiv = styled.div`
   width: 100%;
-  height: 765px;
+  height: 100vh;
   padding-top: 70px;
   position: fixed;
 `;
