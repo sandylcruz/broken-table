@@ -1,7 +1,13 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/60662264/119245719-247e1880-bb30-11eb-8bbf-3ee43f2469ca.png" /></p>
 
-<p align="center">BrokenTable is a restaurant reservation application inspired by <a href="resy.com">Resy</a> and <a href="https://opentable.com">OpenTable</a> that is built on React/Redux, Ruby on Rails, and a PostgreSQL database.</p>
+<p align="center">BrokenTable is a restaurant reservation application inspired by <a href="resy.com">Resy</a> and <a href="https://opentable.com">OpenTable</a> that is built on React/Redux, Ruby on Rails, and a PostgreSQL database. Here is a working live <a href="https://broken-table.herokuapp.com/#/">demo.</a> </p>
+
+## Table of Contents
+* [Features and Implementation](#features-and-implementation)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
 
 ## Features and Implementation
 
@@ -35,18 +41,25 @@ Logged in users are able to favorite / unfavorite restaurants. In the user's pro
 
 Given more time, the following would be implemented:
 
-### Expanded Search Ability
+#### Expanded Search Ability
 
 Users would be able to search restaurants by name and food type. Reservations would be available for restaurants in more cities.
 
-### Receive Points for Booking and Usage of Site
+#### Receive Points for Booking and Usage of Site
 
 Users can earn points by booking reservations. Points earned on reservations are accumulated and can be redeemed for rewards.
 
-### Alerts
+#### Alerts
 
 When a request is successful or not, there will be confirmation.
 
-## Development
+## Technologies
+Project is created with:
+* Rails version: 6.1.3.1
+* React version: 17.0.2
+* React-redux version: 7.2.3
+* styled-components version: 5.2.3
 
-If you want to run Guard Livereload, go to the backend folder. In terminal, run "guard"
+## Setup
+
+If you want to run Guard Livereload, go to the backend folder. In terminal, run `guard`
