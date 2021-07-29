@@ -8,23 +8,28 @@
 ### Create and Login Users
 
 ![login](https://user-images.githubusercontent.com/60662264/119245734-4a0b2200-bb30-11eb-9261-0a29f9754ec2.gif)
+BrokenTable features back and front end user authentication using Rails, Active Record, and React-Router higher order components. Users are able to create an account as well as log into their account. Only logged in users are able to create restaurants, make reservations, and leave reviews. The users' database was seeded using Faker Ruby.
 
 ### Create and Search Restaurants
 
 ![search](https://user-images.githubusercontent.com/60662264/119245737-4ecfd600-bb30-11eb-9f0c-432bee87a49e.gif)
+Google Maps’, TomTom’s, and Resy’s APIs were used to facilitate geolocation based searching to display restaurant map location. Resy's API was used to scrape restaurant details, but only provided the coordinates for a given restaurant. TomTom's API was used to get restaurant addresses. Google Maps' API was used for dragging and dropping the map to search restaurants. Rails is connected to AWS S3 for media storage and organization while maintaining content security with AWS IAM.
 
 ### Make Reservations
 
 ![new_reservation](https://user-images.githubusercontent.com/60662264/119245741-52635d00-bb30-11eb-9512-7e5d22e267b2.gif)
+Scheduling / booking CRUD is managed by Active Record and PostgreSQL through transactional operations. A custom SQL query was utilized to avoid double bookings of restaurants for a given time slot and party size.
 
 ### Leave Ratings and Reviews
 
 ![write_review](https://user-images.githubusercontent.com/60662264/119245745-55f6e400-bb30-11eb-9e48-8d1de23223fc.gif)
+Guests are able to leave reviews consisting of a star rating as well as a text description. The ratings/reviews were seeded using Faker Ruby.
 
 ### Favorite Restaurants
 
 ![fav](https://user-images.githubusercontent.com/60662264/119245750-5a230180-bb30-11eb-81bf-60119ddb42b8.gif)
 ![favorites_show](https://user-images.githubusercontent.com/60662264/119245752-5c855b80-bb30-11eb-9af2-034387aae02e.gif)
+Logged in users are able to favorite / unfavorite restaurants. In the user's profile, they are able to see a list of their favorite restaurants.
 
 ## Future Direction for Project
 
