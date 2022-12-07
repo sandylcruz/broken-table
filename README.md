@@ -1,7 +1,7 @@
 
 <p align="center"><img src="https://user-images.githubusercontent.com/60662264/119245719-247e1880-bb30-11eb-8bbf-3ee43f2469ca.png" /></p>
 
-<p align="center">BrokenTable is a restaurant reservation application inspired by <a href="resy.com">Resy</a> and <a href="https://opentable.com">OpenTable</a> that is built on React/Redux, Ruby on Rails, and a PostgreSQL database. Here is a working live <a href="https://broken-table.herokuapp.com/#/">demo.</a> </p>
+<p align="center">BrokenTable is a restaurant reservation application inspired by <a href="resy.com">Resy</a> and <a href="https://opentable.com">OpenTable</a> that is built on React/Redux, Ruby on Rails, and a PostgreSQL database.</p>
 
 ## Table of Contents
 * [Features and Implementation](#features-and-implementation)
